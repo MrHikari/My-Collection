@@ -39,13 +39,13 @@
 1. 先检查是否存在 ssh key。<br/>
    终端下&emsp;`ls -al ~/.ssh`
 
-2. 如果存在，请确认是否是自己创建的 ssh key，如果是自己的 ssh key，可以去网页版 Git 上添加 ssh key。
+2. 如果存在，请确认是否是自己创建的 ssh key，如果是自己的 ssh key，可以去网页版 Git 上添加 ssh key。没有特殊状况没有必要重新生成新的 ssh key。这只是一对钥匙，只要能互相验证就能够实用。
 
-3. 如果存在，但不是自己的 ssh key，那会对自身操作产生问题。<br/>
-   先删除本电脑上原来的远程库&emsp;`git remote remove origin`<br/>
-   然后删除掉本电脑上原来 ssh 文件下全部文件&emsp;`rm -r ~/.ssh`<br/>
+3) 如果存在，但不是自己的 ssh key，那会对自身操作产生问题。因为可能存在泄密问题，请注意一定要确认狮子生成的 ssh key <br/>
+   重新设置 ssh key 的时候，先删除本电脑上原来的远程库&emsp;`git remote remove origin`<br/>
+   然后删除掉本电脑上原来 ssh 文件下全部文件&emsp;`rm -r ~/.ssh`， 因为删除原有的 ssh key 之后，再也不可能连上原先的远程仓库了<br/>
 
-4. 为自身重新创建 ssh key <br/>
+4) 为自身重新创建 ssh key <br/>
    终端下&emsp;`ssh-keygen -t rsa -C "xxx@example.com"`<br/>
    按照操作提示完成 ssh key 的创建，<br/>
    默认会在相应的路径下生成 id_rsa(私钥)和 id_rsa.pub(公钥)。
@@ -213,7 +213,7 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 #### 删除远程分支关联
 
-将指向 github 的远程分支关联关系删除
+将原先指向 github 的远程分支关联关系删除
 
 > git remote rm origin
 
@@ -221,7 +221,8 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 新的 remote 地址指向 gitlab 相应地址
 
-git remote add origin <项目 gitlab 上的 SSH 地址>
+> git remote add origin <项目 gitlab 上的 SSH 地址>
+
 修改后可以使用以下命令查看修改是否生效
 
 #### 查看远程分支关联
@@ -233,8 +234,10 @@ git remote add origin <项目 gitlab 上的 SSH 地址>
 如果 github 与 gitlab 所用用户名和邮箱不一样，可以这么做
 
 修改 gitlab 所用用户名
-git config user.name <gitlab 用户名>
-git config user.email <gitlab 用户邮箱>
+
+> git config user.name <gitlab 用户名>
+> git config user.email <gitlab 用户邮箱>
+
 修改项目过往提交记录的用户名
 如果希望 git 的 log 中的用户名也发生替换，可以这么做
 
