@@ -41,11 +41,11 @@
 
 2. 如果存在，请确认是否是自己创建的 ssh key，如果是自己的 ssh key，可以去网页版 Git 上添加 ssh key。没有特殊状况没有必要重新生成新的 ssh key。这只是一对钥匙，只要能互相验证就能够实用。
 
-3) 如果存在，但不是自己的 ssh key，那会对自身操作产生问题。因为可能存在泄密问题，请注意一定要确认狮子生成的 ssh key <br/>
+3. 如果存在，但不是自己的 ssh key，那会对自身操作产生问题。因为可能存在泄密问题，请注意一定要确认狮子生成的 ssh key <br/>
    重新设置 ssh key 的时候，先删除本电脑上原来的远程库&emsp;`git remote remove origin`<br/>
    然后删除掉本电脑上原来 ssh 文件下全部文件&emsp;`rm -r ~/.ssh`， 因为删除原有的 ssh key 之后，再也不可能连上原先的远程仓库了<br/>
 
-4) 为自身重新创建 ssh key <br/>
+4. 为自身重新创建 ssh key <br/>
    终端下&emsp;`ssh-keygen -t rsa -C "xxx@example.com"`<br/>
    按照操作提示完成 ssh key 的创建，<br/>
    默认会在相应的路径下生成 id_rsa(私钥)和 id_rsa.pub(公钥)。
@@ -168,7 +168,7 @@ ssh  ssh-keygen -t rsa -C "youremail@yourcompany.com"
 > \$ ssh-keygen -t rsa -C "youremail@gmail.com"
 > 注意，这时不能一路回车，否则邮箱将覆盖上一次生成的 ssh key，给这个文件起一个名字， 比如叫 id_rsa_github, 所以相应的也会生成一个 id_rsa_github.pub 文件。
 
-此时查看.ssh 下的目录文件，发现多了 id_rsa_github 和 id_rsa_github.pub 两个文件。
+此时查看 .ssh 下的目录文件，发现多了 id_rsa_github 和 id_rsa_github.pub 两个文件。
 
 添加私钥
 
@@ -198,7 +198,7 @@ Host github.com
 ```
 
 给 github/gitlab 上添加 ssh key
-查看 ssh key 执行‘cat id_rsa_github.pub’内容，将文本内容拷贝到https://github.com/settings/ssh。
+查看 ssh key 执行‘cat id_rsa_github.pub’内容，将文本内容拷贝到https://github.com/settings/ssh。(拷贝到对应的平台个人设置中)
 
 **测试**
 
