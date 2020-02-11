@@ -1,10 +1,10 @@
-#### Basic Operations of Git
+### Basic Operations of Git
 
-##### Introduction
+#### Introduction
 
 ---
 
-###### Git 常用命令
+#### Git 常用命令
 
 配置用户信息
 
@@ -30,7 +30,7 @@
 
 <br/>
 
-###### SSH Key
+#### SSH Key
 
 &emsp;&emsp;ssh key 提供了一种与 Git 通信的方式，通过这种方式可以在不输入密码的情况下，将 Git 作为开发者自己的 remote 远端服务器，进行版本控制。
 
@@ -52,7 +52,7 @@
 
 <br/>
 
-###### Git 本地仓库操作
+#### Git 本地仓库操作
 
 查看 Git 相关结果和帮助<br/>
 终端下&emsp;`git`
@@ -122,7 +122,9 @@
 
 <br/>
 
-###### 克隆项目
+---
+
+#### 克隆项目
 
 克隆远程项目，配置身份信息，创建项目，推送项目到远程仓库<br/>
 
@@ -138,13 +140,16 @@
 4. 编辑文件<br/>
 
 5. 推送项目到远程文件<br/>
-   > git add .
+
+> git add .
 
 > git commit -m “xxx”
 
 > git push
 
-### github/gitlab 同时管理多个 ssh key
+---
+
+#### github/gitlab 同时管理多个 ssh key
 
 以前用 github 的 ssh key，后来工作原因多了一个 gitlab 的账号，在绑定 gitlab 的 ssh key 时，发现将 github 的 ssh key 覆盖了。怎么同时绑定 github 和 gitlab 的 ssh key，并不产生冲突呢？
 今天找到了个小技巧，在.ssh 目录下新建一个 config 文件配置一下，就能解决 gitlab 与 github 的 ssh key 的冲突。
@@ -207,11 +212,11 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 说明成功的连上 github 了。
 
-## 如何将 github 项目上传至 gitlab
+### 如何将 github 项目上传至 gitlab
 
-### 一、修改远程分支关联
+#### 一、修改远程分支关联
 
-#### 删除远程分支关联
+##### 删除远程分支关联
 
 将原先指向 github 的远程分支关联关系删除
 
@@ -225,11 +230,11 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 修改后可以使用以下命令查看修改是否生效
 
-#### 查看远程分支关联
+##### 查看远程分支关联
 
 > git remote -v
 
-### 二、修改提交用户名
+#### 二、修改提交用户名
 
 如果 github 与 gitlab 所用用户名和邮箱不一样，可以这么做
 
@@ -241,8 +246,9 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 修改项目过往提交记录的用户名
 如果希望 git 的 log 中的用户名也发生替换，可以这么做
 
-在项目根目录下创建 email.sh 写入下面这段代码
+在项目根目录下创建 email.sh 写入下面这段代码(文件的名称随意，不一定要用 email)
 
+```
 #!/bin/sh
 
 git filter-branch --env-filter '
@@ -261,14 +267,37 @@ export GIT_AUTHOR_NAME="$CORRECT_NAME"
     export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
 fi
 ' --tag-name-filter cat -- --branches --tags
-创建后记得执行以下命令，让脚本可运行。并提交所有未提交内容，或者 stash 掉。
+```
 
-chmod 755 email.sh
-运行脚本
+把 OLD_EMAIL 、CORRECT_NAME 、 CORRECT_EMAIL 改成自己的新旧邮箱用户名即可；<br/>
+创建后记得执行以下命令，让脚本可运行。并提交所有未提交内容，或者 stash(隐藏) 掉。
 
-./email.sh
-三、push 内容至 gitlab
-1、推荐使用新分支（gitlab 项目不存在同名分支）提交至 gitlab,比如
-git push --set-upstream origin <新分支名称>
-2、或者，如果想要强制提交，且远程存在相应的分支，可以选择
-git push origin --force --all
+> chmod 755 email.sh
+
+运行脚本（对应目录下回车 Enter）
+
+> ./email.sh
+
+或者
+
+> cd /data/shell
+
+> sh email.sh
+
+如果遇到如下错误 ：
+
+> Cannot create a new backup. A previous backup already exists in refs/original/ Force overwriting the backup with -f
+
+则执行如下命令；
+
+> git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch Rakefile' HEAD
+
+#### 三、push 内容至 gitlab
+
+1. 推荐使用新分支（gitlab 项目不存在同名分支）提交至 gitlab,比如
+
+> git push --set-upstream origin <新分支名称>
+
+2. 或者，如果想要强制提交，且远程存在相应的分支，可以选择
+
+> git push origin --force --all
