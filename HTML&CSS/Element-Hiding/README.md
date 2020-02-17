@@ -1,8 +1,8 @@
-#### 元素隐藏的不同方式
+### 元素隐藏的不同方式
 
 **dispaly**, **visibility**, **opacity**, **height**&**border**。
 
-##### 简单示例
+#### 简单示例
 
 ```html
 <!DOCTYPE html>
@@ -42,6 +42,10 @@
 
 <br/>
 
+---
+
+<br/>
+
 ### 伸缩布局
 
 参考链接：https://developer.mozilla.org/zh-CN/docs/Web/CSS/flex
@@ -75,3 +79,68 @@ _主轴和侧轴并不是固定不变的，通过 flex-direction 可以互换。
 - flex-flow 是 flex-direction + flex-wrap 的简写形式
 - flex 是子项目在主轴的缩放比例，不指定 flex 属性，则不参与伸缩分配
 - order 控制子项目的排列顺序，正序方式排序，从小到大
+
+<br/>
+
+---
+
+<br/>
+
+### 文字溢出省略——CSS 样式
+
+单行省略
+
+```css
+display: block;
+overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+```
+
+多行省略 （数字即为自定义的行数）/（需要注意溢出隐藏的高度）
+
+```css
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 3;
+```
+
+示例
+
+```html
+ <style>
+     .dan{
+         font-size:14px;
+         color:#000000;
+         line-height:40px;
+         height: 40px;
+         width:300px;
+         background:pink;
+         /* 单行省略 */
+         display: block;
+         overflow: hidden;
+         white-space: nowrap;
+         text-overflow:ellipsis;
+     }
+     .duo{
+         height:120px;
+         width:300px;
+         background:pink;
+         line-height:40px;
+         margin-top:20px;
+         /* 多行省略 */
+         overflow:hidden;
+         text-overflow:ellipsis;
+         display:-webkit-box;
+         -webkit-box-orient:vertical;
+         -webkit-line-clamp:3;
+     }
+ </style>
+ <body>
+     <div class="dan">这个是单行省略这个是单行省略这个是单行省略这个是单行省略</div>
+     <div class="duo">这个是多行省略这个是多行省略这个是多行省略这个是多行省略这个是多行省略这个是多行省略这个是多行省略这个是多行省略咋回事儿咋回事儿咋回事儿</div>
+ </body>
+ </html>
+```
