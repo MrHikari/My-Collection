@@ -4,6 +4,12 @@
 
 **初次认识（不完整，不正确的）**：**webpack** 是一个 **JS** 文件翻译工具，能够识别 ES Module 语法，例如： 模块引入方式 `import`，模块导出方式 `export`。
 
+**进一步认识**： **webpack** is a module bundler.<br/>
+**webpack** 实际上是一个**模块打包工具**。例如： `import 模块 from 相对路径`。`export default 模块`。<br/>
+同时也支持 **CommonJS** 的引入方法：`var 模块名 = require(相对路径)`。`module.exports 模块`。
+
+**webpack 的发展**： 单纯的 js 模块打包工具 -> （很多文件）模块打包工具
+
 #### 安装 webpack
 
 **前提安装 node.js**
@@ -22,7 +28,7 @@
 
 > npm install webpack --save
 
-运行简单的网页文件,让 **webpack** 翻译原来写的 js 文件
+运行简单的网页文件,~~让 **webpack** 翻译原来写的 js 文件~~，对原始项目进行打包
 
 > npx webpack 基本文件.js
 
