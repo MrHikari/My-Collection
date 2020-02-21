@@ -59,3 +59,51 @@
 
 > npm info webpack
 
+---
+
+#### webpack 配置
+
+1. 对于不同文件，进行不同的打包
+
+2. webpack 的默认配置，一直在被丰富
+
+3. webpack 的**默认**配置文件（默认必须命名为）： `webpack.config.js`
+
+4. 自定义 webpack 的配置文件名：
+> npx webpack --config 自定义的配置文件名
+
+```js
+const path = require('path'); // 导入一个核心模块
+
+module.exports = {
+  entry: './index.js', // 打包的源代码入口文件路径
+  output: { // 打包输出
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+##### npm scripts 简化执行命令
+
+```js
+{
+  "name": "xxxxx",
+  "version": "0.0.1",
+  "private": true, // 私有
+  "scripts": {
+    "start": "webpack",
+  },
+  "dependencies": { // 项目需要的依赖
+    "xxxxx": "^1.0.0",
+    "webpack": "^4.25.1"
+  },
+  "devDependencies": { // 开发模式下需要安装的依赖
+    "xxxxx": "^1.0.0",
+    "webpack-cli": "^3.1.2"
+  }
+}
+```
+
+直接运行，就可以自动打包执行（前提必须有 **webpack** 配置文件配置）
+> npm run start
