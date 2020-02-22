@@ -59,7 +59,11 @@
 
 > npm info webpack
 
+<br/>
+
 ---
+
+<br/>
 
 #### webpack 配置
 
@@ -76,6 +80,7 @@
 const path = require('path'); // 导入一个核心模块
 
 module.exports = {
+  mode: 'production', // 打包模式，如果不配置，会默认设置成production，会造成warning警告。production会压缩代码为一行，development则不会
   entry: './index.js', // 打包的源代码入口文件路径
   output: { // 打包输出
     filename: 'bundle.js',
@@ -107,3 +112,40 @@ module.exports = {
 
 直接运行，就可以自动打包执行（前提必须有 **webpack** 配置文件配置）
 > npm run start
+
+<br/>
+
+---
+
+<br/>
+
+### webpack 参数 Loader
+
+#### 当打包不全是 js 文件的时候，webpack 配置
+
+**Loader**：通俗理解就是 **打包方案**， **webpack** 不能识别非 **js** 模块，通过 **Loader** 提供的方案来识别，协助打包
+
+举例子：
+
+```js
+const path = require('path'); // 导入一个核心模块
+const avatar = require('图片地址') // 导入一个图片
+
+module.exports = {
+  mode: 'production', // 打包模式，如果不配置，会默认设置成production，会造成warning警告。production会压缩代码为一行，development则不会
+  entry: './index.js', // 打包的源代码入口文件路径
+  module: { // 未知命令会在module中寻找，可在在module中指定规则
+    rules: [{
+      // 意思是，如果打包中监测到jpg文件，就用file-loader去打包（阅读官方文档）
+      test: /\.jpg$/,
+      use: {
+        loader: 'file-loader' // 比方说使用 file-loader 这个工具，注意这些工具要已安装
+      }
+    }]
+  },
+  output: { // 打包输出
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
