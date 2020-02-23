@@ -149,3 +149,77 @@ module.exports = {
   }
 }
 ```
+
+#### 图片打包（重点参考官方文档）
+
+设置 **webpack.config.js** 文件
+
+##### file-loader
+
+```js
+const path = require('path'); // 导入一个核心模块
+
+module.exports = {
+  mode: 'development', // 打包模式，如果不配置，会默认设置成production，会造成warning警告。production会压缩代码为一行，development则不会
+  entry: {
+    main: '.src/index.js' // 打包的源代码入口文件路径
+  },
+  module: { // 未知命令会在module中寻找，可在在module中指定规则
+    rules: [{
+      // 意思是，如果打包中监测到jpg文件，就用file-loader去打包（阅读官方文档）
+      test: /\.(jpg|png|gif)$/, // 正则匹配对应的文件
+      use: {
+        loader: 'file-loader', // 比方说使用 file-loader 这个工具，注意这些工具要已安装
+        // 额外配置参数option
+        options: {
+          name: '[name].[ext]', // 打包出的图片，与原图片一致的名字和后缀，注意 单引号， []中的又叫做placeholder（占位符）
+          // 例如，还可以  name: '[name]_[hash].[ext]'
+          outputPath: 'images/' // 会把打包生成的文件在 dist 目录下的 images 的文件夹下
+        }
+      }
+    }]
+  },
+  output: { // 打包输出
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+##### url-loader
+
+注意要安装 url-loader
+
+> npm install url-loader -D
+
+```js
+const path = require('path'); // 导入一个核心模块
+
+module.exports = {
+  mode: 'development', // 打包模式，如果不配置，会默认设置成production，会造成warning警告。production会压缩代码为一行，development则不会
+  entry: {
+    main: '.src/index.js' // 打包的源代码入口文件路径
+  },
+  module: { // 未知命令会在module中寻找，可在在module中指定规则
+    rules: [{
+      // 意思是，如果打包中监测到jpg文件，就用file-loader去打包（阅读官方文档）
+      test: /\.(jpg|png|gif)$/, // 正则匹配对应的文件
+      use: {
+        // 如果图片大小低于 20kb，那么完全可以 base64 形式打包进 bundle.js文件
+        loader: 'url-loader', // 使用 url-loader 这个工具，注意这些工具要已安装
+        // 额外配置参数option
+        options: {
+          name: '[name].[ext]', // 打包出的图片，与原图片一致的名字和后缀，注意 单引号， []中的又叫做placeholder（占位符）
+          // 例如，还可以  name: '[name]_[hash].[ext]'
+          outputPath: 'images/', // 会把打包生成的文件在 dist 目录下的 images 的文件夹下
+          limit: 20480 // 如果文件低于20480个字节（20kb），就打包进入 bundle.js 文件中， 大于limit，就和file-loader 一样，打包到 images 目录下
+        }
+      }
+    }]
+  },
+  output: { // 打包输出
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
