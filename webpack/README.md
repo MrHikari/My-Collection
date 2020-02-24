@@ -223,3 +223,63 @@ module.exports = {
   }
 }
 ```
+
+#### 静态资源打包（样式文件）
+
+当引入一个 **css**，**scss** 或者 **less** 文件的时候，**webpack** 默认是不能识别的，所以需要在配置中设置
+
+```js
+const path = require('path'); // 导入一个核心模块
+
+module.exports = {
+  mode: 'development', // 打包模式，如果不配置，会默认设置成production，会造成warning警告。production会压缩代码为一行，development则不会
+  entry: {
+    main: '.src/index.js' // 打包的源代码入口文件路径
+  },
+  module: { // 未知命令会在module中寻找，可在在module中指定规则
+    rules: [{
+      // 意思是，如果打包中监测到jpg文件，就用file-loader去打包（阅读官方文档）
+      test: /\.(jpg|png|gif)$/, // 正则匹配对应的文件
+      use: {
+        // 如果图片大小低于 20kb，那么完全可以 base64 形式打包进 bundle.js文件
+        loader: 'url-loader', // 使用 url-loader 这个工具，注意这些工具要已安装
+        // 额外配置参数option
+        options: {
+          name: '[name].[ext]', // 打包出的图片，与原图片一致的名字和后缀，注意 单引号， []中的又叫做placeholder（占位符）
+          // 例如，还可以  name: '[name]_[hash].[ext]'
+          outputPath: 'images/', // 会把打包生成的文件在 dist 目录下的 images 的文件夹下
+          limit: 20480 // 如果文件低于20480个字节（20kb），就打包进入 bundle.js 文件中， 大于limit，就和file-loader 一样，打包到 images 目录下
+        }
+      }
+    },{ // 增加新的规则，识别对应的样式文件
+      test: /\.css$/,
+      // 这里需要对应的loader，需要 优先安装
+      // css-loader 帮助分析几个css文件中关系，然后合并为一个css
+      // style-loader，在得到css-loader生成css内容后，将这些css内容挂载到页面的header部分中
+      use: ['style-loader', 'css-loader']
+    }]
+  },
+  output: { // 打包输出
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+如果使用一些css预处理工具，比如Sass和Less，那么就要重新设置`webpack.config.js`
+
+节选部分rules的配置
+```js
+rules: [{ // 增加新的规则，识别对应的样式文件
+      test: /\.scss$/,
+      // 这里需要对应的loader，需要 优先安装
+      // css-loader 帮助分析几个css文件中关系，然后合并为一个css
+      // style-loader，在得到css-loader生成css内容后，将这些css内容挂载到页面的header部分中
+      // loader的执行是从下往上的，从右到左的
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader'
+      ]
+    }]
+```
