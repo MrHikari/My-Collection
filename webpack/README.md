@@ -268,7 +268,7 @@ module.exports = {
 
 如果使用一些css预处理工具，比如Sass和Less，那么就要重新设置`webpack.config.js`
 
-节选部分rules的配置
+`webpack.config.js` 中节选部分rules的配置
 ```js
 rules: [{ // 增加新的规则，识别对应的样式文件
       test: /\.scss$/,
@@ -315,3 +315,63 @@ module.exports = {
   ]
 }
 ```
+
+**css-loader** 常用的配置项
+
+`webpack.config.js` 中节选部分rules的配置
+
+```js
+rules: [{ // 增加新的规则，识别对应的样式文件
+      test: /\.scss$/,
+      // 这里需要对应的loader，需要 优先安装
+      // css-loader 帮助分析几个css文件中关系，然后合并为一个css
+      // style-loader，在得到css-loader生成css内容后，将这些css内容挂载到页面的header部分中
+      // loader的执行是从下往上的，从右到左的
+      use: [
+        'style-loader',
+        // 可以使用对象，增加一些配置
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2 // 通过import引入的其他scss文件，在引入之前也要执行之前的2个loader
+          }
+        },
+        'sass-loader',
+        'postcss-loader'
+      ]
+    }]
+```
+
+**css打包的模块化**
+
+**css module** 概念，css 样式只在当前的模块里生效
+
+`webpack.config.js` 中节选部分rules的配置
+
+```js
+rules: [{ // 增加新的规则，识别对应的样式文件
+      test: /\.scss$/,
+      // 这里需要对应的loader，需要 优先安装
+      // css-loader 帮助分析几个css文件中关系，然后合并为一个css
+      // style-loader，在得到css-loader生成css内容后，将这些css内容挂载到页面的header部分中
+      // loader的执行是从下往上的，从右到左的
+      use: [
+        'style-loader',
+        // 可以使用对象，增加一些配置
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 2, // 通过import引入的其他scss文件，在引入之前也要执行之前的2个loader
+            modules: true // 开启css的模块化打包
+          }
+        },
+        'sass-loader',
+        'postcss-loader'
+      ]
+    }]
+```
+
+在对应模块中引入css样式时，需要`import style from './对应的css样式文件地址'`，使用的时候`style.对应的样式名`。
+
+
+
