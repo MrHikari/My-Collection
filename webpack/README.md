@@ -283,3 +283,35 @@ rules: [{ // 增加新的规则，识别对应的样式文件
       ]
     }]
 ```
+
+**避免厂商前缀**
+
+节选部分rules的配置
+```js
+rules: [{ // 增加新的规则，识别对应的样式文件
+      test: /\.scss$/,
+      // 这里需要对应的loader，需要 优先安装
+      // css-loader 帮助分析几个css文件中关系，然后合并为一个css
+      // style-loader，在得到css-loader生成css内容后，将这些css内容挂载到页面的header部分中
+      // loader的执行是从下往上的，从右到左的
+      use: [
+        'style-loader',
+        'css-loader',
+        'sass-loader',
+        'postcss-loader'
+      ]
+    }]
+```
+
+**注意：** 在项目目录项配置一个 `postcss.config.js` 文件
+
+`postcss.config.js` 中配置
+
+```js
+module.exports = {
+  plugins: [
+    // 配置需要使用的插件
+    require('autoprefixer')
+  ]
+}
+```
