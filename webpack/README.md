@@ -181,7 +181,7 @@ module.exports = {
   },
   output: { // 打包输出
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
   }
 }
 ```
@@ -219,7 +219,7 @@ module.exports = {
   },
   output: { // 打包输出
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
   }
 }
 ```
@@ -261,7 +261,7 @@ module.exports = {
   },
   output: { // 打包输出
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'bundle') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
   }
 }
 ```
@@ -373,5 +373,73 @@ rules: [{ // 增加新的规则，识别对应的样式文件
 
 在对应模块中引入css样式时，需要`import style from './对应的css样式文件地址'`，使用的时候`style.对应的样式名`。
 
+<br/>
 
+---
 
+<br/>
+
+### webpack 参数 plugins
+
+使用 **plugins** 让打包更加便捷，（阅读官方文档）
+
+**plugin** 可以在webpack运行到某一时刻，完成对应的操作
+
+安装 webpack 插件
+
+// 获取一个模板文件，打包生成对应的 `index.html` (官方plugin)
+> npm isntall html-webpack-plugin -D
+
+// 在没次打包之前，删除已存在的 dist 文件夹 （第三方plugin）
+> npm install clean-webpack-plugin -D
+
+引入 webpack 插件，实例化
+
+`webpack.config.js` 文件中
+
+```js
+const path = require('path'); // 导入一个核心模块
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  entry: {
+    main: '.src/index.js'
+  },
+  module: {
+    rules: [{
+      test: /\.(jpg|png|gif)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/',
+          limit: 20480
+        }
+      }
+    },{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }]
+  },
+  // 在此处配置plugins参数
+  // HtmlWebpackPlugin 会在打包结束后，自动生成一个html文件，并把打包生成的 js 文件自动引入到这个 html 文件中
+  plugins: [new HtmlWebpackPlugin()], 
+  output: { // 打包输出
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+默认生成的index.html并不能完全满足需求，所以要预先在src文件夹下设置模板html，并且重新生成dist目录
+
+配置plugins参数
+
+```js
+  plugins: [new HtmlWebpackPlugin({
+    // 接受一个模板文件
+    template: './模板路径'
+  }), new CleanWebpackPlugin(['dist'])], // 传入参数，表示在打包之前清除 dist 文件夹
+```
