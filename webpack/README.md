@@ -443,3 +443,36 @@ module.exports = {
     template: './模板路径'
   }), new CleanWebpackPlugin(['dist'])], // 传入参数，表示在打包之前清除 dist 文件夹
 ```
+
+<br/>
+
+---
+
+<br/>
+
+### webpack 参数 Entry 与 Output 的基础配置
+
+示例：
+```js
+const path = require('path'); // 导入一个核心模块
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  // 打包源代码的入口文件设置
+  entry: {
+    // 打包完成后的入口文件名：源代码入口文件路径
+    main: '.src/index.js',
+    sub: '.src/index.js'
+  },
+  // 省略部分代码
+  ......
+  ......
+  output: { // 打包输出
+    publicPath: '地址（例如 https://xxx.com.cn）', // 会在打包文件时，对应html是，script的src带上path
+    filename: '[name].js', // 打包多个文件时，要设置输出的文件名，这里使用文件名作为打包生成文件的名字
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
