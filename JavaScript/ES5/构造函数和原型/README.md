@@ -178,3 +178,44 @@ console.log(example1.__proto === Example.prototype); // 结果是true
 
 * 在构造函数中， this 指向的是实例化的对象
 * 原型对象的函数里面的 this 指向的是 实例化对象
+
+<br/>
+
+**扩展内置对象**
+
+可以通过原型对象，对原来的内置对象进行扩展自定义的方法。
+
+**注意：** 数组和字符串内置对象不能给原型对象覆盖操作，只能是`Array.prototye.xxx = function() {}`的方式。
+
+---
+
+#### 继承
+
+**call()**
+
+调用这个函数，并且修改函数运行时的 this 指向。
+
+```js
+fun.call(thisArg, arg1, arg2, ......)
+```
+* thisArg： 当前调用函数 this 的指向对象
+* arg1，arg2：传递的其他参数
+
+功能：
+1. `call()`可以调用函数，类似 `fun()`， 使用时 `fun.call()`
+2. `call()`可以改变这个函数的 this 指向，例如申明一个对象，在使用时`fun.call(申明的对象)`
+
+示例：
+
+```js
+function fun(x, y) {
+  console.log('fun函数');
+  console.log('this--->', this);
+  console.log('x与y的和', x + y);
+}
+
+const newObj = { name: 'new1'};
+
+fun.call(newObj, 1, 2)
+```
+
