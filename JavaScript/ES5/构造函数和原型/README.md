@@ -219,3 +219,68 @@ const newObj = { name: 'new1'};
 fun.call(newObj, 1, 2)
 ```
 
+<br/>
+
+**借用构造函数继承父类型属性**
+
+核心原理：通过`call()`把父类型的 **this** 指向子类型的 this， 这样就实现了子类型**继承**父类型的属性。
+
+```js
+// 父构造函数
+function Father(x, y) {
+  console.log('Father--->');
+  console.log('this--->', this);
+  this.name = x;
+  this.info = y;
+}
+
+// 子构造函数
+function Son(s, m, newParam) {
+  // 借用父构造函数继承属性
+  Father.call(this, s, m);
+  this.sonInfo = newParam;
+}
+
+// 验证
+const son = new Son('子构造姓名', '子信息', '子新的参数');
+console.log('son---->', son);
+```
+
+<br/>
+
+**借用原型对象继承父类型方法**
+
+```js
+// 父构造函数
+function Father(x, y) {
+  console.log('Father--->');
+  console.log('this--->', this);
+  this.name = x;
+  this.info = y;
+}
+Father.prototype.fMethod = function() {
+  console.log('父构造函数的原型方法');
+}
+
+// 子构造函数
+function Son(s, m, newParam) {
+  // 借用父构造函数继承属性
+  Father.call(this, s, m);
+  this.sonInfo = newParam;
+}
+// 这是错误的，如果修改了 子原型对象，父原型对象 会跟着变化
+// Son.prototype = Father.prototype;
+
+// 实例化一个 父对象
+Son.prototype = new Father();
+// 如果利用对象的形式修改了原型对象，要记住使用 constructor 指向回原来的构造函数
+Son.prototype.constructor = Son;
+Son.prototype.sMethod = function() {
+  console.log('子构造函数的原型方法');
+}
+// 验证
+const son = new Son('子构造姓名', '子信息', '子新的参数');
+console.log('son---->', son);
+console.log('Father.prototype---->', Father.prototype);
+console.log('Son.prototype.constructor---->', Son.prototype.constructor);
+```
