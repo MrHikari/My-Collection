@@ -139,3 +139,18 @@ example1.method1();
 
 console.log(example1.__proto === Example.prototype); // 结果是true
 ```
+
+<br/>
+
+**constructor 构造函数**
+
+`对象原型`（ __proto__ ）和`构造函数`（ prototype ）`原型对象`内部都有一个属性 `constructor` 属性，constructor 被称为构造函数，因为它重新指向回了构造函数本身。
+
+**constructor** 主要用于 当前对象 引用于哪个**构造函数**，可以让原型对象重新指向原来的构造函数。
+
+<br/>
+
+**构造函数、实例和原型对象的三者关系**
+
+![三者关系示意图]()
+
