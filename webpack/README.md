@@ -479,6 +479,10 @@ module.exports = {
 
 <br/>
 
+---
+
+<br/>
+
 #### webpack sourceMap 配置
 
 详细参见官方文档
@@ -527,4 +531,71 @@ module.exports = {
 ```js
 devtool: 'cheap-module-source-map'
 ```
+
+<br/>
+
+---
+
+<br/>
+
+#### 使用 WebpackDevServer 提升开发效率
+
+如果更改了`src`目录下的源代码，希望能够自动重新打包并且运行，直接在页面上观看效果。
+
+1. 打开 `package.json` 修改，但是只能简单地实现**部分**功能
+
+```js
+{
+  "name": "xxxxx",
+  "version": "0.0.1",
+  "private": true, // 私有
+  "scripts": {
+    "watch": "webpack --watch", // 变动，webpack会帮助监听文件，源文件变动，就会重新打包
+    "start": "webpack-dev-server", // 在配置完 webpack.config.js 文件后，配置命令
+  },
+  "dependencies": { // 项目需要的依赖
+    "xxxxx": "^1.0.0",
+    "webpack": "^4.25.1"
+  },
+  "devDependencies": { // 开发模式下需要安装的依赖
+    "xxxxx": "^1.0.0",
+    "webpack-cli": "^3.1.2"
+  }
+}
+```
+
+2. 增加 `webpack.config.js` 配置
+
+确认安装 **webpack-dev-server**
+> npm install webpack-dev-server -D
+
+```js
+const path = require('path'); // 导入一个核心模块
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
+  entry: {
+    main: '.src/index.js',
+  },
+  // 增加 devServer 配置
+  devServer: {
+    contentBase: './dist',
+    open: true // 在启动 webpack-dev-server 时，会自动打开一个浏览器，访问相应的地址
+  },
+  // 省略部分代码
+  ......
+  ......
+  output: { // 打包输出
+    filename: '[name].js', // 打包多个文件时，要设置输出的文件名，这里使用文件名作为打包生成文件的名字
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+`webpack-dev-server` 对比 watch 命令，不仅会自动重新打包，还可以主动刷新浏览器
+
+
 
