@@ -476,3 +476,55 @@ module.exports = {
   }
 }
 ```
+
+<br/>
+
+#### webpack sourceMap 配置
+
+详细参见官方文档
+
+**sourceMap** 其实是一个映射关系，为开发者将打包后文件中的错误和警告，关联到源代码`src`目录下的位置。
+
+在`开发这模式`下，即 `mode: 'development'`下，**sourceMap** 是被默认配置了。<br/>
+如果要取消相应的`开发工具`配置，增加 `devtool: 'none'`。
+
+**devtool** 中的各种参数关键字可以自由组合：`cheap`， `inline`， `module`， `eval`， `source-map`。
+
+`eval`是打包速度最快的方式，没有`.map`文件，也没有`base64`的代码，但会用`eval`的执行方式，对于复杂代码，提示可能不会全面。
+
+一般开发建议组合 `cheap=module-eval-source-map`
+
+示例：
+```js
+const path = require('path'); // 导入一个核心模块
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+module.exports = {
+  // mode: 'production', // 生产线上模式
+  mode: 'development',
+  // devtool: 'none', // 在开发者模式下不想使用开发工具配置
+  devtool: 'source-map',
+  // devtool: 'inline-source-map', // 将source-map打包生成的 .map 文件，直接打包进了 js 文件中
+  // devtool: 'cheap-inline-source-map', // 映射只对应到行，提升打包速度
+  // devtool: 'cheap-module-inline-source-map', // 加上 module 关键字，标识不止处理业务代码，也处理第三方模块等代码
+  // 打包源代码的入口文件设置
+  entry: {
+    // 打包完成后的入口文件名：源代码入口文件路径
+    main: '.src/index.js',
+  },
+  // 省略部分代码
+  ......
+  ......
+  output: { // 打包输出
+    filename: '[name].js', // 打包多个文件时，要设置输出的文件名，这里使用文件名作为打包生成文件的名字
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+对于 `mode: 'production', // 生产线上模式` 的 **devtool** 配置。
+```js
+devtool: 'cheap-module-source-map'
+```
+
