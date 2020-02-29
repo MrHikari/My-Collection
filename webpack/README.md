@@ -657,3 +657,64 @@ module.exports = {
 
 [Babel官方网址](https://babeljs.io)
 
+首先去网页的 **Setup** 选项中，寻找需要使用 **Babel** 的场景。这里选择进入 **webpack**。
+
+根据提示安装 `babel-loader` 和 `@babel/core`。`@babel/core`是 **Babel** 的一个核心库。
+> npm install --save-dev babel-loader @babel/core
+
+`webpack.config.js` 配置
+
+配置完毕后，继续安装 `@babel/preset-env` 模块。
+> npm install @babel/preset-env --save-dev
+
+```js
+const path = require('path'); // 导入一个核心模块
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+module.exports = {
+  mode: 'development',
+  entry: {
+    main: '.src/index.js'
+  },
+  // 省略部分代码
+  ......
+  ......
+  module: {
+    rules: [{
+      // Babel 配置参数
+      test: /\.js$/, // 检测到 js 文件时候
+      exclude: /node_modules/, // 通常是第三方代码，没有必要转 ES5
+      loader: "babel-loader",
+      // 配置 @babel/preset
+      options: {
+        presets: ['@babel/preset-env']
+      }
+    }, {
+      test: /\.(jpg|png|gif)$/,
+      use: {
+        loader: 'url-loader',
+        options: {
+          name: '[name].[ext]',
+          outputPath: 'images/',
+          limit: 20480
+        }
+      }
+    },{
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader']
+    }]
+  },
+  // 在此处配置plugins参数
+  plugins: [new HtmlWebpackPlugin({ template: './模板路径' }),
+  new CleanWebpackPlugin(['dist']), // 传入参数，表示在打包之前清除 dist 文件夹
+  new webpack.HotModuleReplacementPlugin()
+  ],
+  output: { // 打包输出
+    filename: '[name].js',
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+
