@@ -580,10 +580,11 @@ module.exports = {
   entry: {
     main: '.src/index.js',
   },
-  // 增加 devServer 配置
+  // 增加 devServer 配置，详细参数参见 官方文档
   devServer: {
     contentBase: './dist',
     open: true // 在启动 webpack-dev-server 时，会自动打开一个浏览器，访问相应的地址
+    // port: 8080
   },
   // 省略部分代码
   ......
@@ -595,7 +596,53 @@ module.exports = {
 }
 ```
 
-`webpack-dev-server` 对比 watch 命令，不仅会自动重新打包，还可以主动刷新浏览器
+`webpack-dev-server` 对比 watch 命令，不仅会自动重新打包，还可以主动刷新浏览器，但是并不会生成**dist**文件夹，因为它把打包生成的文件存在了 **内存** 之中。
 
+<br/>
 
+---
 
+<br/>
+
+#### Hot Module Replacement 热模块更新
+
+在改变代码的时候，页面可以实现自动更新
+
+```js
+const path = require('path'); // 导入一个核心模块
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+// 引入插件
+const webpack = require('webpack');
+
+module.exports = {
+  mode: 'development',
+  devtool: 'cheap-module-eval-source-map',
+  entry: {
+    main: '.src/index.js',
+  },
+  // 增加 devServer 配置，详细参数参见 官方文档
+  devServer: {
+    contentBase: './dist',
+    open: true, // 在启动 webpack-dev-server 时，会自动打开一个浏览器，访问相应的地址
+    // port: 8080
+    hot: true, // 让 webpack 开启 Hot Module
+    hotOnly: true // 即使 html 没有生效，也不让浏览器自动刷新
+  },
+  // 省略部分代码
+  ......
+  ......
+  plugins: [new HtmlWebpackPlugin({
+    template: './模板路径'
+  }), new CleanWebpackPlugin(['dist']), // 传入参数，表示在打包之前清除 dist 文件夹
+  // 在 plugin 中配置
+  new webpack.HotModuleReplacementPlugin()
+  ],
+  output: { // 打包输出
+    filename: '[name].js', // 打包多个文件时，要设置输出的文件名，这里使用文件名作为打包生成文件的名字
+    path: path.resolve(__dirname, 'dist') // 组合路径，形成绝对路径（__dirname,指当前项目文件地址）
+  }
+}
+```
+
+React 借助了一些 工具，帮助实现了部分检视更新的功能代码。所以写React组件没必要去写一些 热更新 判断代码。
