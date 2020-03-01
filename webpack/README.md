@@ -764,4 +764,30 @@ module.exports = {
 }
 ```
 
+<br/>
 
+---
+
+<br/>
+
+#### 配置 React 代码打包
+
+依照 官方文档 **Presets** 部分，安装对应的依赖。
+> npm install --save-dev @babel/preset-react
+
+在 **React项目** 下，配置 `.Babelrc` 文件
+```js
+// 从下往上顺序执行，先转换 React 代码，再转换 ES5 代码
+{
+  // 需要转换的变量和函数，在低版本中的补充，需要安装 @babel/polyfill
+  presets: ["@babel/preset-env", { // 语法转换
+  // 详细参见 官方文档 Usage Guide
+    useBuiltIns: "usage", // 按需引入，对使用到的函数和语法进行转换补充
+    targets: {
+      chrome: "67", // 会对 对应版本以上的浏览器不进行转译
+    }
+  },
+  "@babel/preset-react" // 先转换 React 代码
+  ]
+}
+```
