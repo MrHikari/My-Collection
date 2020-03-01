@@ -667,6 +667,47 @@ module.exports = {
 配置完毕后，继续安装 `@babel/preset-env` 模块。
 > npm install @babel/preset-env --save-dev
 
+如果需要转换的变量和函数，为低版本的浏览器补充，需要安装 `@babel/polyfill`
+> npm install --save @babel/polyfill
+
+一般需要在业务代码最顶部补充。但是在开发一些类似组件库或者第三方模块的时候不推荐这么使用，会污染全局变量环境
+```js
+import "@babel/polyfill";
+```
+
+`import "@babel/polyfill"`**替换方案**<br/>
+首先安装依赖，找到 官方网站 **transform-runtime**
+> npm install --save-dev @babel/plugin-transform-runtime
+> npm install --save @babel/runtime
+
+重新配置 对应的 options 参数
+```js
+......
+......
+    rules: [{
+          // Babel 配置参数
+          test: /\.js$/, // 检测到 js 文件时候
+          exclude: /node_modules/, // 通常是第三方代码，没有必要转 ES5
+          loader: 'babel-loader',
+          // 配置 @babel/preset
+          options: {
+            plugins: [['@babel/plugin-transform-runtime'],{
+              "absoluteRuntime": false,
+              "corejs": false, // 需要对照官方文档，安装依赖
+              "helpers": true,
+              "regenerator": true,
+              "useESModules": false,
+              "version": "7.0.0-beta.0"
+            }]
+          }
+        }
+......
+......
+```
+
+如果需要详细配置 **Babel** 参数时，可以在项目目录下，单独创建 `.Babelrc` 文件，存放原先的**options**中的设置
+
+示例：
 ```js
 const path = require('path'); // 导入一个核心模块
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -688,7 +729,13 @@ module.exports = {
       loader: "babel-loader",
       // 配置 @babel/preset
       options: {
-        presets: ['@babel/preset-env']
+        // 需要转换的变量和函数，在低版本中的补充，需要安装 @babel/polyfill
+        presets: ['@babel/preset-env', { // 语法转换
+        // 详细参见 官方文档 Usage Guide
+        useBuiltIns: 'usage', // 按需引入，对使用到的函数和语法进行转换补充
+        targets: {
+          chrome: '67', // 会对 对应版本以上的浏览器不进行转译
+        }}]
       }
     }, {
       test: /\.(jpg|png|gif)$/,
