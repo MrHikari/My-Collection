@@ -670,7 +670,8 @@ module.exports = {
 如果需要转换的变量和函数，为低版本的浏览器补充，需要安装 `@babel/polyfill`
 > npm install --save @babel/polyfill
 
-一般需要在业务代码最顶部补充。但是在开发一些类似组件库或者第三方模块的时候不推荐这么使用，会污染全局变量环境
+一般需要在业务代码最顶部补充。但是在开发一些类似组件库或者第三方模块的时候不推荐这么使用，会污染全局变量环境<br/>
+如果配置了 `useBuiltIns: 'usage'`，那也没有必要添加了
 ```js
 import "@babel/polyfill";
 ```
@@ -791,3 +792,42 @@ module.exports = {
   ]
 }
 ```
+
+<br/>
+
+---
+
+---
+
+<br/>
+
+#### 通过 Create React App 深入学习 Webpack 配置
+
+[Create React App 中文官方网站](https://www.html.cn/create-react-app/)
+
+先依照文档快速初始化一个app项目
+> npx create-react-app my-app
+
+然后进入到项目路径下，启动这个基本项目
+> npm start
+
+**注意：** 在基本的工程目录下寻找不到 `webpack` 配置，只有 `src`（源代码），和 `public` 目录。<br/>
+因为作为一个“脚手架”工具，会竟可能帮助开发者配置基础的 `webpack`，并且隐藏起来。
+
+在 `package.json` 文件中，可以查看到一条指令 `"eject": "react-scripts eject"`。<br/>
+这条指令可以帮助开发者将隐藏的 配置项 展现出来。
+
+当执行完 `npm run eject` 命令后，项目中会增加一个 **config** 文件夹 和 一个 **scripts** 文件夹。<br/>
+**config** 文件夹下有一个 **jest** 文件夹，这个问价夹涉及的是 自动化测试。<br/>
+**scripts** 文件夹下有一个 **test.js** 文件，这个也是涉及的是 自动化测试。
+
+`package.json` 文件中
+```js
+  "scripts": {
+    "start": "node scripts/start.js", // 项目启动
+    "build": "node scripts/build.js", // 帮助生成线上生产环境代码的命令
+    // "test": "node scripts/test.js" // 项目测试，暂时注释
+  },
+```
+
+**注意：** 此时如果要重新启动项目，需要删除依赖的版本锁定文件，和 **node_modules** 文件夹，重新依照更新过后的 `package.json`文件，下载依赖。
