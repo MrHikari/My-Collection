@@ -5,7 +5,7 @@
 
 #### Redux 示意
 
-![Redux 示意图]()
+![Redux 示意图](https://github.com/MrHikari/My-Collection/blob/master/%E5%9B%BE%E7%89%87%E6%9A%82%E5%AD%98/Redux%E7%A4%BA%E6%84%8F%E5%9B%BE.jpg)
 
 
 
