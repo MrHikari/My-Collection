@@ -9,3 +9,26 @@
 
 
 
+#### 安装 Redux
+
+在项目目录下安装
+> npm isntall --save redux
+
+#### 生成 store
+
+**基础示例：**<br/>
+项目路径下创建一个文件，或者在选择一个路径下创建一个文件
+```js
+import { createStore } from 'redux'; // 从redux引入创建store方法
+import reducer from 'reducer的相对路径'; // 在创建完reducer.js后引入
+const store = createStore();
+export default store; // 将生成的store暴露出去
+```
+
+新建文件 `reducer.js`
+```js
+const defaultState={}; // 模拟文件中预存的数据
+export default (state = defaultState, action) => {
+  return state;
+}
+```
