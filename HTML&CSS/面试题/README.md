@@ -36,11 +36,11 @@ br、hr
 * background_origin 背景图片的定位区域
 * background-clip 背景图片的绘制区域
 
-##### 渐变：
+##### 渐变:
 * linear-gradient 线性渐变
 * radial-gradient 径向渐变
 
-##### 文本效果;
+##### 文本效果:
 * word-break
 * word-wrap
 * text-overflow
@@ -51,9 +51,12 @@ br、hr
 
 ##### 转换：
 * **2D转换属性**
+
 * transform
 * transform-origin
+
 * **2D转换方法**
+
 * translate(x,y)
 * translateX(n)
 * translateY(n)
@@ -65,7 +68,7 @@ br、hr
 * matrix(n,n,n,n,n,n)
 
 ##### 3D转换：
-*3D转换属性：
+* **3D转换属性：**
 
 * transform
 * transform-origin
@@ -106,10 +109,11 @@ br、hr
 |#id|#firstname|选择|id="firstname" 的所有元素。|1|
 |`*`|`*`|选择所有元素。|2|
 |element|p|选择所有元素。|1|
-|element,element|div,p|选择所有元素和所有元素。|1|
-|element element|div p|选择元素内部的所有元素。|1|
-|element>element|div>p|选择父元素为元素的所有元素。|2|
-element+element|div+p|选择紧接在元素之后的所有元素。|2|
+|element1,element2|div,p|选择所有element1元素和所有element2元素。|1|
+|element1 element2|div p|选择element1元素内部的所有element2元素，包含孙子辈元素。|1|
+|element1>element2|div>p|选择element1父元素中对应的所有element2子元素，不包含孙子辈元素。|2|
+|element1+element2|div+p|选择紧接在element1元素之后的所有element2元素（同级元素紧接着）。|2|
+|element1~element2|p~ul|选择element1元素后的全部element2元素。|3|
 |[attribute]|[target]|选择带有 target 属性所有元素。|2|
 |[attribute=value]|[target=_blank]|选择 target="_blank" 的所有元素。|2|
 |[attribute~=value]|[title~=flower]|选择 title 属性包含单词 "flower" 的所有元素。|2|
@@ -125,7 +129,6 @@ element+element|div+p|选择紧接在元素之后的所有元素。|2|
 |:before|p:before|在每个元素的内容之前插入内容。|2|
 |:after|p:after|在每个元素的内容之后插入内容。|2|
 |:lang(language)|p:lang(it)|选择带有以 "it" 开头的 lang 属性值的每个元素。|2|
-|element1~element2|p~ul|选择前面有元素的每个元素。|3|
 |[attribute^=value]|a[src^="https"]|选择其 src 属性值以 "https" 开头的每个 元素。|3|
 |[attribute$=value]|a[src$=".pdf"]|选择其 src 属性以 ".pdf" 结尾的所有 元素。|3|
 |[attribute*=value]|a[src*="abc"]|选择其 src 属性中包含 "abc" 子串的每个 元素。|3|
@@ -150,3 +153,4 @@ element+element|div+p|选择紧接在元素之后的所有元素。|2|
 [css有哪些属性可以继承？](https://www.jianshu.com/p/fbfc6c751e34)
 
 ---
+
