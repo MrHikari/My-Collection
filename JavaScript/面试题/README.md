@@ -2,7 +2,7 @@
 **回答：**
 ```js
 function delLast(str,target) {
-  let reg =new RegExp(`${target}(?=([^${target}]*)$)`);
+  const reg = new RegExp(`${target}(?=([^${target}]*)$)`);
   return str.replace(reg, '');
 }
 ```
