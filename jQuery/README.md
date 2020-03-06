@@ -36,4 +36,33 @@
 * 压缩版`compressed` 去掉了格式，体积小，用于发布
 * 未压缩版`uncompressed` 也叫原版，体积较大，方便阅读，用于测试、学习和开发。
 
+### jQuery 入口函数
 
+**jQuery** 入口函数 和 原生 **JS** 写法的 `window.onload` 入口函数的区别
+
+* **jQuery** 入口函数 在有多个入口函数的时候正常运行
+* 执行实际不同：**jQuery**入口函数要快于 `window.onload`
+* `window.onload` 要等待页面上所有的资源（dom树/外部css/js连接，图片）都加在完后执行
+
+```html
+<script>
+  $(function() {
+    console.log("入库函数1")
+  })
+  $(function() {
+    console.log("入库函数2")
+  })
+</script>
+```
+
+原生 **JS** 写法
+```html
+<script>
+  window.onload = function () {
+    console.log("原生的入口函数") // 后执行
+  }
+  $(function() {
+    console.log("jQuery入库函数") // 先执行
+  })
+</script>
+```
