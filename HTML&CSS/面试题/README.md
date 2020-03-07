@@ -176,8 +176,8 @@ br、hr
 * 是CSS中的一个渲染机制，BFC就相当于一个盒子，内部的元素与外界的元素互不干扰。它不会影响外部的布局，外部的布局也不会影响。
 
 ##### 形成条件（任意一条）
-* float 的值不是none
-* position 的值不是static或者relative
+* float 的值不是 none
+* position 的值不是 static 或者 relative
 * display 的值是 inline-block,table-cell,flex,table-caption或者inline-flex
 * overflow 的值不是 visible
 
