@@ -164,3 +164,36 @@
   })
 </script>
 ```
+
+<br/>
+
+---
+
+<br/>
+
+### dom 对象和 jQuery 对象 相互转换
+
+dom对象 转换成 jQuery对象
+```html
+<script>
+  $(function() {
+    var div1 = document.getElementById("one(这里假定一个html中id为one的元素)");
+    var $div1 = $(div1);
+    console.log('$div1--->', $div1);
+  })
+</script>
+```
+
+jQuery对象 转换成 dom对象
+```html
+<script>
+  $(function() {
+    var $divs = $(div); // 获取html中全部的div
+    // 使用下标获取 dom对象
+    var div1 = $divs[0]
+    console.log('div1--->', div1);
+    // 使用 jQuery方法 转换
+    var div2 = $divs.get(1);
+  })
+</script>
+```
