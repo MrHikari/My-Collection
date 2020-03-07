@@ -89,3 +89,48 @@
 
 3. 如果参数是一个dom对象，那他就会把dom对象转换成 jQuery 对象
 
+### dom 对象和 jQuery 对象
+
+**dom 对象**
+```html
+<script>
+  $(function() {
+    // 原生js选择器 获取到的对象
+    // 特点：只能调用dom方法或者属性，不能调用jQuery的属性或者方法
+    var div1 = document.getElementById("one(这里假定一个html中id为one的元素)");
+    div1.style.backgroundColor = 'red'; // dom对象是可以调用dom的属性或者方法
+    // div1.css('backgroundColor', 'green'); // 报错，因为dom对象不能调用jQuery的属性或者方法
+  })
+</script>
+```
+
+**jQuery 对象**
+
+利用 jQuery 选择器获取到的对象<br/>
+特点：只能调用jQuery的方法或者属性，不能调用原生 js dom 对象的属性或者方法
+```html
+<script>
+  $(function() {
+    var $div1 = $('#one');
+    $div1.css('backgroundColor', 'green'); // jQuery 对象可以调用jQuery的属性或者方法
+    // $div1.style.backgroundColor = 'red'; // 报错，jQuery 对象是不可以调用dom的属性或者方法
+  })
+</script>
+```
+
+**jQuery 对象 是什么**
+
+`jQuery 对象`是一个 **伪数组**，其实就是 dom 对象的一个包装集
+
+试验一下：
+```html
+<script>
+  $(function() {
+    var div1 = document.getElementById("one(这里假定一个html中id为one的元素)");
+    console.log('div1--->', div1);
+    var $div1 = $('#one');
+    console.log('$div1--->', $div1);
+    console.log('checked--->', $div1.__proto__ === Array.prototype); // false, 不是数组，
+  })
+</script>
+```
