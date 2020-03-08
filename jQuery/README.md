@@ -294,47 +294,47 @@ jQuery对象 转换成 dom对象
 
 * 当鼠标指针移动到元素上方，并按下鼠标左键时，会发生 mousedown 事件。
 * mousedown() 方法触发 mousedown 事件，或添加当发生 mousedown 事件时运行的函数。
-* **提示：**该方法通常与 mouseup() 方法一起使用。
+* **提示**：该方法通常与 mouseup() 方法一起使用。
 
 ##### mouseenter() 方法
 
 * 当鼠标指针穿过（进入）被选元素时，会发生 mouseenter 事件。
 * mouseenter() 方法触发 mouseenter 事件，或添加当发生 mouseenter 事件时运行的函数。
-* **注意：**与 mouseover 事件不同，mouseenter 事件只有在鼠标指针进入被选元素时被触发，mouseover 事件在鼠标指针进入任意**子元素**时也会被触发。参见页面底部演示实例。
-* **提示：**该事件通常与 mouseleave 事件一起使用。
+* **注意**：与 mouseover 事件不同，mouseenter 事件只有在鼠标指针进入被选元素时被触发，mouseover 事件在鼠标指针进入任意**子元素**时也会被触发。参见页面底部演示实例。
+* **提示**：该事件通常与 mouseleave 事件一起使用。
 
 ##### mouseleave() 方法
 
 * 当鼠标指针离开被选元素时，会发生 mouseleave 事件。
 * mouseleave() 方法触发 mouseleave 事件，或添加当发生 mouseleave 事件时运行的函数。
-* **注意：**与 mouseout 事件不同，mouseleave 事件只有在鼠标指针离开被选元素时被触发，mouseout 事件在鼠标指针离开任意**子元素**时也会被触发。
-* **提示：**该事件通常与 mouseenter 事件一起使用。
+* **注意**：与 mouseout 事件不同，mouseleave 事件只有在鼠标指针离开被选元素时被触发，mouseout 事件在鼠标指针离开任意**子元素**时也会被触发。
+* **提示**：该事件通常与 mouseenter 事件一起使用。
 
 ##### mousemove() 方法
 
 * 当鼠标指针在指定的元素中移动时，就会发生 mousemove 事件。
 * mousemove() 方法触发 mousemove 事件，或添加当发生 mousemove 事件时运行的函数。
-* **注意：**用户把鼠标移动一个像素，就会发生一次 mousemove 事件。处理所有 mousemove 事件会耗费系统资源。请谨慎使用该事件。
+* **注意**：用户把鼠标移动一个像素，就会发生一次 mousemove 事件。处理所有 mousemove 事件会耗费系统资源。请谨慎使用该事件。
 
 ##### mouseout() 方法
 
 * 当鼠标指针离开被选元素时，会发生 mouseout 事件。
 * mouseout() 方法触发 mouseout 事件，或添加当发生 mouseout 事件时运行的函数。
-* **注意：**与 mouseleave 事件不同，mouseout 事件在鼠标指针离开被选元素或任意**子元素**时都会被触发，mouseleave 事件只有在鼠标指针离开被选元素时被触发。
-* **提示：**该事件通常与 mouseover 事件一起使用。
+* **注意**：与 mouseleave 事件不同，mouseout 事件在鼠标指针离开被选元素或任意**子元素**时都会被触发，mouseleave 事件只有在鼠标指针离开被选元素时被触发。
+* **提示**：该事件通常与 mouseover 事件一起使用。
 
 ##### mouseover() 方法
 
 * 当鼠标指针位于元素上方时，会发生 mouseover 事件。
 * mouseover() 方法触发 mouseover 事件，或添加当发生 mouseover 事件时运行的函数。
-* **注意：**与 mouseenter 事件不同，mouseover 事件在鼠标指针进入被选元素或任意**子元素**时都会被触发，mouseenter 事件只有在鼠标指针进入被选元素时被触发。
-* **提示：**该事件通常与 mouseout 事件一起使用
+* **注意**：与 mouseenter 事件不同，mouseover 事件在鼠标指针进入被选元素或任意**子元素**时都会被触发，mouseenter 事件只有在鼠标指针进入被选元素时被触发。
+* **提示**：该事件通常与 mouseout 事件一起使用
 
 ##### mouseup() 方法
 
 * 当鼠标指针移动到元素上方，并松开鼠标左键时，会发生 mouseup 事件。
 * mouseup() 方法触发 mouseup 事件，或添加当发生 mouseup 事件时运行的函数。
-* **提示：**该方法通常与 mousedown() 方法一起使用。
+* **提示**：该方法通常与 mousedown() 方法一起使用。
 
 <br/>
 
