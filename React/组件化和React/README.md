@@ -142,13 +142,13 @@ React.createElement(TodoInput, { addTitle: this.addTitle.bind(this) }),
 #### 7.2 模板的区别
 * vue-使用模板（最初由angular提出）
 * React-使用JSX
-* 模板语法上，我更倾向于JSX
-* 模板分离上，我更倾向于Vue
+* 模板语法上，更倾向于JSX
+* 模板分离上，更倾向于Vue
 * 模板应该和JS逻辑分离
 * “开放封闭原则”
 
 #### 7.3 组件化的区别
-* React本身就是组件化，没有组件哈就不是React
+* React本身就是组件化，没有组件化就不是React
 * vue也支持组件化，不过是在MVVM上的扩展
 * 查阅vue组件化的文档
 * 组件化更适合选择React
