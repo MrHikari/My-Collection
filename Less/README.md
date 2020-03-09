@@ -149,3 +149,47 @@ a:hover {
 }
 ```
 
+##### 带参数的混合
+
+在 **Less** 中，还可以像函数一样定义一个带参数的属性集合
+
+
+**带**参数的混合
+```less
+.whc(@w, @h, @c){
+  width: @w;
+  height: @h;
+  background: @c;
+}
+
+#wrap{
+  .sample{
+    .whc(200px, 100px, red);
+  }
+}
+```
+**带**参数的混合, 并且带**默认值**
+```less
+.whc(@w:100px, @h:100px, @c:pink){
+  width: @w;
+  height: @h;
+  background: @c;
+}
+.box1{
+  //width: 200px;
+  //height: 200px;
+  //background: red;
+  //.whc(200px, 200px, red);
+
+  // 这里是给混合的 指定形参 传递数据
+  .whc(@c:red);
+}
+.box2{
+  //width: 300px;
+  //height: 300px;
+  //background: blue;
+  .whc(300px, 300px, blue);
+}
+```
+赋值通过 `:` 赋值，参数也是，不是 `=` 。
+即使混合有三个参数，你可以只传一个，且可以指定给哪一个形参传值。
