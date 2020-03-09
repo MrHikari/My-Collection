@@ -189,4 +189,29 @@ br、hr
 * 计算BFC的高度时，浮动子元素也参与计算
 * BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然
 
+---
 
+### 6. 用html和css画一个三角形
+**回答：**<br/>
+```html
+<head>
+...  // 省略
+  <style type="text/css">
+    #wrap > .sjx{ // 注意 IE7 以下不能识别 >
+      width: 0px;
+      height: 0px;
+      border-width: 40px; // 随意宽度
+      border-style: solid;
+      // border-style: dashed solid dashed dashed; // 为了兼容 IE7 以下浏览器
+      border-color: transparent red transparent transparent;
+      overflow: hidden; // 兼容 IE7 以下浏览器大部分问题 haslayout 属性问题
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <div class="sjx">
+    </div>
+  </div>
+</body>
+```
