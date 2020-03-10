@@ -240,3 +240,43 @@ a:hover {
   .triagle(R, 40px, pink)
 }
 ```
+
+##### 变量 @arguments
+
+在 Mixin 中，**@arguments** 具有特殊的意思，当 Mixin 被调用的时候，它包含了所有传入的参数，如果你不想单独处理参数的话，这个将会很好用。
+```less
+.box-shadow(@x: 0; @y: 0; @blur: 1px; @color: #000){
+    -webkit-box-shadow: @arguements;
+       -moz-box-shadow: @arguements;
+            box-shadow: @arguements;
+}
+.test{
+    .box-shadow(2px; 5px);
+}
+```
+编译为：
+```css
+.test{
+    -webkit-box-shadow: 2px 5px 1px #000;
+       -moz-box-shadow: 2px 5px 1px #000;
+            box-shadow: 2px 5px 1px #000;
+}
+```
+
+##### 可变参数和变量 @rest
+
+如果想使用数量可变的参数的 Mixin 的时候，你可以使用 `...` 这个参数。在一个变量名后面使用这个参数，将会给变量分配参数。
+```less
+.mixin(...){} // 匹配0-N个参数
+.mixin(){} // 只匹配0个参数
+.mixin(@a: 1){} // 匹配0-1个参数
+.mixin(@a: 1; ...){} // 匹配0-N个参数
+.mixin(@a;...){} // 匹配1-N个参数
+
+// 此外：
+
+.mixin(@a; @rest...){
+// @rest 代表 @a参数 后面的所有参数
+// @arguement 代表所有参数
+}
+```
