@@ -192,4 +192,51 @@ a:hover {
 }
 ```
 赋值通过 `:` 赋值，参数也是，不是 `=` 。
-即使混合有三个参数，你可以只传一个，且可以指定给哪一个形参传值。
+即使混合有三个参数，你可以只传一个，且可以**指定**给哪一个形参传值。
+
+##### 匹配模式
+
+当编写一个组件，或者需要展示一些动态样式的时候，我们需要尽可能地节省代码，复用大部分公共代码
+
+示例：比如某个控件的 less文件 比如我们希望三角形能够选择朝向样色等
+```less
+.triagle(@_) { // 注意：1. 样式名要一致  2. @_ 标识符 每次调用下面的混合时会带上这个混合，作为公共的样式
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+}
+
+// 尖角朝右
+.triagle(L, @w, @c) {
+  border-width: @w; // 自定义宽度
+  border-style: dashed solid dashed dashed; // 为了兼容 IE7 以下浏览器
+  border-color: transparent @c transparent transparent; // 自定义颜色
+}
+// 尖角朝左
+.triagle(R, @w, @c) {
+  border-width: @w; // 自定义宽度
+  border-style: dashed dashed dashed solid; // 为了兼容 IE7 以下浏览器
+  border-color: transparent transparent transparent @c; // 自定义颜色
+}
+// 尖角朝下
+.triagle(T, @w, @c) {
+  border-width: @w; // 自定义宽度
+  border-style: dashed dashed solid dashed; // 为了兼容 IE7 以下浏览器
+  border-color: transparent transparent @c transparent; // 自定义颜色
+}
+// 尖角朝上
+.triagle(B, @w, @c) {
+  border-width: @w; // 自定义宽度
+  border-style: solid dashed dashed dashed; // 为了兼容 IE7 以下浏览器
+  border-color: @c transparent transparent transparent; // 自定义颜色
+}
+```
+
+然后在业务逻辑文件中调用的时候
+```css
+@import "less文件地址";
+
+#wrap .sjx{
+  .triagle(R, 40px, pink)
+}
+```
