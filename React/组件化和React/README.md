@@ -12,10 +12,10 @@
 
 * ##### 2.2.1 MVVM在React中对应关系
 
-1. M(odel)：对应组件的方法或生命周期函数中实现的业务逻辑和this.state中保存的本地数据，如果React集成了redux +react-redux，那么组件中的业务逻辑和本地数据可以完全被解耦出来单独存放当做M层，如业务逻辑放在Reducer和Action中。
-2. V(iew)-M(odel)：对应组件中的JSX，它实质上是Virtual DOM的语法糖。React负责维护 Virtual DOM以及对其进行diff运算，而React-dom 会把Virtual DOM渲染成浏览器中的真实DOM
+1. M(odel)：对应组件的方法或生命周期函数中实现的业务逻辑和 this.state 中保存的本地数据，如果 React 集成了 redux +react-redux，那么组件中的业务逻辑和本地数据可以完全被解耦出来单独存放当做M层，如业务逻辑放在Reducer和Action中。
+2. V(iew)-M(odel)：对应组件中的 **JSX**，它实质上是 Virtual DOM 的语法糖。React 负责维护 Virtual DOM 以及对其进行diff运算，而 **React-dom** 会把 `Virtual DOM` 渲染成浏览器中的 `真实DOM`
 3. View：对应框架在浏览器中基于虚拟DOM生成的真实DOM（并不需要我们自己书写）以及我们书写的CSS
-4. 绑定器：对应JSX中的命令以及绑定的数据，如`className={ this.props.xxx }`、`{this.props.xxx}`等等
+4. 绑定器：对应 JSX 中的命令以及绑定的数据，如`className={ this.props.xxx }`、`{this.props.xxx}`等等
 
 * ##### 2.2.2 MVVM的双绑和单绑区别
 
