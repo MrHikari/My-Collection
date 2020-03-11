@@ -283,7 +283,7 @@ a:hover {
 
 ---
 
-### Less 运算
+### Less 的运算
 
 示例：
 ```less
@@ -298,4 +298,84 @@ a:hover {
 
 * **Less** 中可以直接给变量进行一些运算操作的，比如进行 `+ - * /` 操作等，你也可以使用 `()` 小括号来添加一些更复杂的运算操作；
 * **Less** 中进行运算操作的时候，**不强制**进行运算操作的值必须带单位，只要有**一个**有单位就可以了
+
+---
+
+### Less 的继承
+
+* less继承方便代码模块化
+* 继承不支持带参数
+* 如社区公共头部与尾部
+语法： 获得继承名：extend（继承部分名）{…}
+
+示例代码：
+
+**less**
+```less
+.jicheng{
+    width: auto;
+    height: 50%;
+    text-align: center;
+    background: aqua;
+}
+.header:extend(.jicheng){
+  /*header自身代码*/
+  padding: 0 auto;
+}
+```
+**css**
+```css
+.jicheng,
+.header {
+  width: auto;
+  height: 50%;
+  text-align: center;
+  background: aqua;
+}
+.header {
+  /*header自身代码*/
+  padding: 0 auto;
+}
+```
+
+##### 继承所有状态（如伪类选择器）
+
+语法： 获得继承名：`extend（继承部分名 all）{…}`
+
+示例代码：
+
+**less**
+```less
+.jicheng{
+    width: auto;
+    height: 50%;
+    text-align: center;
+    background: aqua;
+}
+.jicheng:hover{
+  background: red;
+}
+
+/*没有加all*/
+.header:extend(.jicheng){}
+/*加入all*/
+.footer:extend(.jicheng all){};
+```
+**css**
+```css
+.jicheng,
+.header,
+.footer {
+  width: auto;
+  height: 50%;
+  text-align: center;
+  background: aqua;
+}
+.jicheng:hover,
+.footer:hover {
+  background: red;
+}
+/*没有加all*/
+/*加入all*/
+```
 
