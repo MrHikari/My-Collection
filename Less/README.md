@@ -379,3 +379,72 @@ a:hover {
 /*加入all*/
 ```
 
+---
+
+### Less 避免编译
+
+有时候需要输出一些不正确的 CSS语法 或者使用一些 Less 不认识的专有语法。
+
+要在输出这样的值，可以在字符串前加上一个～
+
+例如：`width：～'calc(100%-35)'`
+有这样一个样式：
+```less
+//避免编译
+
+.test_03{
+    width: 300px;
+}
+```
+假设有一个宽度的计算：
+```less
+.test_03{
+    width: calc(300px - 30px);
+}
+```
+通过编译后的test_03为：
+```css
+.test_03{
+    width: calc(270px);
+}
+```
+但是这个让浏览器去计算，而是不LESS本身去计算。<br/>
+此时应该加上 `～单引号或者双引号`
+```less
+.test_03{
+    width: ~'calc(300px - 30px)';
+}
+```
+此时通过编译生成的CSS为：
+```css
+.test_03{
+    width: calc(300px - 30px);
+}
+```
+
+##### !importamt关键字(优先级最高)
+
+`!importamt` 关键字会为所有混合所带来的样式，添加上 `!importamt`
+```html
+<div class='box'></div>
+```
+```less
+.box{
+    width:300px;
+    height: 300px;
+}
+···
+使用：
+```less
+.test_03{
+    .box !importamt;
+}
+```
+编译后的CSS
+```css
+.test_03{
+    width:300px !important;
+    height: 300px !important;
+}
+```
+会为所有的样式加上 `!important`;
