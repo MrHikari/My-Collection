@@ -77,3 +77,36 @@ console.log("str-------->", str); // str--------> Xa(1)(XaZZcUdFe)ZZc(4)(XaZZcUd
 ```
 
 ---
+
+### 4. React 中 keys 的作用是什么？
+**回答：**<br/>
+**keys** 是 React 用于追踪哪些列表中元素被修改、被添加或者被移除的辅助标识。
+```js
+render () {
+  return (
+    <ul>
+      {this.state.todoItems.map(({item, index}) => {
+        return <li key={index}>{item}</li>
+      })}
+    </ul>
+  )
+}
+```
+在开发过程中，需要保证某个元素的 key 在其同级元素中具有唯一性。在 `React Diff` 算法中 React 会借助元素的 Key 值来判断该元素是新近创建的还是被移动而来的元素，从而减少不必要的元素重渲染。此外，React 还需要借助 Key 值来判断元素与本地状态的关联关系，**因此绝不可忽视转换函数中 Key 的重要性**。
+
+---
+
+### 5. shouldComponentUpdate 是做什么的，（react 性能优化是哪个周期函数？）
+`shouldComponentUpdate` 这个方法用来判断是否需要调用 **render 方法**重新描绘 `dom`。因为 `dom` 的描绘非常消耗性能，如果我们能在 `shouldComponentUpdate` 方法中能够写出更优化的 `dom diff` 算法，可以极大的提高性能。
+
+---
+
+### 6. 为什么虚拟 dom 会提高性能?
+**回答：**<br/>
+`虚拟 dom` 相当于在 **js** 和 **真实 dom** 中间加了`一个缓存`，利用 `dom diff` 算法避免了**没有必要的 dom 操作**，从而提高性能。
+
+用 JavaScript 对象结构表示 DOM 树的结构；<br/>
+然后用这个树构建一个真正的 DOM 树，插入页面当中。
+当状态变更的时候，重新构造一棵新的对象树（虚拟DOM）。
+然后用新的树（虚拟DOM）和旧的树（虚拟DOM）进行比较（DOM DIFF），记录两棵树差异，
+把（对比之后）所记录的差异应用到（步骤 1，最开始的）所构建的真正的 DOM 树上，视图就更新了。
