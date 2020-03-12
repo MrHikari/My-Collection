@@ -97,6 +97,7 @@ render () {
 ---
 
 ### 5. shouldComponentUpdate 是做什么的，（react 性能优化是哪个周期函数？）
+**回答：**<br/>
 `shouldComponentUpdate` 这个方法用来判断是否需要调用 **render 方法**重新描绘 `dom`。因为 `dom` 的描绘非常消耗性能，如果我们能在 `shouldComponentUpdate` 方法中能够写出更优化的 `dom diff` 算法，可以极大的提高性能。
 
 ---
@@ -110,3 +111,5 @@ render () {
 当状态变更的时候，重新构造一棵新的对象树（虚拟DOM）。
 然后用新的树（虚拟DOM）和旧的树（虚拟DOM）进行比较（DOM DIFF），记录两棵树差异，
 把（对比之后）所记录的差异应用到（步骤 1，最开始的）所构建的真正的 DOM 树上，视图就更新了。
+
+---
