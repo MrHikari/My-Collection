@@ -377,3 +377,37 @@ jQuery对象 转换成 dom对象
 但是如果需要移除的类名在指定变更的标签中不存在的话，样式不会发生变化，但是移除操作会执行。
 
 移除所有类的时候 `removeClass()` 即可。
+
+##### 判断类 hasClass
+
+```html
+<script>
+  $(function() {
+    // 判断类 hasClass();
+    $('#需要某个事件的元素的id').click(function () { // 添加一个事件
+      // 判断一个元素有没有某个类，如果有就返回true，没有就返回false
+      console.log($('#需要变更样式的元素的id').hasClass('已经写定声明的类的类名'));
+    })
+  })
+</script>
+```
+
+##### 切换类 toggleClass
+
+```html
+<script>
+  $(function() {
+    // 判断类 toggleClass();
+    $('#需要某个事件的元素的id').click(function () { // 添加一个事件
+      // 判断一个元素有没有某个类，如果有就移除这个类，没有就添加这个类
+      $('#需要变更样式的元素的id').toggleClass('已经写定声明的类的类名');
+    })
+  })
+</script>
+```
+
+<br/>
+
+---
+
+<br/>
