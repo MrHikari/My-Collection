@@ -122,3 +122,29 @@ render () {
 * 事件作为函数而不是字符串传递。
 
 事件参数重包含一组特定于事件的属性。每个事件类型都包含自己的属性和行为，只能通过其事件处理程序访问。
+
+---
+
+### 8. 你对 React 的 refs 有什么了解？
+**回答：**<br/>
+**Refs** 是 **React** 中引用的简写。它是一个有助于存储对特定的 React 元素或组件的引用的属性，它将由组件渲染配置函数返回。用于对 `render()` 返回的特定元素或组件的引用。当需要进行 DOM 测量或向组件添加方法时，它们会派上用场。
+```js
+class ReferenceDemo extends React.Component{
+  display() {
+    const name = this.inputDemo.value;
+    document.getElementById('displaySpan').innerHTML = name;
+  }
+  render() {
+    return(
+      <div>
+        Name: <input type="text" ref={input => this.inputDemo = input} />
+        <button name="Click" onClick={this.display}>Click</button>            
+        <h2>Hello <span id="displaySpan"></span> !!!</h2>
+      </div>
+    );
+  }
+}
+```
+
+ ---
+
