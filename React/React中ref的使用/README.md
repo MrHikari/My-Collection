@@ -91,16 +91,16 @@ class Child extends React.Component {
 
 #### React.forwardRef
 
-同样是React 16.3版本后提供的，可以用来创建子组件，以传递ref。
-例如：
+同样是 **React 16.3** 版本后提供的，可以用来创建**子组件**，以传递 **ref**。
 
+例如：
 ```js
-//子组件（通过forwardRef方法创建）
+// 子组件（通过forwardRef方法创建）
 const Child=React.forwardRef((props,ref)=>(
   <input ref={ref} />
 ));
 
-//父组件
+// 父组件
 class Father extends React.Component{
   constructor(props){
     super(props);
@@ -116,15 +116,15 @@ class Father extends React.Component{
 ```
 子组件通过 `React.forwardRef` 来创建，可以将 **ref** 传递到内部的节点或组件，进而实现跨层级的引用。
 
-forwardRef在高阶组件中可以获取到原始组件的实例。
+`forwardRef` 在高阶组件中可以获取到原始组件的实例。
 
 例如：
 
 ```js
-//生成高阶组件
-const logProps=logProps(Child);
+// 生成高阶组件
+const logProps = logProps(Child);
 
-//调用高阶组件
+// 调用高阶组件
 class Father extends React.Component{
   constructor(props){
     super(props);
@@ -138,7 +138,7 @@ class Father extends React.Component{
   }
 }
 
-//HOC
+// HOC
 function logProps(Component) {
   class LogProps extends React.Component {
     componentDidUpdate(prevProps) {
@@ -163,10 +163,10 @@ function logProps(Component) {
 }
 ```
 ```js
-//生成高阶组件
+// 生成高阶组件
 const logProps=logProps(Child);
 
-//调用高阶组件
+// 调用高阶组件
 class Father extends React.Component{
   constructor(props){
     super(props);
