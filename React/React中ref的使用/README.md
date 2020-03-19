@@ -181,7 +181,7 @@ class Father extends React.Component{
   }
 }
 
-//HOC
+// HOC
 function logProps(Component) {
   class LogProps extends React.Component {
     componentDidUpdate(prevProps) {
