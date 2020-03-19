@@ -71,22 +71,21 @@ class Grandparent extends React.Component {
 
 #### React.createRef()
 
-在 React 16.3 版本后，使用此方法来创建ref。将其赋值给一个变量，通过ref挂载在dom节点或组件上，该ref的current属性
-将能拿到dom节点或组件的实例
-例如：
+在 **React 16.3** 版本后，使用此方法来创建 **ref**。将其赋值给一个变量，通过 **ref** 挂载在 **dom节点** 或组件上，该 **ref**的 **current属性**将能拿到 `dom节点`或`组件`的**实例**。
 
+例如：
 ```js
-class Child extends React.Component{
-    constructor(props){
-        super(props);
-        this.myRef=React.createRef();
-    }
-    componentDidMount(){
-        console.log(this.myRef.current);
-    }
-    render(){
-        return <input ref={this.myRef}/>
-    }
+class Child extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+  componentDidMount() {
+    console.log(this.myRef.current);
+  }
+  render() {
+    return <input ref={this.myRef}/>
+  }
 }
 ```
 
@@ -115,7 +114,7 @@ class Father extends React.Component{
   }
 }
 ```
-子组件通过React.forwardRef来创建，可以将ref传递到内部的节点或组件，进而实现跨层级的引用。
+子组件通过 `React.forwardRef` 来创建，可以将 **ref** 传递到内部的节点或组件，进而实现跨层级的引用。
 
 forwardRef在高阶组件中可以获取到原始组件的实例。
 
