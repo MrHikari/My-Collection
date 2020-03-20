@@ -96,7 +96,7 @@ class Child extends React.Component {
 例如：
 ```js
 // 子组件（通过forwardRef方法创建）
-const Child=React.forwardRef((props,ref)=>(
+const Child = React.forwardRef((props,ref)=>(
   <input ref={ref} />
 ));
 
@@ -104,7 +104,7 @@ const Child=React.forwardRef((props,ref)=>(
 class Father extends React.Component{
   constructor(props){
     super(props);
-    this.myRef=React.createRef();
+    this.myRef = React.createRef();
   }
   componentDidMount(){
     console.log(this.myRef.current);
@@ -128,7 +128,7 @@ const logProps = logProps(Child);
 class Father extends React.Component{
   constructor(props){
     super(props);
-    this.myRef=React.createRef();
+    this.myRef = React.createRef();
   }
   componentDidMount(){
     console.log(this.myRef.current);
@@ -170,7 +170,7 @@ const logProps=logProps(Child);
 class Father extends React.Component{
   constructor(props){
     super(props);
-    this.myRef=React.createRef();
+    this.myRef = React.createRef();
   }
   componentDidMount(){
     console.log(this.myRef.current);
