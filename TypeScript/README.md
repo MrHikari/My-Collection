@@ -25,7 +25,7 @@
 > npm install -g typescript
 
 安装完成后可以使用 **tsc** 命令来执行 `TypeScript` 的相关代码，以下是查看版本号：
-> $ tsc -v
+> $ tsc -v<br/>
 > Version 3.2.2
 
 假设新建一个 test.ts 的文件，代码如下：
@@ -47,5 +47,5 @@ console.log(message);
 ```
 使用 **node** 命令来执行 `test.js` 文件：
 
-> $ node test.js 
+> $ node test.js<br/>
 > Hello World
