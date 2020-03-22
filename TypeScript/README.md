@@ -81,7 +81,7 @@ console.log(message);
 ```ts
 var [变量名] : [类型] = 值;
 ```
-例如：
+* 例如：
 ```ts
 var uname:string = "Runoob";
 ```
@@ -90,7 +90,7 @@ var uname:string = "Runoob";
 ```ts
 var [变量名] : [类型];
 ```
-例如：
+* 例如：
 ```ts
 var uname:string;
 ```
@@ -99,7 +99,7 @@ var uname:string;
 ```ts
 var [变量名] = 值;
 ```
-例如：
+* 例如：
 ```ts
 var uname = "Runoob";
 ```
@@ -108,7 +108,7 @@ var uname = "Runoob";
 ```ts
 var [变量名];
 ```
-例如：
+* 例如：
 ```ts
 var uname;
 ```
