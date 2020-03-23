@@ -68,7 +68,8 @@ console.log(message);
 
 ### TypeScript 变量声明
 
-`TypeScript` 变量的命名规则：
+#### TypeScript
+ 变量的命名规则：
 
 1. 变量名称可以包含数字和字母。
 2. 除了下划线 _ 和美元 $ 符号外，不能包含其他特殊字符，包括空格。
@@ -113,5 +114,52 @@ var [变量名];
 var uname;
 ```
 
----
+#### 类型断言（Type Assertion）
+
+**类型断言**可以用来**手动指定**一个值的类型，即`允许变量从一种类型更改为另一种类型`。
+
+语法格式：
+```ts
+<类型>值
+```
+或:
+```ts
+值 as 类型
+```
+
+**实例**：
+```ts
+var str = '1'
+var str2:number = <number> <any> str // str、str2 是 string 类型，按照最右边最后的类型决定
+console.log(str2)
+```
+
+编译后，以上代码会生成如下 **JavaScript** 代码：
+```js
+var str = '1';
+var str2 = str; // str、str2 是 string 类型
+console.log(str2);
+```
+执行输出结果为：
+> 1
+字符串 `'1'`
+
+#### 类型推断
+
+当类型没有给出时，**TypeScript** 编译器利用`类型推断`来推断类型。
+
+如果由于缺乏声明而不能推断出类型，那么它的类型被视作默认的动态 **any** 类型。
+
+```ts
+var num = 2; // 类型推断为 number
+console.log("num 变量的值为 " + num);
+num = "12"; // 编译错误，因为在上方代码 num 优先被推断为了 number 类型
+console.log(num);
+```
+
+第一行代码声明了变量 num 并=设置初始值为 2。 注意变量声明没有指定类型。因此，程序使用类型推断来确定变量的数据类型，第一次赋值为 2，num 设置为 number 类型。
+
+第三行代码，当我们再次为变量设置字符串类型的值时，这时编译会错误。因为变量已经设置为了 number 类型。
+
+> error TS2322: Type '"12"' is not assignable to type 'number'.
 
