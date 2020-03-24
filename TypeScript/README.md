@@ -21,7 +21,7 @@
 #### NPM 安装 TypeScript
 
 如果本地环境已经安装了 **npm** 工具，可以使用以下命令来安装：<br/>
-全局安装 `TypeScript`
+全局安装 `TypeScript`，如果报错或者没有反应，请翻墙或者切换移动热点，并且加上`sudo`
 > npm install -g typescript
 
 安装完成后可以使用 **tsc** 命令来执行 `TypeScript` 的相关代码，以下是查看版本号：
@@ -186,10 +186,10 @@ class Numbers {
       var local_num = 14; // 局部变量
    } 
 } 
-console.log("全局变量为: "+global_num)  
+console.log("全局变量为: " + global_num)
 console.log(Numbers.sval) // 静态变量
-var obj = new Numbers(); 
-console.log("实例变量: "+obj.num_val)
+var obj = new Numbers();
+console.log("实例变量: " + obj.num_val)
 ```
 以上代码使用 tsc 命令编译为 JavaScript 代码为：
 ```js
