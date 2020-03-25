@@ -335,3 +335,44 @@ for (var val in list) {
 ```
 
 `val` 需要为 **string** 或 **any** 类型。
+
+#### for...of 、forEach、every 和 some 循环
+
+**TypeScript** 还支持 `for...of` 、`forEach`、`every` 和 `some` 循环。
+
+`for...of` 语句创建一个循环来迭代可迭代的对象。在 **ES6** 中引入的 `for...of` 循环，以替代 `for...in` 和 `forEach()` ，并支持新的迭代协议。`for...of` 允许你遍历 Arrays（数组）, Strings（字符串）, Maps（映射）, Sets（集合）等可迭代的数据结构等。
+
+1. **TypeScript** `for...of` 循环
+```ts
+let someArray = [1, "string", false];
+
+for (let entry of someArray) {
+  console.log(entry); // 1, "string", false
+}
+```
+
+`forEach`、`every` 和 `some` 是 **JavaScript** 的循环语法，**TypeScript** 作为 **JavaScript** 的语法超集，当然默认也是支持的。
+
+**注意**：因为 `forEach` 在 **iteration** 中是无法返回的，所以可以使用 `every` 和 `some` 来取代 `forEach`。
+
+2. **TypeScript** `forEach` 循环
+```ts
+let list = [4, 5, 6];
+list.forEach((val, idx, array) => {
+    // val: 当前值
+    // idx：当前index
+    // array: Array
+});
+```
+
+3. **TypeScript** `every` 循环
+```ts
+let list = [4, 5, 6];
+list.every((val, idx, array) => {
+    // val: 当前值
+    // idx：当前index
+    // array: Array
+    return true; // Continues
+    // Return false will quit the iteration
+});
+```
