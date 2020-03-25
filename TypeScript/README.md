@@ -248,4 +248,51 @@ console.log("类变量: " + obj.num_val);
 
 **规律**：`~x=-（x+1）`；
 
-因此，t=~9（1001）并不能输出6（0110），而是-10；
+因此，t=~9（1001）并不能输出6（0110），而是-10。
+
+---
+
+### TypeScript 条件语句
+
+条件语句用于**基于不同的条件**来**执行不同的动作**。
+
+`TypeScript` 条件语句是通过一条或多条语句的执行结果（**True** 或 **False**）来决定执行的代码块。
+
+#### 条件语句
+
+通常在项目代码中，需要通过不同的条件来执行不同的操作。在代码中使用条件语句来完成该任务。
+
+在 **TypeScript** 中，可以使用以下条件语句：
+
+* `if 语句` - 只有当指定条件为 **true** 时，使用该语句来执行代码
+* `if...else 语句` - 当条件为 **true** 时执行代码，当条件为 **false** 时执行其他代码
+* `if...else if....else 语句` - 使用该语句来选择多个代码块之一来执行
+* `switch 语句` - 使用该语句来选择多个代码块之一来执行
+
+**switch 语句示例**
+```ts
+switch(expression){
+    case expression1 :
+       statement(s);
+       break; /* 可选的 */
+    case expression2:
+       statement(s);
+       break; /* 可选的 */
+
+    /* 您可以有任意数量的 case 语句 */
+    default : /* 可选的 */
+       statement(s);
+}
+```
+
+**switch** 语句**必须**遵循下面的规则：
+
+* `switch 语句`中的 `expression` 是一个常量表达式，必须是一个整型或枚举类型。
+* 一个 switch 中可以有**任意数量**的 `case 语句`。每个 case 后跟一个要比较的值和一个冒号。
+* case 的 expression1, expression2 等等 必须与 switch 中的变量具有相同的数据类型，且必须是一个常量或字面量。
+* 当被测试的变量等于 case 中的常量时，case 后跟的语句将被执行，直到遇到 `break 语句` 为止。
+* 当遇到 break 语句时，switch **终止**，控制流将跳转到 switch 语句后的下一行。
+* 不是每一个 case 都需要包含 break。如果 case 语句不包含 break，控制流将会 继续 后续的 case，直到遇到 break 为止。
+* 一个 switch 语句可以有一个可选的 `default case`，出现在 switch 的**结尾**。`default case` 可用于在上面所有 case 都不为真时执行一个任务。`default case` 中的 `break 语句` **不是必需**的。
+
+
