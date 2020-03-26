@@ -29,3 +29,28 @@
 
 > $ cd dva-quickstart<br/>
 > $ npm start
+
+然后根据命令栏的提示，在浏览器里打开 `http://localhost:8000`(或者其他运行的接口) ，可以看到 **dva** 的欢迎界面。
+
+### 定义路由
+
+我们要写个应用来先显示产品列表。首先第一步是创建路由，路由可以想象成是组成应用的不同页面。
+
+在`routes`目录下新建 页面文件，举例内容如下：
+```js
+import React from 'react';
+
+const Products = (props) => (
+  <h2>List of Products</h2>
+);
+
+export default Products;
+```
+添加路由信息到路由表，编辑 `router.js` :
+```js
++ import Products from './routes/Products'; // 在文件上方导入页面文件
+...
++ <Route path="/products" exact component={Products} /> // 定义相应的 Router 挑战
+```
+然后在浏览器里打开 `http://localhost:8000/#/products` ，就可以看到新加入的页面。
+
