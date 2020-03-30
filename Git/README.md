@@ -25,11 +25,13 @@
 
 **注意**：**window10**环境下可能会报一个错：
 
-> warning: user.name has multiple values<br/>
-> error: cannot overwrite multiple values with a single value<br/>
->       Use a regexp, --add or --replace-all to change user.name.
+```
+warning: user.name has multiple values
+error: cannot overwrite multiple values with a single value
+      Use a regexp, --add or --replace-all to change user.name.
+```
 
- 这时候可以用另一种修改办法，输入：
+这时候可以用另一种修改办法，输入：
 
 > git config --global --replace-all user.name "你的用户名"<br/>
 > git config --global --replace-all user.email "你的邮箱" 
