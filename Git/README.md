@@ -9,26 +9,20 @@
 配置用户信息
 
 文件内（对相关项目文件配置）
-
-> git config user.name “xxx”
-
+> git config user.name “xxx”<br/>
 > git config user.email “xxx@example.com”
 
 如果不配置用户信息，默认使用全局用户信息
 
-<br/>
 配置全局用户信息
 
-> git config —global user.name “xxx”
-
+> git config —global user.name “xxx”<br/>
 > git config —global user.email "xxx@example.com"
 
-<br/>
 开启颜色显示
 
 > git config —global color.ui auto
 
-<br/>
 **注意**：**window10**环境下可能会报一个错：
 
 > warning: user.name has multiple values<br/>
@@ -37,7 +31,7 @@
 
  这时候可以用另一种修改办法，输入：
 
-> git config --global --replace-all user.name "你的用户名"
+> git config --global --replace-all user.name "你的用户名"<br/>
 > git config --global --replace-all user.email "你的邮箱" 
 
 <br/>
@@ -67,12 +61,14 @@
 #### Git 本地仓库操作
 
 查看 Git 相关结果和帮助<br/>
-终端下&emsp;`git`
+终端下
+> git
 
 <br/>
-在相关路径下创建工作项目<br/>
-> cd 路径
 
+在相关路径下创建工作项目
+
+> cd 路径<br/>
 > git init
 
 <br/>
