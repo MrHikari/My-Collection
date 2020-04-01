@@ -43,12 +43,13 @@ import Api from '...'; // 从对应的文件获得Api请求路径
 
 // worker Saga : 将在 USER_FETCH_REQUESTED action 被 dispatch 时调用
 function* fetchUser(action) {
-   try {
-      const user = yield call(Api.fetchUser, action.payload.userId);
-      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
-   } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
-   }
+  // try...catch...监视API请求是否正常
+  try {
+    const user = yield call(Api.fetchUser, action.payload.userId); // 在当前的yield卡住
+    yield put({type: "USER_FETCH_SUCCEEDED", user: user}); // 向 state 更新数据
+  } catch (e) {
+    yield put({type: "USER_FETCH_FAILED", message: e.message}); // 当请求失败时，更新失败信息
+  }
 }
 
 /*
@@ -77,22 +78,22 @@ export default mySaga;
 
 在 main.js 文件中
 ```js
-import { createStore, applyMiddleware } from 'redux'
-import createSagaMiddleware from 'redux-saga'
+import { createStore, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-import reducer from './reducers'
-import mySaga from './sagas'
+import reducer from './reducers';
+import mySaga from './sagas';
 
 // create the saga middleware
-const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware();
 // mount it on the Store
 const store = createStore(
   reducer,
-  applyMiddleware(sagaMiddleware)
+  applyMiddleware(sagaMiddleware);
 )
 
 // then run the saga
-sagaMiddleware.run(mySaga)
+sagaMiddleware.run(mySaga);
 
 // render the application
 ```
