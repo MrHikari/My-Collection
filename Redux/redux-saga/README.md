@@ -33,3 +33,66 @@ class UserComponent extends React.Component {
   ...
 }
 ```
+
+这个组件 `dispatch` 一个 `plain Object` 的 **action** 到 **Store**。`redux-saga` 会创建一个 **Saga** 来**监听**所有的 `USER_FETCH_REQUESTED` **action**，并**触发**一个 **API** 调用获取用户数据。
+
+在 sagas.js 中
+```js
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import Api from '...'; // 从对应的文件获得Api请求路径
+
+// worker Saga : 将在 USER_FETCH_REQUESTED action 被 dispatch 时调用
+function* fetchUser(action) {
+   try {
+      const user = yield call(Api.fetchUser, action.payload.userId);
+      yield put({type: "USER_FETCH_SUCCEEDED", user: user});
+   } catch (e) {
+      yield put({type: "USER_FETCH_FAILED", message: e.message});
+   }
+}
+
+/*
+  在每个 `USER_FETCH_REQUESTED` action 被 dispatch 时调用 fetchUser
+  允许并发（译注：即同时处理多个相同的 action）
+*/
+function* mySaga() {
+  yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
+}
+
+/*
+  也可以使用 takeLatest
+
+  不允许并发，dispatch 一个 `USER_FETCH_REQUESTED` action 时，
+  如果在这之前已经有一个 `USER_FETCH_REQUESTED` action 在处理中，
+  那么处理中的 action 会被取消，只会执行当前的
+*/
+function* mySaga() {
+  yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
+}
+
+export default mySaga;
+```
+
+为了能跑起 Saga，我们需要使用 redux-saga 中间件将 Saga 与 Redux Store 建立连接。
+
+在 main.js 文件中
+```js
+import { createStore, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
+
+import reducer from './reducers'
+import mySaga from './sagas'
+
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+// mount it on the Store
+const store = createStore(
+  reducer,
+  applyMiddleware(sagaMiddleware)
+)
+
+// then run the saga
+sagaMiddleware.run(mySaga)
+
+// render the application
+```
