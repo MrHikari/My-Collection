@@ -57,7 +57,7 @@ function* fetchUser(action) {
   允许并发（译注：即同时处理多个相同的 action）
 */
 function* mySaga() {
-  yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
+  yield takeEvery("USER_FETCH_REQUESTED", fetchUser); // 支持并发
 }
 
 /*
@@ -68,7 +68,7 @@ function* mySaga() {
   那么处理中的 action 会被取消，只会执行当前的
 */
 function* mySaga() {
-  yield takeLatest("USER_FETCH_REQUESTED", fetchUser);
+  yield takeLatest("USER_FETCH_REQUESTED", fetchUser); // 不支持并发
 }
 
 export default mySaga;
@@ -78,11 +78,11 @@ export default mySaga;
 
 在 main.js 文件中
 ```js
-import { createStore, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
+import { createStore, applyMiddleware } from 'redux'; // 导入创建store的方法
+import createSagaMiddleware from 'redux-saga'; // 导入中间件创建方法
 
 import reducer from './reducers';
-import mySaga from './sagas';
+import mySaga from './sagas'; // 导入模型请求方法
 
 // create the saga middleware
 const sagaMiddleware = createSagaMiddleware();
