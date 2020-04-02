@@ -63,3 +63,20 @@ export default Products;
 数据的改变发生**通常是**通过`用户交互行为`或者`浏览器行为`（如路由跳转等）触发的，当此类行为会改变数据的时候可以通过 **dispatch** 发起一个 **action**，如果是`同步行为`会直接通过 **Reducers** 改变 `State` ，如果是**异步行为**（副作用）会**先**触发 `Effects` 然后流向 `Reducers` 最终改变 `State`。
 
 ![Dva数据流向示意图]()
+
+#### Models
+
+##### State
+
+```js
+type State = any
+```
+
+**State** 表示 **Model** 的`状态数据`，通常表现为一个 **javascript 对象**（当然它可以是任何值）；操作的时候每次都要当作**不可变数据**（immutable data）来对待，保证每次都是全新对象，没有引用关系，这样才能保证 State 的**独立性**，便于测试和追踪变化。
+
+在 dva 中可以通过 dva 的实例属性 `_store` 看到顶部的 **state 数据**，但是通常很少会用到:
+
+```js
+const app = dva();
+console.log(app._store); // 实例化dva，然后查看顶部的 state 数据，
+```
