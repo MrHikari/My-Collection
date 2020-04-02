@@ -80,3 +80,17 @@ type State = any
 const app = dva();
 console.log(app._store); // 实例化dva，然后查看顶部的 state 数据，
 ```
+
+##### Action
+
+```js
+type AsyncAction = any
+```
+
+**Action** 是一个普通 **javascript 对象**，它是改变 **State** 的`唯一途径`。无论是从 UI 事件、网络回调，还是 WebSocket 等数据源所获得的数据，最终都会通过 `dispatch` 函数调用一个 **action**，从而改变对应的数据。**action** 必须带有 `type 属性`指明具体的行为，其它字段可以自定义，如果要发起一个 **action** 需要使用 `dispatch 函数`；需要注意的是 `dispatch` 是在组件 `connect Models`以后，通过 `props` 传入的。
+
+```js
+dispatch({
+  type: 'add',
+});
+```
