@@ -135,4 +135,25 @@ type Reducer<S, A> = (state: S, action: A) => S
 
 **Effect** 被称为副作用，在 dva 的应用中，最常见的就是异步操作。它来自于函数编程的概念，之所以叫副作用是因为它使得我们的函数变得不纯，同样的输入不一定获得同样的输出。
 
-dva 为了控制副作用的操作，底层引入了 **redux-sagas** 做异步流程控制，由于采用了 **generator** 的相关概念，所以将异步转成同步写法，从而将effects转为纯函数。
+dva 为了`控制副作用`的操作，底层引入了 **redux-sagas** 做异步流程控制，由于采用了 **generator** 的相关概念，所以`将异步转成同步`写法，从而将 `effects` 转为**纯函数**。
+
+##### Subscription
+
+**Subscriptions** 是一种从 `源` 获取数据的方法，它来自于 *elm*。
+
+**Subscription** 语义是订阅，用于订阅一个数据源，然后根据条件 `dispatch` 需要的 `action`。数据源可以是当前的时间、服务器的 **websocket 连接**、**keyboard 输入**、**geolocation 变化**、**history 路由**变化等等。
+
+```js
+import key from 'keymaster';
+...
+app.model({
+  namespace: 'count',
+  subscriptions: {
+    keyEvent({ dispatch }) {
+      key('⌘+up, ctrl+up', () => { dispatch({ type:'add' }) });
+    },
+  }
+});
+```
+
+
