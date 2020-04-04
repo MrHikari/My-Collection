@@ -156,4 +156,17 @@ app.model({
 });
 ```
 
+##### Router
 
+这里的路由通常指的是 **前端路由**，由于目前 React 应用现在通常是`单页应用`，所以需要前端代码来控制路由逻辑，通过浏览器提供的 **History API** 可以监听 **浏览器 url** 的变化，从而控制路由相关操作。
+
+dva 实例提供了 `router` 方法来控制路由，使用的是 `react-router`。
+
+```js
+import { Router, Route } from 'dva/router';
+app.router(({history}) =>
+  <Router history={history}>
+    <Route path="/" component={HomePage} />
+  </Router>
+);
+```
