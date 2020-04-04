@@ -170,3 +170,9 @@ app.router(({history}) =>
   </Router>
 );
 ```
+
+##### Route Components
+
+在 dva 中，在组件设计方法方面通常将其约束为 Route Components，因为在 dva 中通常以 `页面维度` 来设计 **Container Components**。
+
+所以在 dva 中，通常需要 `connect Model` 的组件都是 `Route Components`，组织在 /routes/ 目录下，而 `/components/` 目录下则是 **纯组件**（**Presentational Components**）。
