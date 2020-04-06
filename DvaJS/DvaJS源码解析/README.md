@@ -20,3 +20,59 @@
 
 比如，`start` 所对应的 `roadhog server`，原来 **roadhog** 是个和 **webpack** 相似的库，起的是 **webpack** `自动打包`和`热更替`的作用。
 
+在 roadhog 的默认配置里有这么一条信息：
+
+
+`entry` 指定 **webpack** 入口文件，支持 glob 格式。
+
+如果当前的项目是多页类型，并且希望把 `src/pages` 的文件作为入口。可以这样配置：
+
+```js
+{
+  "entry": "src/index.js",
+}
+```
+
+启动的入口回到了 src/index.
+
+#### src/index.js
+
+在 `src/index.js` 里，**dva** 一共做了这么几件事：
+
+1. 从 **dva** 依赖中引入 `dva` ：
+```js
+import dva from 'dva'`;
+```
+
+2. 通过函数生成一个 **app 对象** d d：
+```js
+const app = dva();
+```
+
+3. 加载插件：
+```js
+app.use({});
+```
+
+4. 注入 model：
+```js
+app.model(require('./models/example'));
+```
+
+5. 添加路由：
+```js
+app.router(require('./routes/indexAnother'));
+```
+
+6. 启动：
+```js
+app.start('#root');
+```
+
+在这 6 步当中，dva 完成了<br/>
+使用 React 解决 view 层、<br/>
+使用 redux 管理 model、<br/>
+使用 redux-saga 解决异步的主要功能。<br/>
+事实上在我查阅资料以及回忆用过的脚手架时，发现目前端框架之所以被称为“框架”也就是解决了这些事情。前端工程师至今所做的事情都是在 分离动态的 data 和静态的 view ，只不过侧重点和实现方式也不同。
+
+至今为止出了这么多框架，但是前端 MVX 的思想一直都没有改变。
