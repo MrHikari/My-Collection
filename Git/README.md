@@ -252,7 +252,67 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 > git push origin master
 
-#### git修改历史提交信息 commit message
+---
+
+### git的不常用指令
+
+#### git修改历史提交commit的描述信息
+
+##### 修改最新的一次commit描述信息
+
+1. 查看当前分支的日志情况（单纯只是确认）
+
+// oneline 一条提交信息用一行展示
+> git log --oneline
+
+// -n 查看到此之前的几次提交记录, n 可以为 1，2，3，......
+> git log -n
+
+> git log -1
+
+2. 执行变更message（描述信息）的指令
+
+> git commit --amend
+
+进入 vim编辑器 界面， 可修改部分是最上面的一行，# 部分为描述和介绍（可以不需要理解，了解最好）<br/>
+编辑完后保存，注意使用 vim 命令。
+
+3. 更新远程仓库提交，是远程仓库也修改对应commit的message
+
+> git push
+
+// 如果直接提交，会提示如下信息<br/>
+```
+! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/XXX/YYYY.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+该信息会提示提交被拒绝，因为git认为本地的分支和线上的不匹配，认为本地分支已过时，需要使用 `git pull` 更新代码。
+
+> git pull origin master
+
+// 此时会提示一个 vim编辑器 窗口
+```
+Merge branch 'master' of https://github.com/XXX/YYYY.git
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+```
+这个意思是需要将此次合并更新重新提交一个新的commit，并且做好message进行解释，`#`号部分在提交时是忽略的。<br/>
+**git**已经默认了一个commit信息（第一行，`#`号上方的），如果想要自己编辑message信息，可以使用**vim**指令进入编辑，删除第一行信息，重新自定义，然后使用 **vim** 指令保存退出。
+
+最后重新提交到远程仓库就可以更改全部的**commit** **message** 信息。
+
+> git push
+
+---
+
+#### git修改历史提交信息 commit message (待验证)
 
 1、git log --oneline -5
 
@@ -279,9 +339,6 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 7、再使用第1步的命令查看一下修改结果，git log --oneline -5或者git log -5，查看修改是否已经完成
 
 8、最后强制push上去git push --force
-————————————————
-版权声明：本文为CSDN博主「jsgll」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/jsgll/java/article/details/78351630
 
 ### 如何将 github 项目上传至 gitlab
 
