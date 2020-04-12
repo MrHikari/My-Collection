@@ -262,7 +262,7 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 1. 查看当前分支的日志情况（单纯只是确认）
 
-// oneline 一条提交信息用一行展示
+// --oneline 一条提交信息用一行展示
 > git log --oneline
 
 // -n 查看到此之前的几次提交记录, n 可以为 1，2，3，......
@@ -309,6 +309,8 @@ Merge branch 'master' of https://github.com/XXX/YYYY.git
 最后重新提交到远程仓库就可以更改全部的**commit** **message** 信息。
 
 > git push
+
+**特殊操作**：可以无视上面的更新操作，直接强制提交`git push --force`，虽然可以提交成功，但是并不值得推荐在实际应用中使用。
 
 ---
 
