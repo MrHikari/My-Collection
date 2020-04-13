@@ -265,7 +265,7 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 // --oneline 一条提交信息用一行展示
 > git log --oneline
 
-// -n 查看到此之前的几次提交记录, n 可以为 1，2，3，......
+// -n 查看到此之前的几次提交记录, n 可以为 1，2，3，... ，但是实操下来最多展示在此之前 **3** 次提交
 > git log -n
 
 > git log -1
@@ -312,35 +312,29 @@ Merge branch 'master' of https://github.com/XXX/YYYY.git
 
 **特殊操作**：可以无视上面的更新操作，直接强制提交`git push --force`，虽然可以提交成功，但是并不值得推荐在实际应用中使用。
 
----
+##### 修改更早的commit的message信息
 
-#### git修改历史提交信息 commit message (待验证)
+1. 查看自己的提交记录
 
-1、git log --oneline -5
+> git log --oneline<br/>
+或者，直接更上一小段commit_ID<br/>
+> git log commit_ID<br/>
 
-    查看最近5次commit的简要信息，输出信息为：简短commitID commit_message，可以根据需要查看最近n次的提交
 
-    也可以git log -5，输出信息相对详细些，commitID为完整的，这里只需要加上参数--oneline查看简短commitID即可
+2. 定位修改的commit位置
 
-2、git rebase -i <简短commitID>
+> git rebase -i commit_ID<br/>
+**注意**：这里的`commit_ID`输入后，会进入到一个**vim**编辑页面，但是只会展示`commit_ID`之后的全部提交的 commit 的 message 信息。所以使用这个方法定位，需要使用期望修改的 commit 的 **前一次** 的 commit。
 
-    如果需要修改从上往下第2个commit_message，这里的简短commitID为上面输出信息的第3个，以此类推
+或者使用，如下代码，**n** 可以是 1，2，3，......，表示在此之前的 **n** 次提交记录<br/>
+> git rebase -i HEAD~n
 
-    在弹出的窗口中，以VIM编辑方式显示了最近两次的提交信息
+3. 直接在弹出的 **vim** 交互页面上修改，和之前的操作类似。
 
-3、（按照VIM操作）按i键，进入编辑模式，将想要修改的提交前的pick改为reword，如果需要修改多个，也可以将对应的多个pick改为reword
+先将 pick 换成 reword，其余的不懂，保存退出。<br/>
+然后进入到对应的commit 的message的编辑页面，在当前进行修改。<br/>
+`git pull origin master`，更新代码，然后`git push`，完成对远程仓库的修改。依然**不建议**直接强制提交`git push --force`。
 
-4、（按照VIM操作）按ESC键        再按 shift + :        然后输入wq（w是保存，q是退出）        按回车键
-
-5、在弹出的窗口中，按i进入编辑模式，就可以修改commit_message了
-
-6、（按照VIM操作）按ESC键        再按 shift + :        然后输入wq（w是保存，q是退出）        按回车键（同第4步）
-
-    如果第3步中修改了多个pick为reword，则会多次弹出修改界面，重复第5~6步即可
-
-7、再使用第1步的命令查看一下修改结果，git log --oneline -5或者git log -5，查看修改是否已经完成
-
-8、最后强制push上去git push --force
 
 ### 如何将 github 项目上传至 gitlab
 
