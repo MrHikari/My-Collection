@@ -196,3 +196,13 @@ SubComponent render
 ```
 
 &emsp;&emsp;若父组件内状态变更，则**它和它所有子组件**都会**render**, 而**子组件的变更**则不会影响到父组件和兄弟组件。因此在实际开发中应该尽量减小 state 的作用范围，如果一个状态能收敛到组件内部，就不应该放在外边。这样可以**降低 render 操作的代价**。
+
+---
+
+#### 报错解决
+```
+warning: React does not recognize the xxx prop on a DOM element......
+```
+这是React不能识别dom元素上的非标准attribute报出的警告，最终的渲染结果中React会移除这些非标准的attribute。
+
+通常{...this.props}和cloneElement(element, this.props)这两种写法，会将父级别无用的attribute传递到子级的dom元素上。
