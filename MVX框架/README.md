@@ -8,6 +8,8 @@ View通过Controller来和Model联系，Controller是View和Model的协调者，
 
 MVC模式最早是由Trygve Reenskaug在1978年提出的，是 帕罗奥多研究中心（Xerox PARC）在20世纪80年代为程序语言Smalltalk 发明的一种软件架构。MVC模式的目的是实现一种动态的程序设计，使后续对程序的修改和扩展简化，并且使程序某一部分的重复利用成为可能。除此之外，此模式通过对复杂度的简化，使程序结构更加直观
 
+MVC最重要的是将原本杂乱的代码层级化，将原本杂乱的代码分为 展示层（View,Controller）和领域层(Model),在这时，领域层中的领域对象由于其自身特点不需要对展示层有任何了解，可以同时为不同的展示层工作。
+
 2. MVP：是从MVC模式演变而来的，都是通过Controller/Presenter负责逻辑的处理+Model提供数据+View负责显示。
 
 在MVP中，Presenter完全把View和Model进行了分离，主要的程序逻辑在Presenter里实现。
