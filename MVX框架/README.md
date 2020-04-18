@@ -1,10 +1,10 @@
-MVX框架模式：MVC+MVP+MVVM
+### MVX框架模式：MVC，MVP，MVVM
 
-1. MVC：Model(模型)+View(视图)+controller(控制器)，主要是基于分层的目的，让彼此的职责分开。
+1. **MVC**：**Model**(`模型`) + **View**(`视图`) + **controller**(`控制器`)，主要是基于分层的目的，让彼此的职责分开。
 
-View通过Controller来和Model联系，Controller是View和Model的协调者，View和Model不直接联系，基本联系都是单向的。
+**View**通过**Controller**来和**Model**联系，**Controller**是**View**和**Model**的协调者，**View**和**Model**不直接联系，基本联系都是单向的。
 
-用户User通过控制器Controller来操作模板Model从而达到视图View的变化。
+`用户User`通过`控制器Controller`来操作`模板Model`从而达到`视图View`的变化。
 
 MVC模式最早是由Trygve Reenskaug在1978年提出的，是 帕罗奥多研究中心（Xerox PARC）在20世纪80年代为程序语言Smalltalk 发明的一种软件架构。MVC模式的目的是实现一种动态的程序设计，使后续对程序的修改和扩展简化，并且使程序某一部分的重复利用成为可能。除此之外，此模式通过对复杂度的简化，使程序结构更加直观
 
