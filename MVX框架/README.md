@@ -10,11 +10,11 @@ MVC模式最早是由Trygve Reenskaug在1978年提出的，是 帕罗奥多研�
 
 MVC最重要的是将原本杂乱的代码层级化，将原本杂乱的代码分为 展示层（View,Controller）和领域层(Model),在这时，领域层中的领域对象由于其自身特点不需要对展示层有任何了解，可以同时为不同的展示层工作。
 
-2. MVP：是从MVC模式演变而来的，都是通过Controller/Presenter负责逻辑的处理+Model提供数据+View负责显示。
+2. **MVP**：是从`MVC模式`演变而来的，都是通过 **Controller**/**Presenter**负责逻辑的处理 + **Model**提供数据 + **View**负责显示。
 
-在MVP中，Presenter完全把View和Model进行了分离，主要的程序逻辑在Presenter里实现。
+在**MVP**中，**Presenter**完全把**View**和**Model**进行了分离，主要的程序逻辑在**Presenter**里实现。
 
-并且，Presenter和View是没有直接关联的，是通过定义好的接口进行交互，从而使得在变更View的时候可以保持Presenter不变。
+并且，**Presenter**和**View**是没有直接关联的，是通过定义好的接口进行交互，从而使得在变更**View**的时候可以保持**Presenter**不变。
 
 MVP模式的框架：Riot,js。
 
