@@ -32,6 +32,7 @@ inherit|规定应该从父元素继承 vertical-align 属性的值。|
 
 自定义滚动条简单版：
 
+```css
 /*定义滚动条宽高及背景，宽高分别对应横竖滚动条的尺寸*/
 .scrollbar::-webkit-scrollbar{
     width: 16px;
@@ -52,6 +53,7 @@ inherit|规定应该从父元素继承 vertical-align 属性的值。|
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
 }
+```
 
 ### CSS calc() 函数
 css
