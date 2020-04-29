@@ -96,3 +96,7 @@ class ScrollingList extends React.Component {
   }
 }
 ```
+
+### 版本注意
+
+React 16.3 版本的生命周期和 之后版本的差异
