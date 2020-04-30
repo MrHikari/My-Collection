@@ -97,6 +97,23 @@ class ScrollingList extends React.Component {
 }
 ```
 
-### 版本注意
+---
 
-React 16.3 版本的生命周期和 之后版本的差异
+### React在16.4版本中针对 getDerivedStateFromProps 的调整
+
+在旧版本中，**getDerivedStateFromProps** 只会在 `props` 更新是执行而并且不会因组件 `setState` 而触发。*FaceBook* 指出这是最初实施过程中的疏忽，现在已经得到纠正。
+
+所以，在16.4版本中，组件执行 `setState` 时也会触发 **getDerivedStateFromProps** ，每次渲染组件时都会调用 getDerivedStateFromProps。
+
+**注意**： **getDerivedStateFromProps** 中条件的判断和 **return** 的协调。（待验证）
+
+---
+
+### 关于 setState 与 触发渲染
+
+在 **React 16** 中为了防止`不必要`的 DOM 更新，允许你决定是否让 `.setState` 更来新状态。在调用 `.setState` 时返回 **null** 将`不再触发更新`。
+
+防止不必要的重新渲染需要遵循的步骤：
+1. 检查新的状态值是否与现有值**相同**
+2. 如果值相同，将返回 **null**
+3. 返回 **null** 将`不会更新状态`和`触发组件重新渲染`
