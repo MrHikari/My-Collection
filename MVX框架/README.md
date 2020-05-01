@@ -18,11 +18,11 @@ MVC最重要的是将原本杂乱的代码层级化，将原本杂乱的代码�
 
 MVP模式的框架：Riot,js。
 
-3. MVVM：MVVM是把MVC里的Controller和MVP里的Presenter改成了ViewModel。Model+View+ViewModel。
+3. **MVVM**：**MVVM**是把 `MVC` 里的 **Controller** 和 `MVP` 里的 **Presenter** 改成了 **ViewModel**。 *Model+View+ViewModel*。
 
-View的变化会自动更新到ViewModel,ViewModel的变化也会自动同步到View上显示。
+**View**的变化会自动更新到 **ViewModel**, **ViewModel** 的变化也会自动同步到 **View** 上显示。
 
-这种自动同步是因为ViewModel中的属性实现了Observer，当属性变更时都能触发对应的操作。
+这种自动同步是因为 **ViewModel** 中的属性实现了 *Observer*，当属性变更时都能触发对应的操作。
 
 MVVM模式的框架有：AngularJS+Vue.js和Knockout+Ember.js后两种知名度较低以及是早起的框架模式。
 
