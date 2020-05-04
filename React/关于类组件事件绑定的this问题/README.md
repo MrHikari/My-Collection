@@ -14,15 +14,15 @@
  
 <!--上面这种方法还要写一个 _addN，不如直接将 addN() 方法写到constructor 中，解决了上述的所有问题：-->
 constructor(){
-    this.addN = ()=> this.setstate({n: this. state.n+1})
+    this.addN = () => this.setstate({ n: this.state.n+1 })
 }
 render(){
     return <button onClick = { this.addN }>n+1</button>
 }
  
-<!--但上面这种方式需将 this.addN 写到constructor里，于是React组委会推荐下述的语法糖，它和上述的代码实际上没有区别：-->
+<!--但上面这种方式需将 this.addN 写到 constructor 里，于是 React 组委会推荐下述的语法糖，它和上述的代码实际上没有区别：-->
 class Son extends React.Component{
-    addN = () => this. setState({n: this. state.n+1});
+    addN = () => this. setState({ n: this.state.n+1 });
     render(){
         return <button onClick = { this. addN }>n+1</button>
     }
