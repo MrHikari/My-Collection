@@ -79,3 +79,9 @@ css
 
 `calc(expression)`<br/>
 expression 必须，一个数学表达式，结果将采用运算后的返回值。
+
+### 背景图片
+
+1. 单独使用div包裹img，并且依照需要选定属性
+
+2. 在页面主要内容外部包裹div，在css属性中设置background和background-size等属性
