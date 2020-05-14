@@ -30,6 +30,8 @@
 
 #### 简单示例 参考
 
+1. 执行 GET 请求
+
 ```js
 // 为 固定 api url 创建请求
 axios.get('/user?username=xxx')
@@ -52,5 +54,40 @@ axios.get('/user', {
   .catch(function (error) {
     console.log(error); // 异常时抓取error
   });
+```
+
+2. 执行 POST 请求
+
+```js
+// 携带参数发起 api 请求
+axios.post('/user', {
+    firstName: 'Steve', // 参数
+    lastName: 'Jobs' // 参数
+  })
+  .then(function (response) {
+    console.log(response); // 提交正常后的返回结果
+  })
+  .catch(function (error) {
+    console.log(error); // 提交不成功时的错误抓取
+  });
+```
+
+3. 执行多个并发请求
+
+```js
+// api 请求方法示例1
+function getExample1() {
+  return axios.get('/user/example1');
+}
+
+// api 请求方法示例2
+function getExample2() {
+  return axios.get('/user/example2');
+}
+
+axios.all([getExample1(), getExample2()])
+  .then(axios.spread(function (acct, perms) {
+    // 两个请求现在都执行完成
+  }));
 ```
 
