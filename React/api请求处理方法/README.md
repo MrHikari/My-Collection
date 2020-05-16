@@ -145,3 +145,39 @@ axios.patch(url[, data[, config]])
 **注意**
 
 在使用别名方法时， **url**、**method**、**data** 这些属性都不必在配置中指定。
+
+### 并发
+
+处理并发请求的助手函数
+```js
+axios.all(iterable)
+```
+```js
+axios.spread(callback)
+```
+### 创建实例
+
+可以使用自定义配置新建一个 **axios** 实例
+
+```js
+axios.create([config])
+const instance = axios.create({
+  baseURL: 'https://some-domain.com/api/',
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
+});
+```
+实例方法
+
+以下是可用的实例方法。指定的配置将与实例的配置合并。
+
+```js
+axios#request(config)
+axios#get(url[, config])
+axios#delete(url[, config])
+axios#head(url[, config])
+axios#options(url[, config])
+axios#post(url[, data[, config]])
+axios#put(url[, data[, config]])
+axios#patch(url[, data[, config]])
+```
