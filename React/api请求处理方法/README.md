@@ -131,9 +131,12 @@ axios('/user/12345');
 
 #### 请求方法的别名
 
-为方便起见，为所有支持的请求方法提供了别名
+为了方便，为所有**支持**的**请求方法**提供了*别名*<br/>
+（在**HTTP连接**中消息报文分为*Request*请求和*Response*响应两种，每种报文在HTTP首部会有不同的字段来标识不同的用途。）
+
 ```js
 axios.request(config)
+// HTTP定义了很多于服务器交互的方法
 axios.get(url[, config])
 axios.delete(url[, config])
 axios.head(url[, config])
@@ -144,17 +147,24 @@ axios.patch(url[, data[, config]])
 ```
 **注意**
 
-在使用别名方法时， **url**、**method**、**data** 这些属性都不必在配置中指定。
+在使用别名方法时， **url**、**method**、**data** 这些属性都***不必**在配置中指定。
+
+---
 
 ### 并发
 
 处理并发请求的助手函数
 ```js
 axios.all(iterable)
+// - 参数： 请求数组
 ```
 ```js
 axios.spread(callback)
+// - 参数： 对应请求返回值
 ```
+
+---
+
 ### 创建实例
 
 可以使用自定义配置新建一个 **axios** 实例
@@ -162,12 +172,13 @@ axios.spread(callback)
 ```js
 axios.create([config])
 const instance = axios.create({
-  baseURL: 'https://some-domain.com/api/',
-  timeout: 1000,
-  headers: {'X-Custom-Header': 'foobar'}
+  baseURL: 'http://localhost:3000', // 建立请求的url
+  timeout: 1000, // 请求超时时间设置，单位毫秒
+  headers: {'X-Custom-Header': 'foobar'} // 请求头
 });
 ```
-实例方法
+
+**实例方法**
 
 以下是可用的实例方法。指定的配置将与实例的配置合并。
 
