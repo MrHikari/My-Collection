@@ -5,7 +5,7 @@ for (var i = 0, type;type = ['String', 'Array', 'Number'][i++]) {
 ```
 比较疑惑，因为从平时接触的来看基本上都是
 
-``js
+```js
 for(语句1，语句2，语句3) {
 
 }
