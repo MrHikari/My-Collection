@@ -1,42 +1,36 @@
-```js
-for (var i = 0, type;type = ['String', 'Array', 'Number'][i++]) {
-    // 代码块
-}
-```
-比较疑惑，因为从平时接触的来看基本上都是
+## JS 中 for 循环的写法汇总
+
+### 基本写法
 
 ```js
-for(语句1，语句2，语句3) {
+for(语句1; 语句2; 语句3) {
 
 }
 // 语句1：起始
 // 语句2：循环终止条件
 // 语句3：在循环后被执行的语句
 ```
-现在的疑惑如下
 
+**扩展**
+
+示例：
 ```js
-for(var i =10,i--;) {
+for(var i = 10, i--;) {
 
 }
 ```
 
-实际上上面的语句等同于
+实际**等同于**：
 
 ```js
-for(var i =0, i<10 i++;) {
+for(var i = 0; i < 10; i++;) {
 
 }
 ```
-这是为什么?
+这里等同于把**循环终止条件**和**循环被执行后执行的语句***相结合了*即把判断和赋值放到一起了，一边循环一边赋值，`i--` 是什么判断条件，当 `i--` 为`fasle`，即循环终止，在 **js**中 `0`, `null`, `undefined`, `false`, `‘’`，根据 **Boolean** 的*隐形转化*，其结果为`false`，即 `i=0` 时条件终止。
 
-原来这里等同于把循环终止条件和循环被执行后执行的语句相结合了即把判断和赋值放到一起了，一边循环一边赋值，
 
-i--是什么判断条件，当i--为fasle即，循环终止，在js中0, null, undefined, false, ‘’，
-
-根据Boolean的隐形转化，其结果为false，即i=0时条件终止
-
-再回到我们之前的问题
+### 扩展示例
 
 ```js
 for (var i = 0, type; type = ['String', 'Array', 'Number'][i++]) {
@@ -44,9 +38,8 @@ for (var i = 0, type; type = ['String', 'Array', 'Number'][i++]) {
 }
 ```
  
-
 ```js
-var i =0, type; //语句1
+var i = 0, type; //语句1
 type = ['String', 'Array', 'Number'][i++] // 语句2
 ```
-即这里的判断+赋值调件为type = ['String', 'Array', 'Number'][i++]，终止条件为type=‘undefined’
+这里的判断`+`**赋值**条件为`type = ['String', 'Array', 'Number'][i++]`，终止条件为`type=‘undefined’`。
