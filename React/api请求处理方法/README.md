@@ -235,7 +235,7 @@ axios#patch(url[, data[, config]])
   headers: {'X-Requested-With': 'XMLHttpRequest'},
 
   // `params` 是即将与请求一起发送的 URL 参数
-  // 必须是一个无格式对象(plain object)或 URLSearchParams 对象
+  // 必须是一个 无格式对象(plain object) 或 URLSearchParams 对象
   params: {
     ID: 12345
   },
@@ -247,7 +247,8 @@ axios#patch(url[, data[, config]])
   },
 
   // `data` 是作为请求主体被发送的数据
-  // 只适用于这些请求方法 'PUT', 'POST', 和 'PATCH'
+  // 只适用于这些请求方法 'PUT', 'POST', 和 'PATCH' （注意）
+  // --------------------------------------------------
   // 在没有设置 `transformRequest` 时，必须是以下类型之一：
   // - string, plain object, ArrayBuffer, ArrayBufferView, URLSearchParams
   // - 浏览器专属：FormData, File, Blob
@@ -257,7 +258,7 @@ axios#patch(url[, data[, config]])
   },
 
   // `timeout` 指定请求超时的毫秒数(0 表示无超时时间)
-  // 如果请求话费了超过 `timeout` 的时间，请求将被中断
+  // 如果请求花费的时间超过了 `timeout` 的时间，请求将被中断
   timeout: 1000,
 
    // `withCredentials` 表示跨域请求时是否需要使用凭证
@@ -269,11 +270,11 @@ axios#patch(url[, data[, config]])
     /* ... */
   },
 
- // `auth` 表示应该使用 HTTP 基础验证，并提供凭据
+  // `auth` 表示应该使用 HTTP 基础验证，并提供凭据
   // 这将设置一个 `Authorization` 头，覆写掉现有的任意使用 `headers` 设置的自定义 `Authorization`头
   auth: {
-    username: 'janedoe',
-    password: 's00pers3cret'
+    username: 'nikename',
+    password: '123456'
   },
 
    // `responseType` 表示服务器响应的数据类型，可以是 'arraybuffer', 'blob', 'document', 'json', 'text', 'stream'
@@ -302,7 +303,7 @@ axios#patch(url[, data[, config]])
    // `maxContentLength` 定义允许的响应内容的最大尺寸
   maxContentLength: 2000,
 
-  // `validateStatus` 定义对于给定的HTTP 响应状态码是 resolve 或 reject  promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte
+  // `validateStatus` 定义对于给定的 HTTP 响应状态码是 resolve 或 reject 的 promise 。如果 `validateStatus` 返回 `true` (或者设置为 `null` 或 `undefined`)，promise 将被 resolve; 否则，promise 将被 rejecte
   validateStatus: function (status) {
     return status >= 200 && status < 300; // default
   },
@@ -326,11 +327,11 @@ axios#patch(url[, data[, config]])
   // `auth` 表示 HTTP 基础验证应当用于连接代理，并提供凭据
   // 这将会设置一个 `Proxy-Authorization` 头，覆写掉已有的通过使用 `header` 设置的自定义 `Proxy-Authorization` 头。
   proxy: {
-    host: '127.0.0.1',
-    port: 9000,
+    host: '127.0.0.1', // 地址
+    port: 9000, // 端口
     auth: {
-      username: 'mikeymike',
-      password: 'rapunz3l'
+      username: 'nikename',
+      password: '123456'
     }
   },
 
