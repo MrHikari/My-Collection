@@ -203,6 +203,6 @@ SubComponent render
 ```
 warning: React does not recognize the xxx prop on a DOM element......
 ```
-这是React不能识别dom元素上的非标准attribute报出的警告，最终的渲染结果中React会移除这些非标准的attribute。
+这是 **React**不能识别 dom元素 上的非标准 attribute 报出的警告，最终的渲染结果中React会移除这些非标准的 **attribute**。
 
-通常{...this.props}和cloneElement(element, this.props)这两种写法，会将父级别无用的attribute传递到子级的dom元素上。
+通常 `{...this.props}` 和 `cloneElement(element, this.props)` 这两种写法，会将父级别无用的 **attribute** 传递到子级的dom元素上。
