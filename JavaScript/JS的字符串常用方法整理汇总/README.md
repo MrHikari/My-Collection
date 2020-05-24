@@ -4,7 +4,7 @@
 
 1. **concat()** 用于连接两个或多个字符串。
 　　
-```
+```js
 var a = "hello",b = "world",c = "!";
 const msg = a.concat(b,c) // 功能和 “+” 拼接一样
 console.log(msg) // "helloworld!"
@@ -14,7 +14,7 @@ console.log(msg) // "helloworld!"
 
 2. **indexOf()** 返回指定字符串在字符串中首次出现的位置。匹配不到则返回-1。
 
-```
+```js
 var a = "helloworld!";
 const index1 = a.indexOf("world") 
 console.log(index1) // 5
@@ -28,7 +28,7 @@ console.log(index2) // -1
 str.search(regexp/substr)  返回值：str中第一个与正则或字符串相匹配的子串的起始位置。<br/>
 说明 search() 方法不执行全局匹配，它将忽略标志 g。它同时忽略 regexp 的 lastIndex 属性，并且总是从字符串的开始进行检索，这意味着它总是返回 stringObject 的第一个匹配的位置。
 
-```
+```js
 var str="Hello World!"
 const result1 = str.search(/World/); 
 console.log(result1); // 6
@@ -69,7 +69,7 @@ replacement 可以是字符串，也可以是函数。如果它是字符串，�
 
 > str.replace(regexp/substrOld,replaceStrNew) 
 
-```
+```js
 var str = "Hello, World";
 const result1 = str.replace(/(\w+)\s*, \s*(\w+)/, "$1 $2");
 console.log(result1); // Hello World
@@ -77,7 +77,7 @@ const result2 = str.replace(/(\w+)\s*, \s*(\w+)/, "$2 $1");
 console.log(result2); // World Hello
 ```
 
-```
+```js
 var str = "Hello World!";
 const result = str.replace(/world/i, "JavaScript");
 console.log(result); // Hello JavaScript!
@@ -90,7 +90,7 @@ console.log(result); // Hello JavaScript!
 
 > str.split()
 
-```
+```js
 "hello".split("") // ["h", "e", "l", "l", "o"]
 var txt = "a,b,c,d,e"; // 字符串
 txt.split(","); // ["a", "b", "c", "d", "e"]
@@ -107,7 +107,7 @@ txt.split("|"); // ["a,b,c,d,e"]
 index 为必须参数，类型为number（如果参数 index 不在 0 与 string.length 之间，该方法将返回一个空字符串）
 另外：str.charAt()即不带参数和str.charAt(NaN)均返回字符串的第一个字符。
 
-```
+```js
 var str = "Hello World!";
 str.charAt(8); // r
 ```
@@ -120,7 +120,7 @@ str.charAt(8); // r
 
 index 为必须参数，类型为number（0到str.length-1之间，否则该方法返回 NaN）。
 
-```
+```js
 var str="Hello world!"
 str.charCodeAt(1); // 101
 ```
@@ -131,7 +131,7 @@ str.charCodeAt(1); // 101
 
 > String.fromCharCode(numX,numX,...,numX)
 
-```
+```js
 String.fromCharCode(65,66,67); // ABC
 ```
 
@@ -157,7 +157,7 @@ str.lastIndexOf("world"); // 6
 
 > str.slice(startIndex,endIndex)  // 返回值包含startIndex（必选）不包含endIndex(可选)
 
-```
+```js
 var str="Hello World!";
 str.slice(6); // World!
 ```
@@ -168,7 +168,7 @@ str.slice(6); // World!
 
 > str.substr(startIndex,length)  //忽略length则返回从startIndex到字符串尾字符
 
-```
+```js
 var str="Hello World!";
 str.substr(3); // lo World!
 ```
@@ -188,7 +188,7 @@ str.substring(3, 7); // lo W
 
 14.  **toLocaleUpperCase()** / **toLocaleLowerCase()**   用于字符串转换大小写（与下面的方法方法仅在某些外国小语种有差别）
 
-```
+```js
 var str = "a,b,c,d,e";   // 字符串
 console.log(str.toLocaleUpperCase()); // A,B,C,D,E
 ```
@@ -197,9 +197,60 @@ console.log(str.toLocaleUpperCase()); // A,B,C,D,E
 
 15.  **toUpperCase()** / **toLowerCase()**   用于字符串转换大小写
 
-```
+```js
 var str = "aBc1".toUpperCase();
 console.log(str); // ABC1
+```
+
+<br/>
+
+
+### 扩展方法
+
+**ES2017** 引入了*字符串补全长度*的功能。如果某个字符串不够指定长度，会在头部或尾部补全。`padStart()`用于头部补全，`padEnd()`用于尾部补全。
+
+1. **padstart()**
+
+假设希望页面展示的标签彼此正确对齐，以使值在同一位置开始。
+
+例如：
+```
+        Name: nickName
+Phone Number: 130-xxxx-xxxx
+```
+
+由于 `Phone Number` 是两个标签中较长的一个，因此需要在 `Name` 标签的开头加上空格。
+
+**注意**：（*临时方法*）为了后续需求的需要，不要将每一项的地府长度专门填充到 `Phone Number` 的长度，把它填充到充足的长度，比如说20个字符。这样一来，如果在后续的需求中需要使用较长的标签，就不必要去修改过多的代码。
+
+原始代码示例：
+```js
+const label1 = "Name";
+const label2 = "Phone Number";
+const name = "nickName"
+const phoneNumber = "130-xxxx-xxxx";
+
+console.log(label1 + ": " + name);
+console.log(label2 + ": " + phoneNumber);
+
+//Name: nickName
+//Phone Number: 130-xxxx-xxxx
+```
+
+使用 `padStart()` 优化代码：
+
+**注意**：要调用 `padStart()`，需要传递**两个参数**：一个用于填充字符串的目标长度，另一个是希望填充的字符。
+```js
+const label1 = "Name";
+const label2 = "Phone Number";
+const name = "nickName"
+const phoneNumber = "130-xxxx-xxxx";
+
+console.log(label1.padStart(20, " ") + ": " + name);
+console.log(label2.padStart(20, " ") + ": " + phoneNumber);
+
+//               Name: nickName
+////     Phone Number: 130-xxxx-xxxx
 ```
 
 <br/>
