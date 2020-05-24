@@ -288,6 +288,67 @@ console.log((label2 + ': ').padEnd(20, ' ') + phoneNumber);
 // Phone Number:       130-xxxx-xxxx
 ```
 
+3. **针对数字类数据展示**
+
+**padding函数**是专门针对*字符串*而**不是***数字*的，所以，需要先将数字**转换为**字符串。
+
+**/ 价格 /**
+
+价格显示的原始代码。
+```js
+const rmb = 10;
+const cents = 1;
+console.log("￥" + rmb + "." + cents); //￥10.1
+```
+要填充分，需要先将其转换为字符串，然后调用 `padStart()` 函数，指定长度为 2 且填充字符为 '0'；
+```js
+const rmb = 10;
+const cents = 1;
+console.log("￥" + rmb + "." + cents.toString().padStart(2, "0")); //￥10.01
+```
+
+**/ 日期 /**
+
+这是显示日期的原始代码。
+
+```js
+const month = 2;
+const year = 2020;
+
+console.log(year + "-" + month); // 2020-2
+```
+
+确保月份是两位数。
+
+```js
+const month = 2;
+const year = 2020;
+
+console.log(year + "-" + month.toString().padStart(2, "0")); // 2020-02
+```
+
+**/ 计时器 /**
+
+格式化两个不同的数字，即秒和毫秒。初始代码：
+
+```js
+const seconds = 1;
+const ms = 1;
+
+console.log(seconds + ":" + ms); // 1:1
+```
+
+优化展示效果后代码：
+
+```js
+const seconds = 1;
+const formattedSeconds = seconds.toString().padStart(2,"0");
+const ms = 1;
+const formattedMs = ms.toString().padStart(3,"0");
+
+console.log(formattedSeconds + ":" + formattedMs); // 01:001
+```
+
 ---
 
 **参考资料**
