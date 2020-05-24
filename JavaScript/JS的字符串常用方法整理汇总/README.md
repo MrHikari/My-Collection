@@ -53,7 +53,7 @@ const result2 = str.match("xxxxx");
 console.log(result2); // null
 ```
 
-```
+```js
 var str="1+2=3";
 const result1 = str.match(/\d+/); 
 console.log(result1); // ["1", index: 0, input: "1+2=3", groups: undefined]
@@ -142,9 +142,9 @@ String.fromCharCode(65,66,67); // ABC
 > str.lastIndexOf(searchStr,startIndex)
   
 searchStr 必选，表示需要匹配的字符串值；
-startIndex 可选，取值范围0到str.length-1，省略则默认尾字符开始检索。
+startIndex 可选，取值范围 0 到 str.length-1 ，省略则默认尾字符开始检索。
 
-```
+```js
 var str="Hello world!";
 str.lastIndexOf("Hello"); // O
 str.lastIndexOf("World"); // -1
@@ -179,7 +179,7 @@ str.substr(3); // lo World!
 
 > str.substring(startIndex,endIndex)  // 忽略endIndex则返回从startIndex到字符串尾字符
 
-```
+```js
 var str="Hello World!";
 str.substring(3, 7); // lo W
 ```
@@ -233,8 +233,8 @@ const phoneNumber = "130-xxxx-xxxx";
 console.log(label1 + ": " + name);
 console.log(label2 + ": " + phoneNumber);
 
-//Name: nickName
-//Phone Number: 130-xxxx-xxxx
+// Name: nickName
+// Phone Number: 130-xxxx-xxxx
 ```
 
 使用 `padStart()` 优化代码：
@@ -254,6 +254,39 @@ console.log(label2.padStart(20, " ") + ": " + phoneNumber);
 ```
 
 <br/>
+
+2. **padEnd()**
+
+对于相同的标签和值示例，让我们更改填充标签的方式。让我们将标签向左对齐，以便在末尾添加填充。
+
+原始代码示例：
+```js
+const label1 = "Name";
+const label2 = "Phone Number";
+const name = "nickName"
+const phoneNumber = "130-xxxx-xxxx";
+
+console.log(label1 + ": " + name);
+console.log(label2 + ": " + phoneNumber);
+
+// Name: nickName
+// Phone Number: 130-xxxx-xxxx
+```
+
+使用 `padEnd()` ，并且需要在填充之前将冒号与标签连接起来，这样我们就能确保冒号在正确的位置。
+
+```js
+const label1 = "Name";
+const label2 = "Phone Number";
+const name = "nickName"
+const phoneNumber = "130-xxxx-xxxx";
+
+console.log((label1 + ': ').padEnd(20, ' ') + name);
+console.log((label2 + ': ').padEnd(20, ' ') + phoneNumber);
+
+// Name:               nickName
+// Phone Number:       130-xxxx-xxxx
+```
 
 ---
 
