@@ -341,3 +341,49 @@ axios#patch(url[, data[, config]])
   })
 }
 ```
+
+---
+
+#### 响应结构
+
+普通的请求的响应包含以下信息：
+
+```js
+{
+  // `data` 由服务器提供的响应
+  data: {},
+
+  // `status` 来自服务器响应的 HTTP 状态码
+  status: 200,
+
+  // `statusText` 来自服务器响应的 HTTP 状态信息
+  statusText: 'OK',
+
+  // `headers` 服务器响应的头
+  headers: {},
+
+   // `config` 是为请求提供的配置信息
+  config: {},
+
+  // 'request'
+  // `request` is the request that generated this response
+  // It is the last ClientRequest instance in node.js (in redirects)
+  // and an XMLHttpRequest instance the browser
+  request: {}
+}
+```
+
+使用 `then` 时，将接收下面这样的响应 :
+
+```js
+axios.get('/user/info')
+  .then(function(response) {
+    console.log(response.data);
+    console.log(response.status);
+    console.log(response.statusText);
+    console.log(response.headers);
+    console.log(response.config);
+  });
+```
+
+在使用 `catch` 时，或传递 **rejection callback** 作为 `then` 的**第二个参数**时，响应可以通过 **error 对象** 可被使用。
