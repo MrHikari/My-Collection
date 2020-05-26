@@ -43,3 +43,27 @@ var i = 0, type; //语句1
 type = ['String', 'Array', 'Number'][i++] // 语句2
 ```
 这里的判断`+`**赋值**条件为`type = ['String', 'Array', 'Number'][i++]`，终止条件为`type=‘undefined’`。
+
+---
+
+### for 嵌套使用
+
+```js
+for(外层初始化变量 ; 外层的条件表达式 ; 外层的更新表达式) {
+    for(里层的初始化变量 ; 里层的条件表达式 ; 里层的操作表达式) {
+        // 执行语句
+    }   
+}
+```
+
+示例：
+
+```js
+for(var a = 0; a < 1000; a++) {
+    console.log(a);
+    for(var b = 0; b < 1000; b++) {
+        // 执行语句
+        console.log(b);
+    }
+}
+```
