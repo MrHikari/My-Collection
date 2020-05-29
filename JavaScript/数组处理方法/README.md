@@ -16,7 +16,7 @@
 * **基础方法**
 ```js
 join()
-push()和pop()
+push() 和 pop()
 shift() 和 unshift()
 sort()
 reverse()
@@ -27,7 +27,7 @@ splice()
 
 * **新增方法**
 ```js
-indexOf()和 lastIndexOf() （ES5新增）
+indexOf() 和 lastIndexOf() （ES5新增）
 forEach() （ES5新增）
 map() （ES5新增）
 filter() （ES5新增）
