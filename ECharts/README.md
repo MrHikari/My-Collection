@@ -4,6 +4,83 @@
 
 **ECharts**，一个使用 **JavaScript** 实现的**开源可视化库**，可以流畅的运行在 *PC* 和*移动设备*上，兼容当前绝大部分浏览器`（IE8/9/10/11，Chrome，Firefox，Safari等）`，底层依赖矢量图形库 **ZRender**，提供直观，交互丰富，可高度个性化定制的数据可视化图表。
 
+### 基本参数（公共参数）
+
+```js
+// 设置参数解读
+setOption = {
+  // 标题组件，包含主标题和副标题。（当一个图表组件中包含多个图表展示时，用主副标题区分）
+  title: [{ // 当只需要设置一个主标题时，直接使用单个对象即可。
+    // id: 'xxx', // string，组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
+    // show: false, // boolean，默认 true，是否显示标题组件。
+    text: 'Pie label alignTo', // string，主标题文本，支持使用 \n 换行。
+    // link = '', // string, 主标题文本超链接。
+    // target = 'blank', // string，指定窗口打开主标题超链接。可选：'self' 当前窗口打开，'blank' 新窗口打开。
+  }, {
+      subtext: 'alignTo: "none" (default)',
+      left: '16.67%',
+      top: '75%',
+      textAlign: 'center'
+  }, {
+      subtext: 'alignTo: "labelLine"',
+      left: '50%',
+      top: '75%',
+      textAlign: 'center'
+  }, {
+      subtext: 'alignTo: "edge"',
+      left: '83.33%',
+      top: '75%',
+      textAlign: 'center'
+  }],
+  series: [{
+      type: 'pie',
+      radius: '25%',
+      center: ['50%', '50%'],
+      data: data,
+      animation: false,
+      label: {
+          position: 'outer',
+          alignTo: 'none',
+          bleedMargin: 5
+      },
+      left: 0,
+      right: '66.6667%',
+      top: 0,
+      bottom: 0
+  }, {
+      type: 'pie',
+      radius: '25%',
+      center: ['50%', '50%'],
+      data: data,
+      animation: false,
+      label: {
+          position: 'outer',
+          alignTo: 'labelLine',
+          bleedMargin: 5
+      },
+      left: '33.3333%',
+      right: '33.3333%',
+      top: 0,
+      bottom: 0
+  }, {
+      type: 'pie',
+      radius: '25%',
+      center: ['50%', '50%'],
+      data: data,
+      animation: false,
+      label: {
+          position: 'outer',
+          alignTo: 'edge',
+          margin: 20
+      },
+      left: '66.6667%',
+      right: 0,
+      top: 0,
+      bottom: 0
+  }]
+};
+```
+
 ### 饼图
 
 #### series-pie 饼图
