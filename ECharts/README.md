@@ -16,11 +16,16 @@ setOption = {
     text: 'Pie label alignTo', // string，主标题文本，支持使用 \n 换行。
     // link = '', // string, 主标题文本超链接。
     // target = 'blank', // string，指定窗口打开主标题超链接。可选：'self' 当前窗口打开，'blank' 新窗口打开。
+    // textStyle = { }, // object，主标题的样式，将主标题当做一个（文字块），适合的基本样式（块级样式和文字样式）都可以填写。
+    // textAlign = 'auto', // string，整体（包括 text 和 subtext）的水平对齐。可选值：'auto'、'left'、'right'、'center'。
   }, {
-      subtext: 'alignTo: "none" (default)',
-      left: '16.67%',
-      top: '75%',
+      subtext: 'alignTo: "none" (default)', // string，副标题文本，支持使用 \n 换行。
+      left: '16.67%', // title 组件， 此副标题离容器左侧的距离。
+      top: '75%',// 同理，title 组件， 此副标题离容器上侧的距离。
       textAlign: 'center'
+      // subtextStyle = { }, // object，副标题的样式，将副标题标题当做一个（文字块），适合的基本样式（块级样式和文字样式）
+      // textVerticalAlign = 'auto', // string，整体（包括 text 和 subtext）的垂直对齐。可选值：'auto'、'top'、'bottom'、'middle'。
+      // triggerEvent = false, // boolean，是否触发事件。
   }, {
       subtext: 'alignTo: "labelLine"',
       left: '50%',
