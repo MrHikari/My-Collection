@@ -19,69 +19,76 @@ setOption = {
     // textStyle = { }, // object，主标题的样式，将主标题当做一个（文字块），适合的基本样式（块级样式和文字样式）都可以填写。
     // textAlign = 'auto', // string，整体（包括 text 和 subtext）的水平对齐。可选值：'auto'、'left'、'right'、'center'。
   }, {
-      subtext: 'alignTo: "none" (default)', // string，副标题文本，支持使用 \n 换行。
-      left: '16.67%', // title 组件， 此副标题离容器左侧的距离。
-      top: '75%',// 同理，title 组件， 此副标题离容器上侧的距离。
-      textAlign: 'center'
-      // subtextStyle = { }, // object，副标题的样式，将副标题标题当做一个（文字块），适合的基本样式（块级样式和文字样式）
-      // textVerticalAlign = 'auto', // string，整体（包括 text 和 subtext）的垂直对齐。可选值：'auto'、'top'、'bottom'、'middle'。
-      // triggerEvent = false, // boolean，是否触发事件。
+    subtext: 'alignTo: "none" (default)', // string，副标题文本，支持使用 \n 换行。
+    left: '16.67%', // title 组件， 此副标题离容器左侧的距离。
+    top: '75%',// 同理，title 组件， 此副标题离容器上侧的距离。
+    textAlign: 'center'
+    // subtextStyle = { }, // object，副标题的样式，将副标题标题当做一个（文字块），适合的基本样式（块级样式和文字样式）
+    // textVerticalAlign = 'auto', // string，整体（包括 text 和 subtext）的垂直对齐。可选值：'auto'、'top'、'bottom'、'middle'。
+    // triggerEvent = false, // boolean，是否触发事件。
   }, {
-      subtext: 'alignTo: "labelLine"',
-      left: '50%',
-      top: '75%',
-      textAlign: 'center'
+    subtext: 'alignTo: "labelLine"',
+    left: '50%',
+    top: '75%',
+    textAlign: 'center'
   }, {
-      subtext: 'alignTo: "edge"',
-      left: '83.33%',
-      top: '75%',
-      textAlign: 'center'
+    subtext: 'alignTo: "edge"',
+    left: '83.33%',
+    top: '75%',
+    textAlign: 'center'
   }],
+  // 图例组件。(当有多个统计图表时，使用数组包含对象，对应展示顺序)
+  // 单个 echarts 实例中可以存在多个图例组件，会方便多个图例的布局。
+  legend: { 
+    type: 'plain', // string，图例的类型。可选值：'plain'：普通图例。缺省就是普通图例。'scroll'：可滚动翻页的图例。当图例数量较多时可以使用。
+    // 当使用 'scroll' 时，使用这些设置进行细节配置。（详细参见官方文档）。
+    id: 'xxx', // string，组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
+  },
   series: [{
-      type: 'pie',
-      radius: '25%',
-      center: ['50%', '50%'],
-      data: data,
-      animation: false,
-      label: {
-          position: 'outer',
-          alignTo: 'none',
-          bleedMargin: 5
-      },
-      left: 0,
-      right: '66.6667%',
-      top: 0,
-      bottom: 0
+    type: 'pie',
+    radius: '25%',
+    center: ['50%', '50%'],
+    data: data,
+    animation: false,
+    label: {
+        position: 'outer',
+        alignTo: 'none',
+        bleedMargin: 5
+    },
+    left: 0,
+    right: '66.6667%',
+    top: 0,
+    bottom: 0
   }, {
-      type: 'pie',
-      radius: '25%',
-      center: ['50%', '50%'],
-      data: data,
-      animation: false,
-      label: {
-          position: 'outer',
-          alignTo: 'labelLine',
-          bleedMargin: 5
-      },
-      left: '33.3333%',
-      right: '33.3333%',
-      top: 0,
-      bottom: 0
+    type: 'pie',
+    radius: '25%',
+    center: ['50%', '50%'],
+    data: data,
+    animation: false,
+    label: {
+        position: 'outer',
+        alignTo: 'labelLine',
+        bleedMargin: 5
+    },
+    left: '33.3333%',
+    right: '33.3333%',
+    top: 0,
+    bottom: 0
   }, {
-      type: 'pie',
-      radius: '25%',
-      center: ['50%', '50%'],
-      data: data,
-      animation: false,
-      label: {
-          position: 'outer',
-          alignTo: 'edge',
-          margin: 20
-      },
-      left: '66.6667%',
-      right: 0,
-      top: 0,
-      bottom: 0
+    type: 'pie',
+    radius: '25%',
+    center: ['50%', '50%'],
+    data: data,
+    animation: false,
+    label: {
+        position: 'outer',
+        alignTo: 'edge',
+        margin: 20
+    },
+    left: '66.6667%',
+    right: 0,
+    top: 0,
+    bottom: 0
   }]
 };
 ```
