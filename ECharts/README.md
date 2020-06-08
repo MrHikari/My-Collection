@@ -43,9 +43,19 @@ setOption = {
     type: 'plain', // string，图例的类型。可选值：'plain'：普通图例。缺省就是普通图例。'scroll'：可滚动翻页的图例。当图例数量较多时可以使用。
     // 当使用 'scroll' 时，使用这些设置进行细节配置。（详细参见官方文档）。
     id: 'xxx', // string，组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
+    // show: true, // boolean，图形是否展示。
+    // selectedMode: true, // string / boolean，图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。除此之外也可以设成 'single' 或者 'multiple' 使用单选或者多选模式。
+    // inactiveColor: '#ccc', // Color，图例关闭时的颜色。
+    // selected: {   // Object，图例选中状态表。
+    // // 选中'系列1'
+    // '系列1': true,
+    // // 不选中'系列2'
+    // '系列2': false
+    // },
   },
+  // 系列列表。每个系列通过 type 决定自己的图表类型
   series: [{
-    type: 'pie',
+    type: 'pie', // string，决定图表类型
     radius: '25%',
     center: ['50%', '50%'],
     data: data,
