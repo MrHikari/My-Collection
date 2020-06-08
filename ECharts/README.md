@@ -52,6 +52,9 @@ setOption = {
     // // 不选中'系列2'
     // '系列2': false
     // },
+    // orient: 'horizontal', // string，图例列表的布局朝向。可选：'horizontal'，'vertical'。
+    // align: 'auto', // string，图例标记和文本的对齐。默认自动，根据组件的位置和 orient 决定，当组件的 left 值为 'right' 以及纵向布局（orient 为 'vertical'）的时候为右对齐，即为 'right'。可选：'auto'，'left'，'right'。
+    // itemGap: 10, // number，图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
   },
   // 系列列表。每个系列通过 type 决定自己的图表类型
   series: [{
