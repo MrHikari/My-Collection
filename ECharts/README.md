@@ -44,7 +44,7 @@ setOption = {
     // 当使用 'scroll' 时，使用这些设置进行细节配置。（详细参见官方文档）。
     id: 'xxx', // string，组件 ID。默认不指定。指定则可用于在 option 或者 API 中引用组件。
     // show: true, // boolean，图形是否展示。
-    // selectedMode: true, // string / boolean，图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。除此之外也可以设成 'single' 或者 'multiple' 使用单选或者多选模式。
+    // selectedMode: true, // string / boolean，图例选择的模式，控制是否可以通过点击图例改变系列的显示状态。默认开启图例选择，可以设成 false 关闭。除此之外也可以设成 'single' 或者 'multipl' 使用单选或者多选模式。
     // inactiveColor: '#ccc', // Color，图例关闭时的颜色。
     // selected: {   // Object，图例选中状态表。
     // // 选中'系列1'
@@ -54,7 +54,11 @@ setOption = {
     // },
     // orient: 'horizontal', // string，图例列表的布局朝向。可选：'horizontal'，'vertical'。
     // align: 'auto', // string，图例标记和文本的对齐。默认自动，根据组件的位置和 orient 决定，当组件的 left 值为 'right' 以及纵向布局（orient 为 'vertical'）的时候为右对齐，即为 'right'。可选：'auto'，'left'，'right'。
+    // icon: 'circle', // string，图例项的 icon。ECharts 提供的标记类型包括 'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'。
+    // 可以通过 'image://url' 设置为图片，其中 URL 为图片的链接，或者 dataURI。
     // itemGap: 10, // number，图例每项之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。
+    // itemWidth: 20, // number，图例标记的图形宽度。
+    // itemHeight: 20, // number，图例标记的图形高度。
   },
   // 系列列表。每个系列通过 type 决定自己的图表类型
   series: [{
