@@ -60,6 +60,15 @@ setOption = {
     // itemWidth: 20, // number，图例标记的图形宽度。
     // itemHeight: 20, // number，图例标记的图形高度。
   },
+  // 提示框组件。
+  tooltip: {
+    show: true, // boolean，是否显示提示框组件，包括提示框浮层和 axisPointer。
+    trigger: 'item', // string，触发类型。
+    // 可选：'item'，数据项图形触发，主要在散点图，饼图等无类目轴的图表中使用。
+    //      'axis'，坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
+    //      'none'，什么都不触发。
+    showContent: true, // boolean，是否显示提示框浮层，默认显示。
+  },
   // 系列列表。每个系列通过 type 决定自己的图表类型
   series: [{
     type: 'pie', // string，决定图表类型
