@@ -68,6 +68,10 @@ setOption = {
     //      'axis'，坐标轴触发，主要在柱状图，折线图等会使用类目轴的图表中使用。
     //      'none'，什么都不触发。
     showContent: true, // boolean，是否显示提示框浮层，默认显示。
+    // alwaysShowContent: true, // boolean，是否永远显示提示框内容，默认情况下在移出可触发提示框区域后 一定时间 后隐藏，设置为 true 可以保证一直显示提示框内容。
+    // triggerOn:'mousemove', // string，提示框触发的条件，可选：'mousemove' 鼠标移动时触发。'click' 鼠标点击时触发。 'mousemove|click' 同时鼠标移动和点击时触发。'none' 不在 'mousemove' 或 'click' 时触发。
+    // showDelay: 20, // number，浮层显示的延迟，单位为 ms，默认没有延迟，也不建议设置。在 triggerOn 为 'mousemove' 时有效。
+    // hideDelay: 100, // number，浮层隐藏的延迟，单位为 ms，在 alwaysShowContent 为 true 的时候无效。
   },
   // 系列列表。每个系列通过 type 决定自己的图表类型
   series: [{
