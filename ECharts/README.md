@@ -72,6 +72,12 @@ setOption = {
     // triggerOn:'mousemove', // string，提示框触发的条件，可选：'mousemove' 鼠标移动时触发。'click' 鼠标点击时触发。 'mousemove|click' 同时鼠标移动和点击时触发。'none' 不在 'mousemove' 或 'click' 时触发。
     // showDelay: 20, // number，浮层显示的延迟，单位为 ms，默认没有延迟，也不建议设置。在 triggerOn 为 'mousemove' 时有效。
     // hideDelay: 100, // number，浮层隐藏的延迟，单位为 ms，在 alwaysShowContent 为 true 的时候无效。
+    // enterable: true, // boolean，鼠标是否可进入提示框浮层中，默认为false，如需详情内交互，如添加链接，按钮，可设置为 true。
+    // renderMode: 'html', // string，浮层的渲染模式，默认以 'html 即额外的 DOM 节点展示 tooltip；此外还可以设置为 'richText' 表示以富文本的形式渲染，
+    // confine: true, // boolean，是否将 tooltip 框限制在图表的区域内。
+    //  appendToBody: true, // boolean，从 v4.7.0 开始支持。是否将 tooltip 的 DOM 节点添加为 HTML 的 <body> 的子节点。只有当 renderMode 为 'html' 是有意义的。
+    //  transitionDuration: 0.4, // number，提示框浮层的移动动画过渡时间，单位是 s，设置为 0 的时候会紧跟着鼠标移动。
+    // position: [xxx,xxx], // string | Array | Function，提示框浮层的位置，默认不设置时位置会跟随鼠标的位置。
   },
   // 系列列表。每个系列通过 type 决定自己的图表类型
   series: [{
