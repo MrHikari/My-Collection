@@ -78,6 +78,13 @@ setOption = {
     //  appendToBody: true, // boolean，从 v4.7.0 开始支持。是否将 tooltip 的 DOM 节点添加为 HTML 的 <body> 的子节点。只有当 renderMode 为 'html' 是有意义的。
     //  transitionDuration: 0.4, // number，提示框浮层的移动动画过渡时间，单位是 s，设置为 0 的时候会紧跟着鼠标移动。
     // position: [xxx,xxx], // string | Array | Function，提示框浮层的位置，默认不设置时位置会跟随鼠标的位置。
+    // formatter: '{b0}: {c0}<br />{b1}: {c1}', // string | Function，提示框浮层内容格式器，支持字符串模板和回调函数两种形式。
+    // backgroundColor: 'rgba(50,50,50,0.7)', // Color，提示框浮层的背景颜色。
+    // borderColor: '#333', // Color，提示框浮层的边框颜色。
+    //  borderWidth: 12, // number，提示框浮层的边框宽。
+    padding: [5, 10], // number，提示框浮层内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距。
+    // textStyle: {}, // Object，提示框浮层的文本样式。
+    extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);' // string，额外附加到浮层的 css 样式。如浮层添加阴影。
   },
   // 系列列表。每个系列通过 type 决定自己的图表类型
   series: [{
