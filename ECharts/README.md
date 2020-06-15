@@ -87,7 +87,7 @@ setOption = {
     extraCssText: 'box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);' // string，额外附加到浮层的 css 样式。如浮层添加阴影。
   },
   // 系列列表。每个系列通过 type 决定自己的图表类型
-  series: [{
+  series: [{ // 这一个整个对象决定了图表的主要类型和基本设置
     type: 'pie', // string，决定图表类型
     radius: '25%',
     center: ['50%', '50%'],
