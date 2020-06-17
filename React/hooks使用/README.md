@@ -77,52 +77,8 @@ function Example() {
 
 **注意**：`副作用函数`还可以通过**返回一个函数**来指定如何“*清除*”副作用。
 
-例如:
-```js
-import React, { useState, useEffect } from 'react';
+在这个示例中，React 会在组件销毁时取消对 ChatAPI 的订阅，然后在后续渲染时重新执行副作用函数。
 
-function FriendStatus(props) {
-  const [isOnline, setIsOnline] = useState(null);
-
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
-  useEffect(() => {
-    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
-    return () => {
-      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
-    };
-  });
-
-  if (isOnline === null) {
-    return 'Loading...';
-  }
-  return isOnline ? 'Online' : 'Offline';
-}
-```
-在这个示例中，React 会在组件销毁时取消对 ChatAPI 的订阅，然后在后续渲染时重新执行副作用函数。（如果传给 ChatAPI 的 props.friend.id 没有变化，你也可以告诉 React 跳过重新订阅。）
-
-跟 useState 一样，你可以在组件中多次使用 useEffect ：
-```js
-function FriendStatusWithCounter(props) {
-  const [count, setCount] = useState(0);
-  useEffect(() => {
-    document.title = `You clicked ${count} times`;
-  });
-
-  const [isOnline, setIsOnline] = useState(null);
-  useEffect(() => {
-    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
-    return () => {
-      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
-    };
-  });
-
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-  // ...
-```
+跟 useState 一样，可以在组件中多次使用 useEffect ：
 
 通过使用 Hook，你可以把组件内相关的副作用组织在一起（例如创建订阅及取消订阅），而不要把它们拆分到不同的生命周期函数里。
