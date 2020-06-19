@@ -1,8 +1,27 @@
+## facebook/prop-types
+
+在开发中，程序运行时类型检查 **React**`props` 和 类似的 对象数据。
+
+开发者可以使用 **prop-types** 来记录传递给组件的属性参数（`props`）的**预期类型**。**React**（以及可能的其他库)，将根据这些定义*检查*传递给组件的 `prop`，并在开发不匹配时发出警告。
+
+**总结**：**prop-types**的主要作用：对`props`中数据类型进行*检测*及*限制*
+
+### 安装
+
+> npm install --save prop-types
+
+### 引入使用
+
+在对应文件开头引入
+```js
+var PropTypes = require('prop-types'); // ES5 with npm
+import PropTypes from 'prop-types'; // ES6
+```
+
 ### 组件特殊属性——propTypes
 
 对Component设置propTypes属性，可以为Component的props属性进行类型检查。
 
-prop-types的主要作用：对props中数据类型进行检测及限制
 
 引用方法：import PropTypes from 'prop-types'
 
