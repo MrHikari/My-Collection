@@ -18,54 +18,47 @@ var PropTypes = require('prop-types'); // ES5 with npm
 import PropTypes from 'prop-types'; // ES6
 ```
 
-### 组件特殊属性——propTypes
+### 官方示例
 
-对Component设置propTypes属性，可以为Component的props属性进行类型检查。
+`PropTypes`提供了许多验证工具，用来帮助开发者确定 `props` 数据的有效性。
+**注意**：出于性能原因，类型检查*仅在*开发模式下进行。
 
-
-引用方法：import PropTypes from 'prop-types'
-
-
-PropTypes提供了许多验证工具，用来帮助你确定props数据的有效性。
-处于性能原因，类型检查仅在开发模式下进行。
-
-PropTypes的更多验证器
-
+`PropTypes`的很多验证器
 ```js
 import React from 'react';
 import PropTypes from 'prop-types';
 
 class MyComponent extends React.Component {
   render() {
-    // 利用属性做更多得事
+    // 利用props渲染
    }
 }
 
 MyComponent.propTypes = {
-//你可以定义一个属性是特定的JS类型（Array,Boolean,Function,Number,Object,String,Symbol）。默认情况下，这些都是可选的。
+// 可以声明一个prop是特定的JS类型（Array,Boolean,Function,Number,Object,String,Symbol）。默认情况下，这些都是可选的。
 
-optionalArray: PropTypes.array,
-optionalBool: PropTypes.bool,
-optionalFunc: PropTypes.func,
-optionalNumber: PropTypes.number,
-optionalObject: PropTypes.object,
-optionalString: PropTypes.string,
-optionalSymbol: PropTypes.symbol,
+optionalArray: PropTypes.array,   // 数组
+optionalBool: PropTypes.bool,     // 布尔值
+optionalFunc: PropTypes.func,     // 函数
+optionalNumber: PropTypes.number, // 数字
+optionalObject: PropTypes.object, // 对象
+optionalString: PropTypes.string, // 字符串
+optionalSymbol: PropTypes.symbol, // ES6引入原始类型——Symbol
 
-//指定类型为：任何可以被渲染的元素，包括数字，字符串，react 元素，数组，fragment。
+// 指定类型为：任何可以被渲染的元素，包括数字，字符串，数组，react 元素，fragment。
 optionalNode: PropTypes.node,
 
-// 指定类型为：一个react 元素
+// 指定类型为：一个 react 元素（只接收一个）
 optionalElement: PropTypes.element,
 
-//你可以类型为某个类的实例，这里使用JS的instanceOf操作符实现
+// 可以类型为某个类的实例，这里使用 JS 的 instanceOf 操作符实现
 optionalMessage: PropTypes.instanceOf(Message),
 
 
-//指定枚举类型：你可以把属性限制在某些特定值之内
+// 指定枚举类型：你可以把属性限制在某些 特定值 之内
 optionalEnum: PropTypes.oneOf(['News', 'Photos']),
 
-// 指定多个类型：你也可以把属性类型限制在某些指定的类型范围内
+// 指定多个类型：你也可以把属性类型限制在某些 指定的类型范围内
 optionalUnion: PropTypes.oneOfType([
   PropTypes.string,
   PropTypes.number,
@@ -73,13 +66,13 @@ optionalUnion: PropTypes.oneOfType([
 ]),
 
 // 指定某个类型的数组
-optionalArrayOf: PropTypes.arrayOf(PropTypes.number),
+optionalArrayOf: PropTypes.arrayOf(PropTypes.number), // 这里指定 纯数字数组
 
 // 指定类型为对象，且对象属性值是特定的类型
-optionalObjectOf: PropTypes.objectOf(PropTypes.number),
+optionalObjectOf: PropTypes.objectOf(PropTypes.number), // 这里指定 属性值为数字 的对象
 
 
-//指定类型为对象，且可以规定哪些属性必须有，哪些属性可以没有
+// 指定类型为对象，且可以规定哪些属性必须传入，哪些属性可以不用（为了避免不必要的错误，非必传的属性请设置默认值）
 optionalObjectWithShape: PropTypes.shape({
   optionalProperty: PropTypes.string,
   requiredProperty: PropTypes.number.isRequired
