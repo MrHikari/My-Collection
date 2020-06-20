@@ -111,3 +111,25 @@ customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, locat
   }
 })
 ```
+
+### 添加依赖此 package
+
+对于应用程序，建议将其置于 `dependencies` 插入符号范围内。例如：
+
+```js
+“ dependencies”：{ 
+  “ prop-types”：“^15.5.7”
+}
+```
+对于库，建议将其保留在 `dependencies`：
+```js
+“ dependencies”：{ 
+  “ prop-types”：“^15.5.7” 
+} ，
+“ peerDependencies”：{ 
+  “ react”：“^15.5.0” 
+}
+```
+**注意**： *15.5.7*之前的版本中存在已知问题，因此建议将其用作最低版本。<br/>
+确保版本范围使用*脱字符号*（`^`），对于npm足够，可以有效地对*package*进行重复数据删除。<br/>
+对于组件的UMD捆绑包，请**确保**不包含 *PropTypes* 在内部版本中。
