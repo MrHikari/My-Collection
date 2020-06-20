@@ -78,31 +78,31 @@ optionalObjectWithShape: PropTypes.shape({
   requiredProperty: PropTypes.number.isRequired
 }),
 
-// 指定类型为对象，且可以指定对象的哪些属性必须有，哪些属性可以没有。如果出现没有定义的属性，会出现警告。
-//下面的代码optionalObjectWithStrictShape的属性值为对象，但是对象的属性最多有两个，optionalProperty 和 requiredProperty。
-//出现第三个属性，控制台出现警告。
+// 指定类型为对象，且可以指定对象的哪些属性必须有，哪些属性没有。如果出现没有定义的属性，会出现警告。
+// 下面的代码 optionalObjectWithStrictShape 的属性值为对象，但是对象的属性最多有两个，optionalProperty 和 requiredProperty。
+// 出现第三个属性，控制台出现警告。
 optionalObjectWithStrictShape: PropTypes.exact({
   optionalProperty: PropTypes.string,
   requiredProperty: PropTypes.number.isRequired
 }),
 
-//加上isReqired限制，可以指定某个属性必须提供，如果没有出现警告。
+// 加上 isReqired 限制，可以指定某个属性必须提供，没有会出现警告。
 requiredFunc: PropTypes.func.isRequired,
 requiredAny: PropTypes.any.isRequired,
 
-// 你也可以指定一个自定义的验证器。如果验证不通过，它应该返回Error对象，而不是`console.warn `或抛出错误。`oneOfType`中不起作用。
+// 可以指定一个自定义的验证器。如果验证不通过，它应该返回 Error 对象，而不是 `console.warn ` 或 抛出错误。`oneOfType` 中不起作用。
 customProp: function(props, propName, componentName) {
   if (!/matchme/.test(props[propName])) {
-    return new Error(
+    return new Error( // 返回一个自定义 error
       'Invalid prop `' + propName + '` supplied to' +
       ' `' + componentName + '`. Validation failed.'
     );
   }
 },
 
-//你也可以提供一个自定义的验证器 arrayOf和objectOf。如果验证失败，它应该返回一个Error对象。
-//验证器用来验证数组或对象的每个值。验证器的前两个参数是数组或对象本身，还有对应的key。
-customArrayProp: PropTypes.arrayOf(function(propValue, key,     componentName, location, propFullName) {
+// 可以提供一个自定义的验证器 arrayOf 和 objectOf。如果验证失败，它应该返回一个 Error 对象。
+// 验证器用来验证数组或对象的每个值。验证器的前两个参数是数组或对象本身，还有对应的key。
+customArrayProp: PropTypes.arrayOf(function(propValue, key, componentName, location, propFullName) {
   if (!/matchme/.test(propValue[key])) {
     return new Error(
       'Invalid prop `' + propFullName + '` supplied to' +
