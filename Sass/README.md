@@ -167,3 +167,27 @@ a {
 在上例中，`$link-color`和`$link_color`其实指向的是**同一个变量**。实际上，在**sass**的 **大多数地方**，*中划线*命名的内容和*下划线*命名的内容是互通的，除了变量，也包括对混合器和Sass函数的命名。
 
 **注意**：在sass中 **纯css**部分**不互通**，比如类名、ID或属性名。
+
+<br/>
+
+#### 嵌套CSS 规则
+
+在传统css中，如果要对页面中某一块指定样式，需要重复写选择器。sass可以只写一遍，sass在输出css时会把这些嵌套规则处理好且使样式可读性更高。
+```scss
+#content {
+  article {
+    h1 { color: #333 }
+    p { margin-bottom: 1.4em }
+  }
+  aside { background-color: #EEE }
+}
+```
+编译后：
+```css
+#content article h1 { color: #333 }
+#content article p { margin-bottom: 1.4em }
+#content aside { background-color: #EEE }
+```
+上边的例子，编译过程中，sass用了两步，每一步都是像打开俄罗斯套娃那样将里边的嵌套规则块一个个打开。首先，把`#content`（父级）这个*id*放到`article`选择器（子级）和`aside`选择器（子级）的前边，然后`#content article`里边还有嵌套的规则，**sass**重复一遍上边的步骤，把新的选择器添加到内嵌的选择器前边。
+
+**注意**：大多数情况下这种简单的嵌套都没问题，但是有些场景下不行，比如想要在嵌套的 选择器 里边立刻应用一个类似于`：hover`的*伪类*。为了解决这种以及其他情况，sass提供了一个**特殊结构** `&`。
