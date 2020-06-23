@@ -240,3 +240,35 @@ body.ie #content aside { color: green }
 ```
 
 sass在选择器嵌套上是非常智能的，即使是带有父选择器的情况。当sass遇到群组选择器（由多个逗号分隔开的选择器形成）也能完美地处理这种嵌套。
+
+2. 群组选择器的嵌套
+
+当需要在一个特定的容器元素内对这样一个群组选择器进行修饰时，传统的css的写法会在群组选择器中的每一个选择器前都重复一遍容器元素的选择器。
+
+
+sass的嵌套特性在这种场景下，会把每一个内嵌选择器的规则都正确地解出来：
+
+```scss
+.container {
+  h1, h2, h3 { margin-bottom: .8em }
+}
+```
+编译后：
+```css
+.container h1, .container h2, .container h3 { margin-bottom: .8em }
+```
+首先sass将`.container`和`h1` `.container`和`h2` `.container`和`h3`分别组合，然后将三者重新组合成一个群组选择器，生成普通css样式。
+
+对于内嵌在群组选择器内的嵌套规则，处理方式也一样：
+```scss
+nav, aside {
+  a {color: blue}
+}
+```
+编译后：
+```css
+nav a, aside a {color: blue}
+```
+sass将`nav`和`a` `aside`和`a`分别组合，然后将二者重新组合成一个群组选择器。
+
+**特别注意**：群组选择器的规则嵌套生成的css。虽然sass让样式表看上去很小，但实际生成的css却可能非常大，这会降低网站的速度。
