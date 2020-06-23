@@ -318,3 +318,47 @@ article dl > dt { color: #333 }
 article dl > dd { color: #555 }
 nav + article { margin-top: 0 }
 ```
+
+4. **嵌套属性**
+
+在sass中，除了CSS选择器，属性也可以进行嵌套。
+
+在sass中，嵌套属性的规则是这样的：<br/>
+把属性名从**中划线**`-`的地方*断开*，在根属性*后边添加*一个**冒号**`:`，*紧跟*一个`{ }`块，把**子属性部分**写在这个`{ }`块中。<br/>
+就像css选择器嵌套一样，sass会把相应的子属性一一解开，把**根属性**和**子属性**部分通过**中划线**`-`*连接*起来，最后生成的效果与传统的css样式一样。
+
+```scss
+nav {
+  border: {
+  style: solid;
+  width: 1px;
+  color: #ccc;
+  }
+}
+```
+编译后：
+```css
+nav {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ccc;
+}
+```
+
+对于属性的缩写形式，甚至可以像下边这样来嵌套，指明例外规则：
+```scss
+nav {
+  border: 1px solid #ccc {
+  left: 0px;
+  right: 0px;
+  }
+}
+```
+这比下边这种同等样式的写法要好：
+```css
+nav {
+  border: 1px solid #ccc;
+  border-left: 0px;
+  border-right: 0px;
+}
+```
