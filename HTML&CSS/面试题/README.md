@@ -112,7 +112,7 @@ br、hr
 |element1,element2|div,p|选择所有element1元素和所有element2元素。|1|
 |element1 element2|div p|选择element1元素内部的所有element2元素，包含孙子辈元素。|1|
 |element1>element2|div>p|选择element1父元素中对应的所有element2子元素，不包含孙子辈元素。|2|
-|element1+element2|div+p|选择紧接在element1元素之后的所有element2元素（同级元素紧接着）。|2|
+|element1+element2|div+p|选择所有紧接在element1元素之后的element2元素（element1和element2，只对element2一个生效，同级元素紧接着）。|2|
 |element1~element2|p~ul|选择element1元素后的全部element2元素。|3|
 |[attribute]|[target]|选择带有 target 属性所有元素。|2|
 |[attribute=value]|[target=_blank]|选择 target="_blank" 的所有元素。|2|
