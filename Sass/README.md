@@ -403,3 +403,28 @@ width: $fancybox-width;
 }
 ```
 在上例中，如果在导入*sass*局部文件之前声明了一个`$fancybo-width`变量，那么局部文件中对`$fancybox-width`赋值*400px*的操作就**无效**。如果没有做这样的声明，则`$fancybox-width`将**默认**为*400px*。
+
+3. **嵌套导入**
+
+跟原生的css不同，*sass*允许`@import`命令写在css规则内。<br/>
+这种导入方式下，生成对应的css文件时，局部文件会被直接插入到css规则内导入它的地方。举例说明，有一个名为*_blue-theme.scss*的局部文件，内容如下：
+```scss
+aside {
+  background: blue;
+  color: white;
+}
+```
+然后把它导入到一个CSS规则内，如下所示：
+```scss
+.blue-theme {@import "blue-theme"}
+```
+生成的结果跟你直接在`.blue-theme`选择器内写*_blue-theme.scss*文件的内容完全一样。
+```scss
+.blue-theme {
+  aside {
+    background: blue;
+    color: #fff;
+  }
+}
+```
+被导入的局部文件中定义的所有变量和混合器，也会在这个规则范围内生效。这些变量和混合器不会全局有效，这样就可以通过嵌套导入只对站点中某一特定区域运用某种颜色主题或其他通过变量配置的样式。
