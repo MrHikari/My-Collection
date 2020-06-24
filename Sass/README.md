@@ -379,3 +379,27 @@ nav {
 此约定即：*sass***局部文件**的文件名以*下划线*`_`开头。这样，*sass*就**不会**在编译时单独编译这个文件输出css，而只把这个文件用作**导入**。当`@import`一个局部文件时，还可以不写文件的全名，即省略文件名开头的下划线。<br/>
 **举例**：导入`themes/_night-sky.scss`这个局部文件里的变量，只需在样式表中写`@import "themes/night-sky"`。
 
+2. **默认变量值**
+
+代码运行是从上往下，反复声明一个变量时，只有最后一处声明有效且它会覆盖前边的值。
+
+举例说明：
+```scss
+$link-color: blue;
+$link-color: red;
+a {
+color: $link-color;
+}
+```
+在上边的例子中，超链接的`color`会被设置为*red*。
+
+当一个可被他人通过`@import`导入的*sass*库文件，导入者可能希望定制修改*sass*库文件中的某些值。
+
+使用*sass*的`!default`标签可以实现这个目的。类似于*css*属性中`!important`标签，但是功能却是相反的。不同的是`!default`用于**变量**，含义是：如果这个变量被声明赋值了，那就用它声明的值，否则就用这个默认值。
+```scss
+$fancybox-width: 400px !default;
+.fancybox {
+width: $fancybox-width;
+}
+```
+在上例中，如果在导入*sass*局部文件之前声明了一个`$fancybo-width`变量，那么局部文件中对`$fancybox-width`赋值*400px*的操作就**无效**。如果没有做这样的声明，则`$fancybox-width`将**默认**为*400px*。
