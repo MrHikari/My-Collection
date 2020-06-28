@@ -515,4 +515,38 @@ notice {
 
 在之前的例子中，.notice是一个有语义的类名。如果一个html元素有一个notice的类名，就表明了这个html元素的用途：向用户展示提醒信息。rounded-corners混合器是展示性的，它描述了包含它的css规则最终的视觉样式，尤其是边框角的视觉样式。混合器和类配合使用写出整洁的html和css，因为使用语义化的类名亦可以帮你避免重复使用混合器。为了保持你的html和css的易读性和可维护性，在写样式的过程中一定要铭记二者的区别。
 
-有时候仅仅把属性放在混合器中还远远不够，可喜的是，sass同样允许你把css规则放在混合器中。
+2. **混合器中的*CSS*规则**
+
+混合器中不仅可以包含属性，也可以包含css规则，包含选择器和选择器中的属性，如下代码:
+```scss
+@mixin no-bullets {
+  list-style: none;
+  li {
+    list-style-image: none;
+    list-style-type: none;
+    margin-left: 0px;
+  }
+}
+```
+当一个包含css规则的混合器通过@include包含在一个父规则中时，在混合器中的规则最终会生成父规则中的嵌套规则。举个例子，看看下边的sass代码，这个例子中使用了no-bullets这个混合器：
+```scss
+ul.plain {
+  color: #444;
+  @include no-bullets;
+}
+```
+sass的@include指令会将引入混合器的那行代码替换成混合器里边的内容。最终，上边的例子如下代码:
+```scss
+ul.plain {
+  color: #444;
+  list-style: none;
+}
+ul.plain li {
+  list-style-image: none;
+  list-style-type: none;
+  margin-left: 0px;
+}
+```
+混合器中的规则甚至可以使用sass的父选择器标识符&。使用起来跟不用混合器时一样，sass解开嵌套规则时，用父规则中的选择器替代&。
+
+如果一个混合器只包含css规则，不包含属性，那么这个混合器就可以在文档的顶部调用，写在所有的css规则之外。如果你只是为自己写一些混合器，这并没有什么大的用途，但是当你使用一个类似于Compass的库时，你会发现，这是提供样式的好方法，原因在于你可以选择是否使用这些样式。
