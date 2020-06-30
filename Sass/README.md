@@ -553,7 +553,7 @@ ul.plain li {
 
 3. **给混合器传参**
 
-混合器并不一定总得生成相同的样式。可以通过在@include混合器时给混合器传参，来定制混合器生成的精确样式。当@include混合器时，参数其实就是可以赋值给css属性值的变量。如果你写过JavaScript，这种方式跟JavaScript的function很像：
+混合器并不一定总得生成相同的样式。可以通过在`@include`混合器时给混合器传参，来定制混合器生成的精确样式。当`@include`混合器时，参数其实就是可以赋值给*css*属性值的变量。（这种方式跟JavaScript的function类似）
 ```scss
 @mixin link-colors($normal, $hover, $visited) {
   color: $normal;
@@ -561,7 +561,8 @@ ul.plain li {
   &:visited { color: $visited; }
 }
 ```
-当混合器被@include时，你可以把它当作一个css函数来传参。如果你像下边这样写：
+当混合器被`@include`时，你可以把它当作一个*css***函数**来传参。<br/>
+示例：
 ```scss
 a {
   @include link-colors(blue, red, green);
@@ -573,7 +574,7 @@ a { color: blue; }
 a:hover { color: red; }
 a:visited { color: green; }
 ```
-当你@include混合器时，有时候可能会很难区分每个参数是什么意思，参数之间是一个什么样的顺序。为了解决这个问题，sass允许通过语法$name: value的形式指定每个参数的值。这种形式的传参，参数顺序就不必再在乎了，只需要保证没有漏掉参数即可：
+当`@include`混合器时，有时候可能会很难区分每个参数是什么意思，参数之间是一个什么样的顺序。为了解决这个问题，sass允许通过语法`$name: value`的形式指定每个参数的值。这种形式的传参，参数顺序就不必再在乎了，**但是需要保证没有漏掉参数**。
 ```scss
 a {
     @include link-colors(
@@ -583,4 +584,4 @@ a {
   );
 }
 ```
-尽管给混合器加参数来实现定制很好，但是有时有些参数我们没有定制的需要，这时候也需要赋值一个变量就变成很痛苦的事情了。所以sass允许混合器声明时给参数赋默认值。
+尽管给混合器加参数来实现定制很好，但是有时有些参数没有定制的需要，这时候也需要赋值一个变量就变成很痛苦的事情了。所以sass允许混合器声明时给参数赋默认值。
