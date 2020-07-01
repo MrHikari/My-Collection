@@ -585,3 +585,27 @@ a {
 }
 ```
 尽管给混合器加参数来实现定制很好，但是有时有些参数没有定制的需要，这时候也需要赋值一个变量就变成很痛苦的事情了。所以sass允许混合器声明时给参数赋默认值。
+
+4. **默认参数值**
+
+为了在使用`@include`**混合器**时*不必*传入所有的参数，可以给参数*指定*一个**默认值**。<br/>
+参数默认值使用`$name: default-value`的声明形式，默认值可以是**任何有效的css属性值**，甚至是其他参数的引用。
+
+示例：
+```scss
+@mixin link-colors(
+    $normal,
+    $hover: $normal,
+    $visited: $normal
+  )
+{
+  color: $normal;
+  &:hover { color: $hover; }
+  &:visited { color: $visited; }
+}
+```
+如果传入参数调用：
+```scss
+@include link-colors(red)
+```
+`$hover`和`$visited`也会被自动赋值为*red*。
