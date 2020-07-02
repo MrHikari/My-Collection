@@ -609,3 +609,36 @@ a {
 @include link-colors(red)
 ```
 `$hover`和`$visited`也会被自动赋值为*red*。
+
+<br/>
+
+#### 使用选择器继承来精简CSS
+
+使用*sass*的时候，最后一个减少重复的主要特性就是选择器继承。基于Nicole Sullivan面向对象的css的理念，选择器继承是说一个选择器可以继承为另一个选择器定义的所有样式。这个通过@extend语法实现，如下代码:
+
+```scss
+// 通过选择器继承继承样式
+.error {
+  border: 1px solid red;
+  background-color: #fdd;
+}
+.seriousError {
+  @extend .error;
+  border-width: 3px;
+}
+```
+
+在上边的代码中，.seriousError将会继承样式表中任何位置处为.error定义的所有样式。以class="seriousError" 修饰的html元素最终的展示效果就好像是class="seriousError error"。相关元素不仅会拥有一个3px宽的边框，而且这个边框将变成红色的，这个元素同时还会有一个浅红色的背景，因为这些都是在.error里边定义的样式。
+
+.seriousError不仅会继承.error自身的所有样式，任何跟.error有关的组合选择器样式也会被.seriousError以组合选择器的形式继承，如下代码:
+```scss
+// .seriousError从.error继承样式
+.error a{  // 应用到.seriousError a
+  color: red;
+  font-weight: 100;
+}
+h1.error { // 应用到hl.seriousError
+  font-size: 1.2rem;
+}
+```
+如上所示，在class="seriousError"的html元素内的超链接也会变成红色和粗体。
