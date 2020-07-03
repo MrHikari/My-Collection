@@ -306,7 +306,6 @@ a:hover {
 * less继承方便代码模块化
 * 继承不支持带参数
 * 如社区公共头部与尾部
-语法： 获得继承名：extend（继承部分名）{…}
 
 示例代码：
 
@@ -318,7 +317,8 @@ a:hover {
     text-align: center;
     background: aqua;
 }
-.header:extend(.jicheng){
+.header{
+  .jicheng;
   /*header自身代码*/
   padding: 0 auto;
 }
