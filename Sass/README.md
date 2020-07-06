@@ -655,3 +655,24 @@ h1.error { // 应用到hl.seriousError
 
 所以：<br/>
 综上所述应该使用`@extend` 。让新样式从元样式**继承样式**，使两者之间的关系非常清晰。
+
+2. **继承的高级用法**
+
+任何css规则都可以继承其他规则，几乎任何css规则也都可以被继承。大多数情况可能只想对类使用继承。<br/>
+最常用的一种高级用法是**继承一个** `html元素`的*样式*。尽管默认的浏览器样式不会被继承，因为它们不属于样式表中的样式，但是你对html元素添加的所有样式都会被继承。
+
+**示例**定义了一个名为`disabled`的类，样式修饰使它看上去像一个灰掉的超链接。通过**继承** *a* 这一超链接元素来实现：
+```scss
+.disabled {
+  color: gray;
+  @extend a;
+}
+```
+
+假如一条样式规则继承了一个复杂的选择器，那么它只会继承这个复杂选择器命中的元素所应用的样式。
+
+举例来说， 如果.seriousError@extend.important.error ， 那么.important.error 和h1.important.error 的样式都会被.seriousError继承， 但是.important或者.error下的样式则不会被继承。这种情况下你很可能希望.seriousError能够分别继承.important或者.error下的样式。
+
+如果一个选择器序列（#main .seriousError）@extend另一个选择器（.error），那么只有完全匹配#main .seriousError这个选择器的元素才会继承.error的样式，就像单个类 名继承那样。拥有class="seriousError"的#main元素之外的元素不会受到影响。
+
+像#main .error这种选择器序列是不能被继承的。这是因为从#main .error中继承的样式一般情况下会跟直接从.error中继承的样式基本一致，细微的区别往往使人迷惑。
