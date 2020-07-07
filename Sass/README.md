@@ -671,8 +671,6 @@ h1.error { // 应用到hl.seriousError
 
 假如一条样式规则继承了一个复杂的选择器，那么它只会继承这个复杂选择器命中的元素所应用的样式。
 
-举例来说， 如果.seriousError@extend.important.error ， 那么.important.error 和h1.important.error 的样式都会被.seriousError继承， 但是.important或者.error下的样式则不会被继承。这种情况下你很可能希望.seriousError能够分别继承.important或者.error下的样式。
+如果一个选择器序列（`#main .seriousError`）`@extend`另一个选择器（`.error`），那么只有完全匹配`#main .seriousError`这个选择器的元素才会*继承*`.error`的样式，就像单个类名继承那样。拥有`class="seriousError"`的`#main`元素之外的元素不会受到影响。
 
-如果一个选择器序列（#main .seriousError）@extend另一个选择器（.error），那么只有完全匹配#main .seriousError这个选择器的元素才会继承.error的样式，就像单个类 名继承那样。拥有class="seriousError"的#main元素之外的元素不会受到影响。
-
-像#main .error这种选择器序列是不能被继承的。这是因为从#main .error中继承的样式一般情况下会跟直接从.error中继承的样式基本一致，细微的区别往往使人迷惑。
+**注意**：例如`#main .error`这种选择器序列是**不能被继承的**。这是因为从`#main .error`中继承的样式一般情况下会跟直接从`.error`中继承的样式*基本一致*，细微的区别往往使人迷惑。
