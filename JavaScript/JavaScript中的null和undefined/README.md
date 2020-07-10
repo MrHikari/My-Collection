@@ -57,3 +57,9 @@ o.p // undefined
 function f() {}
 f() // undefined
 ```
+
+#### 获取数据中的数字数据，包括 0
+
+```js
+typeof(value) === 'number' && !Number.isNaN(value)
+```
