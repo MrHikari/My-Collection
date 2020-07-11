@@ -49,7 +49,7 @@ function f(x) {
 f() // undefined
 
 // 对象没有赋值的属性
-var  o = new Object();
+var o = new Object();
 
 o.p // undefined
 
