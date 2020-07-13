@@ -55,3 +55,34 @@ export default withRouter(Nav)
 ```
 所以withRouter的作用就是, 如果我们某个东西不是一个Router, 但是我们要依靠它去跳转一个页面, 比如点击页面的logo, 返回首页, 这时候就可以使用withRouter来做.
 在这个例子中, 我将span使用withRouter作为一个可点击跳转的Link
+
+
+withRouter的适用场景
+
+避免更新受阻
+
+因为react-redux的connect高阶组件会为传入的参数组件实现shouldComponentUpdate 这个钩子函数，
+导致只有prop发生变化时才触发更新相关的生命周期函数(含render)而很显然，我们的location对象并没有作为prop传入该参数组件
+```js
+// before
+export default connect(mapStateToProps)(Something)
+
+// after
+import { withRouter } from 'react-router-dom'
+export default withRouter(connect(mapStateToProps)(Something))
+```
+在组件中意图使用history来控制路由跳转
+
+```js
+import React from "react";
+import {withRouter} from "react-router-dom";
+
+class MyComponent extends React.Component {
+  ...
+  myFunction() {
+    this.props.history.push("/some/Path");
+  }
+  ...
+}
+export default withRouter(MyComponent);
+```
