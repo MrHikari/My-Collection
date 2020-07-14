@@ -1,14 +1,13 @@
 ### withRouter
 
-作用：把不是通过路由切换过来的组件中，将react-router 的 history、location、match 三个对象传入props对象上
+**作用**：在不是通过路由切换过来的组件，将`react-router` 的 `history`、`location`、`match` **三个对象**传入**props对象**上。
  
-默认情况下必须是经过路由匹配渲染的组件才存在this.props，才拥有路由参数，才能使用编程式导航的写法，执行this.props.history.push('/detail')跳转到对应路由的页面
-然而不是所有组件都直接与路由相连（通过路由跳转到此组件）的，当这些组件需要路由参数时，使用withRouter就可以给此组件传入路由参数，此时就可以使用this.props
+默认情况下**必须**是经过*路由匹配渲染*的组件才存在`this.props`，才拥有路由参数，才能使用编程式导航的写法。（例如：执行 `this.props.history.push('/xxxx')` 跳转到对应路由的页面。<br/>
+然而不是所有组件都直接与路由相连（通过路由跳转到此组件）的，当这些组件**需要路由参数**时，使用`withRouter`就可以给此组件传入路由参数，此时就可以使用`this.props`。
  
-高阶组件中的withRouter, 作用是将一个组件包裹进Route里面, 然后react-router的三个对象history, location, match就会被放进这个组件的props属性中.
+**注意**：**高阶组件**中的`withRouter`, 作用是将一个组件包裹进*Route*里面, 然后`react-router`的三个对象`history`, `location`, `match`就会被放进这个组件的`props`*属性*中.
 
-如何使用withRouter：
-比如app.js这个组件，一般是首页，不是通过路由跳转过来的，而是直接从浏览器中输入地址打开的，如果不使用withRouter此组件的this.props为空，没法执行props中的history、location、match等方法。
+例如：*app.js*这个组件，一般是首页，不是通过路由跳转过来的，而是直接从浏览器中输入地址打开的，如果不使用`withRouter`，此组件的`this.props`为空，没法执行`props`中的`history`、`location`、`match`等方法。
 
 ```js
 // withRouter实现原理: 
