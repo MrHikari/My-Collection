@@ -1,3 +1,34 @@
+### constructor
+
+constructor（）是ES6写法所特有的, 代替了ES5的 getDefaultProps(){} , getInitialState(){}
+1 到底要不要写?
+答: 如果你需要设置默认的状态就要写
+
+2 super( ) 要不要传 props ?
+答: constructor () 必须配上 super(), 如果要在constructor 内部使用 this.props 就要 传入props , 否则不用
+
+3 绑定事件到底要不要在构造函数constructor（）中进行？
+答: js 的bind 每次都会返回一个新的函数, 为了性能等考虑, 要在constructor中绑定事件
+
+4 什么情况下在constructor（）中初始化事件 和 初始化状态?
+比如: input 需要一个默认value的时候, 你就要 初始化状态了
+
+---
+
+在es5中，如果使用constructor这个函数，实际上是子类的实例（this），父类添加到方法中parent.apply(this)，在es6中，使用继承机制，先创建父类的实例this,再用子类去修改this（super()）.
+
+如果子类没有定义，constructor方法就会被默认添加。也就是说，不管有没有显示定义，任何子类都有一个constructor（）方法。
+
+在es6中的继承规则得知： 不管子类写不写constructor,在new出来的对象里都会默认添加constructor.constructor不可缺少，有些子类的情况可以省去。
+
+语法具体查看：http://es6.ruanyifeng.com/#docs/class-extends
+
+super方法使用：子类在constructor方法中调用super,否则在新建实例时会报错。因为子类自己的this对象，必须通过父类的构造函数完成后调用，得到与父类相同的属性和方法。再进行操作，子类这时也会有自己的属性和方法。如果不调用super,子类就得不到this对象。
+
+---
+
+<br/>
+
 ### componentDidUpdate 和 componentWillReceiveProps
 
 **componentDidUpdate** 和 **componentWillReceiveProps** 生命周期用法看起来比较相似:
@@ -58,6 +89,10 @@ componentDidUpdate(prevProps) {
 所以<br/>
 React Class 组件中，静态方法 **getDerivedStateFromProps** 无权访问 **Class 实例** 的`this`，即 this 为 undefined。
 
+---
+
+<br/>
+
 ### getSnapshotBeforeUpdate
 
 **getSnapshotBeforeUpdate()** 被调用于 **render** 之**后**，**可以读取**`但`**无法使用**DOM 的时候。它使您的组件可以在**可能更改之前**从 DOM 捕获一些信息（例如滚动位置）。此生命周期返回的**任何值**都将作为**参数**传递给 **componentDidUpdate()**。
@@ -99,6 +134,8 @@ class ScrollingList extends React.Component {
 
 ---
 
+<br/>
+
 ### React在16.4版本中针对 getDerivedStateFromProps 的调整
 
 在旧版本中，**getDerivedStateFromProps** 只会在 `props` 更新是执行而并且不会因组件 `setState` 而触发。*FaceBook* 指出这是最初实施过程中的疏忽，现在已经得到纠正。
@@ -108,6 +145,8 @@ class ScrollingList extends React.Component {
 **注意**： **getDerivedStateFromProps** 中条件的判断和 **return** 的协调。（待验证）
 
 ---
+
+<br/>
 
 ### 关于 setState 与 触发渲染
 
