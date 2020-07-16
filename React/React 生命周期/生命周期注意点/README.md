@@ -1,17 +1,18 @@
 ### constructor
 
-constructor（）是ES6写法所特有的, 代替了ES5的 getDefaultProps(){} , getInitialState(){}
-1 到底要不要写?
-答: 如果你需要设置默认的状态就要写
+`constructor()`是**ES6**写法所特有的, 代替了**ES5**的 `getDefaultProps(){ }` , `getInitialState(){ }`
 
-2 super( ) 要不要传 props ?
-答: constructor () 必须配上 super(), 如果要在constructor 内部使用 this.props 就要 传入props , 否则不用
+1. 到底要不要添加?
+答: 如果需要设置**默认的状态**就要添加。
 
-3 绑定事件到底要不要在构造函数constructor（）中进行？
-答: js 的bind 每次都会返回一个新的函数, 为了性能等考虑, 要在constructor中绑定事件
+2. `super()` 要不要传入 `props` ?
+答: `constructor()` **必须**配上 `super()`, 如果要在 `constructor` **内部**使用 `this.props` 就要 传入`props` , 否则不需要传入。
 
-4 什么情况下在constructor（）中初始化事件 和 初始化状态?
-比如: input 需要一个默认value的时候, 你就要 初始化状态了
+3. **绑定事件**到底要不要在构造函数`constructor()`中进行？
+答: *js* 的 **bind** 每次都会返回一个新的函数, **为了性能等考虑**, 要在`constructor`中绑定事件。
+
+4. 什么情况下在 `constructor()`中初始化事件 和 初始化状态?
+比如: *input* 需要一个默认*value*的时候, 就要 **初始化状态**了。
 
 ---
 
