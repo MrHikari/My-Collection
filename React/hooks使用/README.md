@@ -96,3 +96,23 @@ function Example() {
 使用场景：
 * 在 **React** 的函数组件中调用 **Hook**
 * 在**自定义** **Hook** 中调用其他 **Hook** 
+
+**ESLint 插件**<br/>
+官方发布了一个名为 `eslint-plugin-react-hooks` 的 **ESLint** 插件来强制执行这两条规则。
+
+> npm install eslint-plugin-react-hooks --save-dev
+
+```json
+// ESLint 配置
+{
+  "plugins": [
+    // ...
+    "react-hooks"
+  ],
+  "rules": {
+    // ...
+    "react-hooks/rules-of-hooks": "error", // 检查 Hook 的规则
+    "react-hooks/exhaustive-deps": "warn", // 检查 effect 的依赖
+  }
+}
+```
