@@ -78,9 +78,25 @@
   "page": [
     // 全部页面路径
   ],
-  "window": [
+  "window": {
     // 全局样式配置
-  ]
+  },
+  "tabBar": {
+    // 底部菜单展示和跳转
+    "list": [{
+      "pagePath": "pagePath", // 页面路径，点击跳转的页面地址
+      "text": "text", // 标题
+      "iconPath": "iconPath", // 未被选中的图标地址
+      "selectedIconPath": "selectedIconPath", // 已选中的图标地址
+    },
+    {
+      ... // 同理，第二个点击图标的设置
+    }
+    ]
+  },
+  // list 关键字之外的其他设置（参考官方文档）
+  "color": "#000000", // 只支持16位进制 
+  "backgroundColor": "#0078e7"
 }
 ```
 
