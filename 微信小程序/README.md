@@ -83,6 +83,7 @@
   },
   "tabBar": {
     // 底部菜单展示和跳转
+    // 注意： tabBar.list 需至少包含 2 项
     "list": [{
       "pagePath": "pagePath", // 页面路径，点击跳转的页面地址
       "text": "text", // 标题
