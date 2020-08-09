@@ -114,5 +114,12 @@
 }
 ```
 
+#### sitemap.json 配置
+
+小程序目录下的 *sitemap.json* 文件用于配置微信小程序及其页面是否允许被微信索引。
+
+[官方文档介绍](https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html)
+
+
 
 
