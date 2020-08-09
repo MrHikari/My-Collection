@@ -101,4 +101,18 @@
 }
 ```
 
+#### 页面配置文件 page.json
+
+这里的 *page.json* 是泛指每一个页面目录下的 *json* 文件。类似于整个小程序项目的 *app.json* 配置文件。<br/>
+开发者可以独立定义每个页面的一些属性，比如顶部颜色，是否支持下拉刷新等等。
+
+**page.json**
+```json
+{
+  "usingComponents": {}, // 自定义组件配置
+  "navigationBarTitleText": "测试页面" // 页面配置的某些属性
+}
+```
+
+
 
