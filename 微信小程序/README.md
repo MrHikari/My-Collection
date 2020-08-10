@@ -120,6 +120,14 @@
 
 [官方文档介绍](https://developers.weixin.qq.com/miniprogram/dev/framework/sitemap.html)
 
+---
+
+### 模板语法
+
+#### 数据绑定
+
+**注意**：布尔类型数据的填充时，`”“`和`{{}}`之间不能有空格，如果存在空格会导致识别失败。
+
 
 
 
