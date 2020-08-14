@@ -48,3 +48,37 @@ _.concat(array, [values])
 
 创建一个新数组，将array与任何数组 或 值连接在一起。
 
+---
+
+```js
+_.difference(array, [values])
+```
+
+* 参数
+* * array (Array): 要检查的数组。
+* * [values] (...Array): 排除的值。
+* 返回值
+* * (Array): 返回一个过滤值后的新数组。
+
+创建一个具有唯一**array值**的*数组*，每个值不包含在其他给定的数组中。（**注**：即创建一个新数组，这个数组中的值，为第一个数字（array 参数）排除了给定数组中的值。）该方法使用 SameValueZero做相等比较。结果值的顺序是由第一个数组中的顺序确定。
+
+**注意**: 不像 `_.pullAll`，这个方法会返回一个新数组。
+
+---
+
+```js
+_.differenceBy(array, [values], [iteratee=_.identity])
+```
+
+* 参数
+* * array (Array): 要检查的数组。
+* * [values] (...Array): 排除的值。
+* * [iteratee=_.identity] (Array|Function|Object|string): iteratee 调用每个元素。
+* 返回值
+* * (Array): 返回一个过滤值后的新数组。
+
+这个方法类似 `_.difference` ，除了它接受一个 *iteratee* （**注**：迭代器）， 调用 array 和 values 中的每个元素以产生比较的标准。 结果值是从第一数组中选择。iteratee 会调用一个参数：(value)。（注：首先使用迭代器分别迭代array 和 values中的每个元素，返回的值作为比较值）。
+
+**注意**: 不像 _.pullAllBy，这个方法会返回一个新数组。
+
+
