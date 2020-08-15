@@ -20,6 +20,8 @@ _.assign(object, [sources])
 
 ---
 
+### 数组 “Array” Methods
+
 ```js
 _.forEach(collection, [iteratee=_.identity])
 ```
@@ -80,5 +82,9 @@ _.differenceBy(array, [values], [iteratee=_.identity])
 这个方法类似 `_.difference` ，除了它接受一个 *iteratee* （**注**：迭代器）， 调用 array 和 values 中的每个元素以产生比较的标准。 结果值是从第一数组中选择。iteratee 会调用一个参数：(value)。（注：首先使用迭代器分别迭代array 和 values中的每个元素，返回的值作为比较值）。
 
 **注意**: 不像 _.pullAllBy，这个方法会返回一个新数组。
+
+---
+
+
 
 
