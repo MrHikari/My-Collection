@@ -132,6 +132,75 @@
 
 **注意**：小程序中支持 **三元运算**、**算术运算**、**逻辑判断**、**字符串运算**。支持一些复杂代码段，例如`if else`、`switch`、`do while`、`for`。
 
+#### 列表渲染
+
+*js*文件中的`data`内部先准备好需要循环渲染的数组或者对象数据，然后在*wxml*文件中使用`wx:for`语句进行渲染。
+
+**注意**：
+1. `wx:for="{{数组或者对象}}"`
+2. `wx:for-item="循环项的名称"`
+3. `wx:for-index="循环项的索引"`
+4. `wx:for-key="唯一的值"` 用来提高列表的渲染性能。`wx:key="*this"` 表示该数组是一个普通的数组， `*this`表示循环项。
+5. 当出现数组的嵌套循环时，绑定的熟悉和名称不要重复。
+6. 默认情况下，小程序默认 `wx:for-item="循环项的名称"` `wx:for-index="循环项的索引"`，所以当只有一层循环时，可以省略不写。
+7. 对象循环时，`wx:for-item="对象的属性值"` `wx:for-index="对象的键名"`，并且修改为 `wx:for-item="value"` `wx:for-index="key"`
+
+**示例**：
+```js
+Page{{
+  data: {
+    ......
+    list: [
+      {
+        id: 0,
+        name: "名称0"
+      },
+      {
+        id: 1,
+        name: "名称1"
+      },
+      {
+        id: 2,
+        name: "名称2"
+      },
+    ],
+    objectData: {
+      attr1: "属性1",
+      attr2: "属性2",
+      attr3: "属性3",
+    }
+  },
+  ......
+}}
+```
+
+```wxml
+<view>
+  <view
+    wx:key="id"
+    wx:for="{{list}}"
+    wx:for-item="item"
+    wx:for-index="id"
+  >
+    索引：{{index}}
+    ---
+    值：{{item.name}}
+  </view>
+</view>
+<view>
+  <view
+    wx:key="attr1"
+    wx:for="{{objectData}}"
+    wx:for-item="value"
+    wx:for-index="key"
+  >
+    属性名：{{key}}
+    ---
+    属性值：{{value}}
+  </view>
+</view>
+```
+
 
 
 
