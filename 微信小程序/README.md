@@ -216,5 +216,35 @@ Page{{
 
 **注意**：当标签不是频繁切换显示的时候，优先使用 `wx:if`。频繁切换显示的时候时候`hidden`。
 
+---
 
+### 事件绑定
+
+小程序中的时间绑定通过 *bind* 关键字实现。比如 `bindtap`，`bindinput`，`bindchange` 等。不同的组件支持不同的事件，详细看文档。
+
+**示例**：
+
+```wxml
+<input type="text" bindinput="handleInput"/>
+<view>
+  {{displayInput}}
+</view>
+```
+
+```js
+Page{{
+  data: {
+    displayInput: '',
+    ......
+  },
+
+  handleInput(e) {
+    console('handle-------->');
+    console('e-event-事件源------>', e);
+    console('输入值-e.detail.value----->', e.detail.value);
+    this.setData({ displayInput: e.detail.value})
+  }
+  ......
+}}
+```
 
