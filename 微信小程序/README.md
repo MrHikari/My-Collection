@@ -222,7 +222,7 @@ Page{{
 
 小程序中的时间绑定通过 *bind* 关键字实现。比如 `bindtap`，`bindinput`，`bindchange` 等。不同的组件支持不同的事件，详细看文档。
 
-**示例**：
+**input示例**：
 
 ```wxml
 <input type="text" bindinput="handleInput"/>
@@ -247,4 +247,31 @@ Page{{
   ......
 }}
 ```
+
+**button示例**：
+
+```wxml
+<button bindtap=“handleClick” customData="{{100}}">按钮组件</button>
+```
+
+```js
+Page{{
+  data: {
+    defaultNum: 0,
+    num: '',
+    ......
+  },
+
+  handleClick(e) {
+    console('handle-------->');
+    console('e-event-事件源------>', e);
+    console('传入参数值-e.currentTarget.value----->', e.currentTarget.value);
+    this.setData({ num: e.currentTarget.value });
+    this.setData({ defaultNum: e.currentTarget.value + this.data.defaultNum })
+  }
+  ......
+}}
+```
+
+**注意**：点击事件 *bindtap* **无法**在小程序中的 **事件内** 直接传参，需要通过**自定义属性**的方式传递参数，最终在事件源中获得参数。
 
