@@ -242,7 +242,7 @@ Page{{
     console('handle-------->');
     console('e-event-事件源------>', e);
     console('输入值-e.detail.value----->', e.detail.value);
-    this.setData({ displayInput: e.detail.value})
+    this.setData({ displayInput: e.detail.value })
   }
   ......
 }}
@@ -275,3 +275,12 @@ Page{{
 
 **注意**：点击事件 *bindtap* **无法**在小程序中的 **事件内** 直接传参，需要通过**自定义属性**的方式传递参数，最终在事件源中获得参数。
 
+---
+
+### WXSS 样式文件
+
+#### 尺寸单位
+
+* **rpx**（*responsive pixel*）: 可以根据屏幕宽度进行自适应。规定屏幕宽为`750rpx`。如在 *iPhone6* 上，屏幕宽度为`375px`，共有`750`个**物理像素**，则`750rpx = 375px = 750物理像素`，`1rpx = 0.5px = 1物理像素`。
+
+建议：开发微信小程序时，设计可以使用 *iPhone6* 作为视觉稿的标准。
