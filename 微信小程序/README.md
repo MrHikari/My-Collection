@@ -325,3 +325,11 @@ width: calc(750rpx*100/page);
 |::after|view::after|在 view 组件后边插入内容|
 |::before|view::before|在 view 组件前边插入内容|
 
+**小帮手**：**Easy Less** 插件，将书写的*less*文件重新生成一个*css*文件或者*wxss*文件。
+
+在 **VSCode** 的扩展中搜索**Easy Less**，安装，然后在*settings.json*文件中添加
+```json
+"less.compile": {
+  "outExt": ".wxss"
+}
+```
