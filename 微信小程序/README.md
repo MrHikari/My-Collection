@@ -333,3 +333,9 @@ width: calc(750rpx*100/page);
   "outExt": ".wxss"
 }
 ```
+
+---
+
+### 基础组件
+
+[重点参考官方文档](https://developers.weixin.qq.com/miniprogram/dev/component/)
