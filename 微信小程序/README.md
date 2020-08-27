@@ -239,9 +239,9 @@ Page{{
   },
 
   handleInput(e) {
-    console('handle-------->');
-    console('e-event-事件源------>', e);
-    console('输入值-e.detail.value----->', e.detail.value);
+    console.log('handle-------->');
+    console.log('e-event-事件源------>', e);
+    console.log('输入值-e.detail.value----->', e.detail.value);
     this.setData({ displayInput: e.detail.value })
   }
   ......
@@ -263,9 +263,9 @@ Page{{
   },
 
   handleClick(e) {
-    console('handle-------->');
-    console('e-event-事件源------>', e);
-    console('传入参数值-e.currentTarget.value----->', e.currentTarget.value);
+    console.log('handle-------->');
+    console.log('e-event-事件源------>', e);
+    console.log('传入参数值-e.currentTarget.value----->', e.currentTarget.value);
     this.setData({ num: e.currentTarget.value });
     this.setData({ defaultNum: e.currentTarget.value + this.data.defaultNum })
   }
