@@ -236,6 +236,18 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 > upstream  git@github.com:yyy/sample01.git (fetch) # 远程分支<br/>
 > upstream  git@github.com:yyy/sample01.git (push)
 
+**扩展** git更改origin数据源
+
+*三种方式*
+
+* 修改命令
+* * > git remte origin set-url URL
+* 先删后加
+* * > git remote rm origin
+* * > git remote add origin git@github.com:xxx/sample03.git
+*  直接修改config文件
+
+
 3. fetch 远程分支
 
 > git fetch upstream
