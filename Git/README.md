@@ -241,7 +241,7 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 *三种方式*
 
 * 修改命令
-* * > git remte origin set-url URL
+* * > git remote origin set-url URL
 * 先删后加
 * * > git remote rm origin
 * * > git remote add origin git@github.com:xxx/sample03.git
