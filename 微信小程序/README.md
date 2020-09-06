@@ -339,3 +339,5 @@ width: calc(750rpx*100/page);
 ### 基础组件
 
 [重点参考官方文档](https://developers.weixin.qq.com/miniprogram/dev/component/)
+
+**注意**：*button* 组件的附加功能 `open-type` 部分需要配合真机调试和企业级开发账号等权限。
