@@ -161,24 +161,24 @@ error: cannot overwrite multiple values with a single value
 
 #### github/gitlab 同时管理多个 ssh key
 
-以前用 github 的 ssh key，后来工作原因多了一个 gitlab 的账号，在绑定 gitlab 的 ssh key 时，发现将 github 的 ssh key 覆盖了。怎么同时绑定 github 和 gitlab 的 ssh key，并不产生冲突呢？
-今天找到了个小技巧，在.ssh 目录下新建一个 config 文件配置一下，就能解决 gitlab 与 github 的 ssh key 的冲突。
+以前用 **github** 的 **ssh key**，后来工作原因多了一个 *gitlab* 的账号，在绑定 *gitlab* 的 *ssh key* 时，发现将 **github** 的 **ssh key** 覆盖了。怎么同时绑定 **github** 和 *gitlab* 的 ***ssh key***，并不产生冲突呢？
+今天找到了个小技巧，在 *.ssh* 目录下新建一个 *config* 文件配置一下，就能解决 *gitlab* 与 **github** 的 ***ssh key*** 的冲突。
 
-生成并添加第一个 ssh key
+生成并添加第一个 **ssh key**
 
 ```
 cd ~/.ssh
 ssh  ssh-keygen -t rsa -C "youremail@yourcompany.com"
 ```
 
-这时可以一路回车，不输入任何字符，将自动生成 id_rsa 和 id_rsa.pub 文件。
+这时可以一路回车，不输入任何字符，将自动生成 *id_rsa* 和 *id_rsa.pub* 文件。
 
-生成并添加第二个 ssh key
+生成并添加第二个 **ssh key**
 
 > \$ ssh-keygen -t rsa -C "youremail@gmail.com"
 > 注意，这时不能一路回车，否则邮箱将覆盖上一次生成的 ssh key，给这个文件起一个名字， 比如叫 id_rsa_github, 所以相应的也会生成一个 id_rsa_github.pub 文件。
 
-此时查看 .ssh 下的目录文件，发现多了 id_rsa_github 和 id_rsa_github.pub 两个文件。
+此时查看 *.ssh* 下的目录文件，发现多了 *id_rsa_github* 和 *id_rsa_github.pub* 两个文件。
 
 添加私钥
 
@@ -245,8 +245,9 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 * 先删后加
 * * > git remote rm origin
 * * > git remote add origin git@github.com:xxx/sample03.git
-*  直接修改config文件
+* 直接修改config文件
 
+<br/>
 
 3. fetch 远程分支
 
@@ -274,19 +275,19 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 1. 查看当前分支的日志情况（单纯只是确认）
 
-// --oneline 一条提交信息用一行展示
+`--oneline` 一条提交信息用一行展示
 > git log --oneline
 
-// -n 查看到此之前的几次提交记录, n 可以为 1，2，3，... ，但是实操下来最多展示在此之前 **3** 次提交
+`-n` 查看到此之前的几次提交记录, `n` 可以为 1，2，3，... ，但是实操下来最多展示在此之前 **3** 次提交
 > git log -n
 
 > git log -1
 
-2. 执行变更message（描述信息）的指令
+2. 执行变更`message`（描述信息）的指令
 
 > git commit --amend
 
-进入 vim编辑器 界面， 可修改部分是最上面的一行，# 部分为描述和介绍（可以不需要理解，了解最好）<br/>
+进入 *vim编辑器* 界面， 可修改部分是最上面的一行，`#` 部分为描述和介绍（可以不需要理解，了解最好）<br/>
 编辑完后保存，注意使用 vim 命令。
 
 3. 更新远程仓库提交，是远程仓库也修改对应commit的message
