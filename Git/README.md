@@ -307,6 +307,15 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 > git pull origin master
 
+**注意**：pull 则是将远程主机的master分支最新内容拉下来后与当前本地分支直接合并 `fetch + merge`
+
+> git pull origin master
+ 
+如果远程分支是与当前分支合并，则冒号后面的部分可以省略。如下：
+
+> git pull origin master:feature-wxDemo
+> git pull <远程主机名> <远程分支名>:<本地分支名>
+
 // 此时会提示一个 vim编辑器 窗口
 ```
 Merge branch 'master' of https://github.com/XXX/YYYY.git
