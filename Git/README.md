@@ -139,8 +139,7 @@ error: cannot overwrite multiple values with a single value
 克隆远程项目，配置身份信息，创建项目，推送项目到远程仓库<br/>
 
 1. 远程仓库的克隆<br/>
-   > cd 项目文件夹下
-
+> cd 项目文件夹下<br/>
 > git clone 仓库地址
 
 2. 克隆远程仓库到本地<br/>
