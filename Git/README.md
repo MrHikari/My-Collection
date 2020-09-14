@@ -144,7 +144,7 @@ error: cannot overwrite multiple values with a single value
 
 2. 克隆远程仓库到本地<br/>
 
-3. 克隆成功后产看文件<br/>
+3. 克隆成功后查看本地文件<br/>
 
 4. 编辑文件<br/>
 
