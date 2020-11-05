@@ -1,29 +1,39 @@
-### Basic Operations of Git
+## Basic Operations of Git
 
 #### Introduction
 
 ---
 
-#### Git 常用命令
+### Git 常用命令
 
-配置用户信息
+* 查看 Git 相关结果和帮助<br/>
+**终端下**
+> git
 
-文件内（对相关项目文件配置）
+---
+
+#### 📓准备阶段 #### 
+
+##### 配置用户信息 #####
+
+* 单独配置（定位到相关项目的目录下）
 > git config user.name “xxx”<br/>
 > git config user.email “xxx@example.com”
 
-如果不配置用户信息，默认使用全局用户信息
+**注意**：如果相关项目下不配置用户信息，默认使用*全局用户信息*
 
-配置全局用户信息
+* 配置全局用户信息
 
 > git config —global user.name “xxx”<br/>
 > git config —global user.email "xxx@example.com"
 
-开启颜色显示
+* 开启颜色显示
 
 > git config —global color.ui auto
 
-**注意**：**window10**环境下可能会报一个错：
+<br/>
+
+**注意**：**windows10**环境下可能会报一个错：
 
 ```
 warning: user.name has multiple values
@@ -31,75 +41,64 @@ error: cannot overwrite multiple values with a single value
       Use a regexp, --add or --replace-all to change user.name.
 ```
 
-这时候可以用另一种修改办法，输入：
+这时候可以用另一种修改办法：
 
 > git config --global --replace-all user.name "你的用户名"<br/>
 > git config --global --replace-all user.email "你的邮箱" 
 
-<br/>
+---
 
-#### SSH Key
+##### SSH key --- 秘钥的生成和设置
 
-&emsp;&emsp;ssh key 提供了一种与 Git 通信的方式，通过这种方式可以在不输入密码的情况下，将 Git 作为开发者自己的 remote 远端服务器，进行版本控制。
+```
+    SSH key 提供了一种与 Git 通信的方式，通过这种方式可以在不输入密码的情况下，将 Git 作为开发者自己的远程服务器，进行版本控制。
+```
 
-步骤如下：
+设置步骤如下：
 
-1. 先检查是否存在 ssh key。<br/>
-   终端下&emsp;`ls -al ~/.ssh`
+1. 先检查是否存在 **ssh key**。<br/>
+**终端下**&emsp;`ls -al ~/.ssh`
 
-2. 如果存在，请确认是否是自己创建的 ssh key，如果是自己的 ssh key，可以去网页版 Git 上添加 ssh key。没有特殊状况没有必要重新生成新的 ssh key。这只是一对钥匙，只要能互相验证就能够实用。
+2. 如果存在，请确认是否是**自己**创建的 **ssh key**，如果是自己的 **ssh key**，可以去网页版 *Git* 上添加 **ssh key**。没有特殊状况没有必要重新生成新的 **ssh key**。这只是一对密钥，目的就是互相验证。
 
-3. 如果存在，但不是自己的 ssh key，那会对自身操作产生问题。因为可能存在泄密问题，请注意一定要确认狮子生成的 ssh key <br/>
-   重新设置 ssh key 的时候，先删除本电脑上原来的远程库&emsp;`git remote remove origin`<br/>
-   然后删除掉本电脑上原来 ssh 文件下全部文件&emsp;`rm -r ~/.ssh`， 因为删除原有的 ssh key 之后，再也不可能连上原先的远程仓库了<br/>
+3. 如果存在，但**不是自己**的 **ssh key**，那会对自身操作产生问题。因为可能存在泄密问题，请注意一定要确认是否是自己生成的 **ssh key** <br/>
+   重新设置 **ssh key** 的时候
+   1. 删除本电脑上原来的远程库&emsp;`git remote remove origin` （因为删除原有的 **ssh key** 之后，再也不可能连上原先的远程仓库了）<br/>
+   2. 删除本电脑上原来 *ssh 文件夹* 下**全部文件**&emsp;`rm -r ~/.ssh`， 
 
-4. 为自身重新创建 ssh key <br/>
-   终端下&emsp;`ssh-keygen -t rsa -C "xxx@example.com"`<br/>
-   按照操作提示完成 ssh key 的创建，<br/>
-   默认会在相应的路径下生成 id_rsa(私钥)和 id_rsa.pub(公钥)。
+4. 为自己重新创建 **ssh key**<br/>
+   **终端下**&emsp;`ssh-keygen -t rsa -C "xxx@example.com"`<br/>
+   按照终端窗口的操作提示 完成 **ssh key** 的创建，<br/>
+   默认会在相应的路径下生成 *id_rsa(私钥)* 和 *id_rsa.pub(公钥)*。
 
-<br/>
+---
 
-#### Git 本地仓库操作
+### Git 本地仓库操作
 
-查看 Git 相关结果和帮助<br/>
-终端下
-> git
+* 在相关路径下初始化项目仓库
 
-<br/>
-
-在相关路径下创建工作项目
-
-> cd 路径<br/>
+> cd 项目仓库路径
 > git init
 
-<br/>
+**注意**：配置个人信息，不配置则使用全局信息
 
-配置个人信息，不配置则使用全局信息
-
-<br/>
-
-查看文件状态<br/>
-
-> git status
-
-<br/>
-
-将工作区文件添加到暂存区<br/>
+* 将工作区文件添加到暂存区
 
 > git add 所有文件或者指定文件
 
-<br/>
+* 查看仓库当前的状态，显示有变更的文件。
 
-将暂存区文件提交到仓库区<br/>
+> git status
 
-> git commit -m ‘版本描述 ‘&emsp;&emsp;&emsp;&emsp;会生成一条版本记录<br/>
+* 将暂存区文件提交到**本地**仓库区
 
-可合并命令为
+> git commit -m ‘版本描述 ‘
 
-> git commit -am&emsp;&emsp;&emsp;&emsp;‘版本描述’
+**注意**：上述提交操作指令，可以合并为
 
-<br/>
+> git commit -am ‘版本描述’
+
+*执行完会在本地仓库中生成一条提交记录*
 
 查看历史版本<br/>
 
@@ -309,7 +308,7 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 **注意**：pull 则是将远程主机的master分支最新内容拉下来后与当前本地分支直接合并 `fetch + merge`
 
 > git pull origin master
- 
+
 如果远程分支是与当前分支合并，则冒号后面的部分可以省略。如下：
 
 > git pull origin master:feature-wxDemo
