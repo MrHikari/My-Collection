@@ -2,7 +2,7 @@
 
 #### Introduction
 
----
+***
 
 ### Git 常用命令
 
@@ -75,12 +75,20 @@ error: cannot overwrite multiple values with a single value
 
 ### Git 本地仓库操作
 
+#### 创建仓库指令
+
 * 在相关路径下初始化项目仓库
 
 > cd 项目仓库路径
 > git init
 
+* 拷贝一份远程仓库，也就是下载一个项目。
+
+> git clone
+
 **注意**：配置个人信息，不配置则使用全局信息
+
+#### 提交与修改指令
 
 * 将工作区文件添加到暂存区
 
@@ -100,36 +108,71 @@ error: cannot overwrite multiple values with a single value
 
 *执行完会在本地仓库中生成一条提交记录*
 
-查看历史版本<br/>
+* 比较文件的不同，即暂存区和工作区的差异。
 
-> git log <br/>
+> git diff
 
-或者<br/>
+        1. git diff：当工作区有改动，临时区为空，diff的对比是“工作区与最后一次commit提交的仓库的共同文件”；当工作区有改动，临时区不为空，diff对比的是“工作区与暂存区的共同文件”。
+        2. git diff --cached 或 git diff --staged：显示暂存区(已add但未commit文件)和最后一次commit(HEAD)之间的所有不相同文件的增删改( git diff --cached 和 git diff –staged 相同作用)
+        3. git diff HEAD：显示工作目录(已track但未add文件)和暂存区(已add但未commit文件)与最后一次commit之间的的所有不相同文件的增删改。
+            $ git diff HEAD~X 或 git diff HEAD^^^…(后面有X个^符号，X为正整数):可以查看最近一次提交的版本与当前版本回退X个版本的版本之间的所有工作目录(已track但未add文件)和暂存区(已add但未commit文件之间的增删改。
+        4. git diff <分支名1> <分支名2> ：比较两个分支上最后 commit 的内容的差别
+            $ git diff branch1 branch2 --stat        显示出所有有差异的文件(不详细,没有对比内容)
+            $ git diff branch1 branch2               显示出所有有差异的文件的详细差异(更详细)
+            $ git diff branch1 branch2 具体文件路径    显示指定文件的详细差异(对比内容)
+
+* 回退版本，可以指定退回某一次提交的版本。
+
+> git reset
+
+```
+git reset [--soft | --mixed | --hard] [HEAD]
+```
+        --mixed 为默认，可以不用带该参数，用于重置暂存区的文件与最近一次的提交(commit)保持一致，工作区文件内容保持不变。
+            $ git reset HEAD^             # 回退所有内容到上一个版本
+            $ git reset HEAD^ hello.js    # 回退 hello.js 文件的版本到上一个版本
+            $ git reset 052exxxx          # 回退到指定版本
+        
+        --soft 用于回退到某个版本。
+            $ git reset --soft HEAD~3     # 回退上上上一个版本
+        
+        --hard 撤销工作区中所有未提交的修改内容，将暂存区与工作区都回到上一次版本，并删除之前的所有信息提交。
+            $ git reset –-hard HEAD~3           # 回退上上上一个版本  
+            $ git reset –-hard bae128           # 回退到某个版本回退点之前的所有信息。 
+            $ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
+
+* 删除工作区文件
+
+> git rm
+
+        git rm <file>     命令本质上就是先执行了 rm 文件名，然后执行 git add 把 rm命令 提交到暂存了。
+        git rm -f <file>  如果该文件已经修改过并且已经放到暂存区域（git add）的话，则必须要用强制删除选项 -f。
+        git rm --cached <file>  如果想把文件从暂存区域移除，但仍然希望保留在当前工作目录中（仅是从跟踪清单中删除）。
+
+
+* 移动或重命名工作区文件
+
+> git mv
+
+        git mv [file] [newfile]  如果新但文件名已经存在，但还是要重命名它，可以使用 -f 参数
+        git mv [file] [route/newfile]  移动文件并且重新命名（该文件在移动前不能修改）
+
+* 查看历史版本
+
+> git log
+
+* 查看所有分支的所有操作记录（包括已经被删除的 commit 记录和 reset 的操作）
 
 > git reflog
 
-<br/>
+* 是以列表形式显示修改记录
 
-回退版本<br/>
+> git blame <file>
 
-> git reset —hard HEAD<br/>
-
-或者基于版本号回退<br/>
-
-> git reset —hard 版本号
-
-<br/>
 
 撤销修改<br/>
 撤销工作区代码 `git checkout 文件`<br/>
 撤销暂存区代码 `git checkout 文件名`&emsp;或者&emsp;`git reset HEAD 文件名`（将暂存区代码撤到工作区）
-
-<br/>
-
-对比版本<br/>
-`git diff HEAD(版本库) 版本库 文件名`&emsp;对比版本库之间的文件
-
-<br/>
 
 ---
 
