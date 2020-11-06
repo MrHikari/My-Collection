@@ -22,10 +22,14 @@
 
 **注意**：如果相关项目下不配置用户信息，默认使用*全局用户信息*
 
+<br/>
+
 * 配置全局用户信息
 
 > git config —global user.name “xxx”<br/>
 > git config —global user.email "xxx@example.com"
+
+<br/>
 
 * 开启颜色显示
 
@@ -73,14 +77,16 @@ error: cannot overwrite multiple values with a single value
 
 ---
 
-### Git 本地仓库操作
+#### 📝Git 本地仓库操作
 
-#### 创建仓库指令
+##### 创建仓库指令
 
 * 在相关路径下初始化项目仓库
 
 > cd 项目仓库路径
 > git init
+
+<br/>
 
 * 拷贝一份远程仓库，也就是下载一个项目。
 
@@ -88,25 +94,34 @@ error: cannot overwrite multiple values with a single value
 
 **注意**：配置个人信息，不配置则使用全局信息
 
-#### 提交与修改指令
+___
+
+##### 提交与修改指令
 
 * 将工作区文件添加到暂存区
 
 > git add 所有文件或者指定文件
 
+<br/>
+
 * 查看仓库当前的状态，显示有变更的文件。
 
 > git status
+
+<br/>
 
 * 将暂存区文件提交到**本地**仓库区
 
 > git commit -m ‘版本描述 ‘
 
-**注意**：上述提交操作指令，可以合并为
+<br/>
 
+**注意**：上述提交操作指令，可以合并为
 > git commit -am ‘版本描述’
 
 *执行完会在本地仓库中生成一条提交记录*
+
+<br/>
 
 * 比较文件的不同，即暂存区和工作区的差异。
 
@@ -120,6 +135,8 @@ error: cannot overwrite multiple values with a single value
             $ git diff branch1 branch2 --stat        显示出所有有差异的文件(不详细,没有对比内容)
             $ git diff branch1 branch2               显示出所有有差异的文件的详细差异(更详细)
             $ git diff branch1 branch2 具体文件路径    显示指定文件的详细差异(对比内容)
+
+<br/>
 
 * 回退版本，可以指定退回某一次提交的版本。
 
@@ -141,6 +158,8 @@ git reset [--soft | --mixed | --hard] [HEAD]
             $ git reset –-hard bae128           # 回退到某个版本回退点之前的所有信息。 
             $ git reset --hard origin/master    # 将本地的状态回退到和远程的一样 
 
+<br/>
+
 * 删除工作区文件
 
 > git rm
@@ -149,6 +168,7 @@ git reset [--soft | --mixed | --hard] [HEAD]
         git rm -f <file>  如果该文件已经修改过并且已经放到暂存区域（git add）的话，则必须要用强制删除选项 -f。
         git rm --cached <file>  如果想把文件从暂存区域移除，但仍然希望保留在当前工作目录中（仅是从跟踪清单中删除）。
 
+<br/>
 
 * 移动或重命名工作区文件
 
@@ -157,18 +177,25 @@ git reset [--soft | --mixed | --hard] [HEAD]
         git mv [file] [newfile]  如果新但文件名已经存在，但还是要重命名它，可以使用 -f 参数
         git mv [file] [route/newfile]  移动文件并且重新命名（该文件在移动前不能修改）
 
+<br/>
+
 * 查看历史版本
 
 > git log
+
+<br/>
 
 * 查看所有分支的所有操作记录（包括已经被删除的 commit 记录和 reset 的操作）
 
 > git reflog
 
+<br/>
+
 * 是以列表形式显示修改记录
 
 > git blame <file>
 
+<br/>
 
 撤销修改<br/>
 撤销工作区代码 `git checkout 文件`<br/>
