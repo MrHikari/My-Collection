@@ -195,11 +195,20 @@ git reset [--soft | --mixed | --hard] [HEAD]
 
 > git blame <file>
 
-<br/>
+___
 
-撤销修改<br/>
-撤销工作区代码 `git checkout 文件`<br/>
-撤销暂存区代码 `git checkout 文件名`&emsp;或者&emsp;`git reset HEAD 文件名`（将暂存区代码撤到工作区）
+* `git checkout` 实用指令详解
+
+        1. git checkout                    表示核查工作区相对于最近一次版本修改过的全部文件
+        2. git checkout --help             获取 git checkout 的 使用文档
+        3. git checkout 分支名              表示切换分支
+        4. git checkout -b 分支名           表示以当前分支的当前状态创建新分支并切换到新分支
+            $ git checkout -b 分支名 <commitID>      表示以当前分支的 commitID 提交节点创建新的分支并切换到新分支。工作区的内容保留到新分支。
+        5. git checkout <commitID>           以指定的提交节点创建了一个 临时性分支，此临时性分支可用于做实验性修改
+        6. git checkout <filename>         当没有提交版本号时将工作区的指定文件的内容恢复到暂存区的状态
+            $ git checkout .               将工作区的所有文件的内容恢复到暂存区的状态
+        7. git checkout <commitID> <filename>       当有提交版本号时，表示将工作区和暂存区都恢复到版本库指定提交版本的指定文件的状态,此时 HEAD 指针不变，此时的状态相当于把工作区的内容修改到指定版本的文件内容后，再把修改的内容添加到暂存区。(git checkout <commit> <filename>后，可以直接执行git commit而不需要先执行git add)
+
 
 ---
 
