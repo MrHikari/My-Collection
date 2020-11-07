@@ -88,9 +88,9 @@ error: cannot overwrite multiple values with a single value
 
 <br/>
 
-* 拷贝一份远程仓库，也就是下载一个项目。
+* 拷贝一份远程仓库，也就是下载一个项目。（需要获得远程仓库地址）
 
-> git clone
+> git clone <远程仓库地址>
 
 **注意**：配置个人信息，不配置则使用全局信息
 
@@ -204,35 +204,47 @@ ___
         3. git checkout 分支名              表示切换分支
         4. git checkout -b 分支名           表示以当前分支的当前状态创建新分支并切换到新分支
             $ git checkout -b 分支名 <commitID>      表示以当前分支的 commitID 提交节点创建新的分支并切换到新分支。工作区的内容保留到新分支。
-        5. git checkout <commitID>           以指定的提交节点创建了一个 临时性分支，此临时性分支可用于做实验性修改
+        5. git checkout <commitID>         以指定的提交节点创建了一个 临时性分支，此临时性分支可用于做实验性修改
         6. git checkout <filename>         当没有提交版本号时将工作区的指定文件的内容恢复到暂存区的状态
             $ git checkout .               将工作区的所有文件的内容恢复到暂存区的状态
         7. git checkout <commitID> <filename>       当有提交版本号时，表示将工作区和暂存区都恢复到版本库指定提交版本的指定文件的状态,此时 HEAD 指针不变，此时的状态相当于把工作区的内容修改到指定版本的文件内容后，再把修改的内容添加到暂存区。(git checkout <commit> <filename>后，可以直接执行git commit而不需要先执行git add)
 
-
 ---
 
-#### 克隆项目
+#### 🚀Git 远程操作 #### 
 
-克隆远程项目，配置身份信息，创建项目，推送项目到远程仓库<br/>
+* 远程仓库操作
+> git remote
 
-1. 远程仓库的克隆<br/>
-> cd 项目文件夹下<br/>
-> git clone 仓库地址
+        1. git remote -v                        显示所有远程仓库（别名和地址）
+        2. git remote show [url]                显示某个远程仓库的信息，需要远程仓库地址
+        3. git remote add [shortname] [url]     添加远程版本库，shortname 为版本库别名，url 为版本库远程地址
+            $ git remote rm [shortname]         删除本地设置的远程仓库
+            $ git remote rename [shortname] [new_name]      修改远程仓库的别名
 
-2. 克隆远程仓库到本地<br/>
+<br/>
 
-3. 克隆成功后查看本地文件<br/>
+* 从远程获取代码库
+> git fetch
 
-4. 编辑文件<br/>
+        $ git fetch [alias] 获取远程仓库 alias 的更新数据
+        $ git merge [alias]/[branch]    将远程仓库(alias)的任何更新合并到当前分支(branch)
 
-5. 推送项目到远程文件<br/>
+<br/>
 
-> git add .
+* 从远程获取代码并合并本地的版本(git fetch 和 git merge 的结合指令)
+> git pull
 
-> git commit -m “xxx”
+        $ git pull <远程主机名> <远程分支名>:<本地分支名>
+        $ git pull <远程主机名> <远程分支名>        当远程分支是与当前分支合并，则可以省略 本地分支名
 
+<br/>
+
+* 将本地的分支版本上传到远程仓库并合并
 > git push
+
+        $ git push <远程主机名> <本地分支名>:<远程分支名>
+        $ git push <远程主机名> <本地分支名>        当本地分支名与远程分支名相同，则可以省略 远程分支名
 
 ---
 
