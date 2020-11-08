@@ -246,6 +246,57 @@ ___
         $ git push <远程主机名> <本地分支名>:<远程分支名>
         $ git push <远程主机名> <本地分支名>        当本地分支名与远程分支名相同，则可以省略 远程分支名
 
+***
+
+### Git 远程协作开发
+
+#### fork 远程仓库
+
+1. 在 **git** 网站上，对他人的项目点击 `fork`，在自己的仓库中得到一封自己本地的copy版本
+
+2. 添加远程仓库到本地remote分支
+
+> git remote add upstream git@github.com:apache/flink.git       远程仓库地址
+
+3. 可以确认当前仓库的远程分支
+
+> git remote -v<br/>
+```
+$ origin  git@github.com:xxx/sample02.git (fetch)<br/>
+$ origin  git@github.com:xxx/sample02.git (push)<br/>
+$ upstream  git@github.com:yyy/sample01.git (fetch) # 远程分支<br/>
+$ upstream  git@github.com:yyy/sample01.git (push)
+```
+
+**扩展** git更改origin数据源
+
+*三种方式*
+
+* 修改命令
+* * > git remote origin set-url URL
+* 先删后加
+* * > git remote rm origin
+* * > git remote add origin git@github.com:xxx/sample03.git
+* 直接修改config文件
+
+<br/>
+
+3. fetch 远程分支
+
+> git fetch upstream
+
+4. 合并 fetch 的分支到 本地master
+
+> git merge upstream/master
+
+5. 查看log最近更新日志 （随意）
+
+> git log
+
+6. 推送 本地master 到 自己的远程仓库（fork代码的自己仓库）
+
+> git push origin master
+
 ---
 
 #### github/gitlab 同时管理多个 ssh key
@@ -311,50 +362,7 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 说明成功的连上 github 了。
 
-### git 更新 fork的远程仓库
 
-1. 添加远程仓库到本地remote分支
-
-> git remote add upstream git@github.com:apache/flink.git # 远程仓库地址
-
-2. 查看当前仓库的远程分支
-
-> git remote -v<br/>
-> origin  git@github.com:xxx/sample02.git (fetch)<br/>
-> origin  git@github.com:xxx/sample02.git (push)<br/>
-> upstream  git@github.com:yyy/sample01.git (fetch) # 远程分支<br/>
-> upstream  git@github.com:yyy/sample01.git (push)
-
-**扩展** git更改origin数据源
-
-*三种方式*
-
-* 修改命令
-* * > git remote origin set-url URL
-* 先删后加
-* * > git remote rm origin
-* * > git remote add origin git@github.com:xxx/sample03.git
-* 直接修改config文件
-
-<br/>
-
-3. fetch 远程分支
-
-> git fetch upstream
-
-4. 合并 fetch 的分支到 本地master
-
-> git merge upstream/master
-
-5. 查看log最近更新日志 （随意）
-
-> git log
-
-6. 推送 本地master 到 自己的远程仓库（fork代码的自己仓库）
-
-> git push origin master
-
----
 
 ### git的不常用指令
 
