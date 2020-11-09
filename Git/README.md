@@ -260,79 +260,74 @@ ___
 
 3. 可以确认当前仓库的远程分支
 
-> git remote -v<br/>
+> git remote -v
 ```
-$ origin  git@github.com:xxx/sample02.git (fetch)<br/>
-$ origin  git@github.com:xxx/sample02.git (push)<br/>
-$ upstream  git@github.com:yyy/sample01.git (fetch) # 远程分支<br/>
+$ origin  git@github.com:xxx/sample02.git (fetch)
+$ origin  git@github.com:xxx/sample02.git (push)
+$ upstream  git@github.com:yyy/sample01.git (fetch)        远程分支
 $ upstream  git@github.com:yyy/sample01.git (push)
 ```
 
-**扩展** git更改origin数据源
+4. `fetch` 远程仓库，获取全部分支的更新内容
 
-*三种方式*
+> git fetch upstream        可以在远程仓库后加上对应的分支名
 
-* 修改命令
-* * > git remote origin set-url URL
-* 先删后加
-* * > git remote rm origin
-* * > git remote add origin git@github.com:xxx/sample03.git
-* 直接修改config文件
-
-<br/>
-
-3. fetch 远程分支
-
-> git fetch upstream
-
-4. 合并 fetch 的分支到 本地master
+5. 合并 `fetch` 的远程分支到 **本地master**
 
 > git merge upstream/master
 
-5. 查看log最近更新日志 （随意）
+6. 可以选择性地查看*log*最近提交日志
 
 > git log
 
-6. 推送 本地master 到 自己的远程仓库（fork代码的自己仓库）
+7. 项目本地编写操作，提交修改至**本地仓库区**
+
+8. 推送 **本地master** 到 自己的远程仓库（fork代码的自己仓库）对应的分支
 
 > git push origin master
 
----
+***
+
+### Git 扩展操作
 
 #### github/gitlab 同时管理多个 ssh key
 
-以前用 **github** 的 **ssh key**，后来工作原因多了一个 *gitlab* 的账号，在绑定 *gitlab* 的 *ssh key* 时，发现将 **github** 的 **ssh key** 覆盖了。怎么同时绑定 **github** 和 *gitlab* 的 ***ssh key***，并不产生冲突呢？
-今天找到了个小技巧，在 *.ssh* 目录下新建一个 *config* 文件配置一下，就能解决 *gitlab* 与 **github** 的 ***ssh key*** 的冲突。
+&emsp;&emsp;在应对个人学习开发和工作中的任务开发，可能会同时使用 **github** 和 ***gitlab***。在为了方便代码管理，会分别设置 ***ssh key***，但是如果按照传统操作，可能会造成 新生成设置的 ***ssh key*** 覆盖了 原先的 **ssh key**。为了能够同时绑定 **github** 和 ***gitlab***，不并且不造成冲突，需要在 *.ssh* 目录下新建一个 *config* 文件并且做出相关配置。
 
-生成并添加第一个 **ssh key**
+1. 在 *.ssh* 目录下新建一个 `config` 文件
 
 ```
-cd ~/.ssh
-ssh  ssh-keygen -t rsa -C "youremail@yourcompany.com"
+$ cd ~/.ssh
+$ touch config
 ```
 
-这时可以一路回车，不输入任何字符，将自动生成 *id_rsa* 和 *id_rsa.pub* 文件。
+2. 生成并添加第一个 **ssh key**
 
-生成并添加第二个 **ssh key**
+```
+$ cd ~/.ssh
+$ ssh-keygen -t rsa -C "youremail@yourcompany.com"
+```
+自动生成 *id_rsa* 和 *id_rsa.pub* 文件（可以回车确认到结束，不输入任何字符，）。
 
-> \$ ssh-keygen -t rsa -C "youremail@gmail.com"
-> 注意，这时不能一路回车，否则邮箱将覆盖上一次生成的 ssh key，给这个文件起一个名字， 比如叫 id_rsa_github, 所以相应的也会生成一个 id_rsa_github.pub 文件。
+3. 生成并添加第二个 **ssh key**
 
-此时查看 *.ssh* 下的目录文件，发现多了 *id_rsa_github* 和 *id_rsa_github.pub* 两个文件。
+```
+$ ssh-keygen -t rsa -C "youremail@gmail.com"
+```
+**注意**：这一步操作不能一路回车确认到最后，否则邮箱将覆盖上一次生成的 **ssh key**，将即将生成的*秘钥文件*重新命名， 例如命名为 `id_rsa_github`，相应的也会生成一个 `id_rsa_github.pub` 文件。
 
-添加私钥
+此时查看 *.ssh* 下的目录文件，发现多了 `id_rsa_github` 和 `id_rsa_github.pub` 两个文件。
+
+4. 添加私钥
 
 ```
 $ ssh-add ~/.ssh/id_rsa
 $ ssh-add ~/.ssh/id_rsa_github
 ```
 
-修改配置文件
-在 ~/.ssh 目录下新建一个 config 文件
+5. 修改配置文件
 
-> touch config
-
-并添加以下内容
+在 *~/.ssh* 目录下 `config` 文件中添加以下内容
 
 ```
 # gitlab
@@ -347,10 +342,12 @@ Host github.com
     IdentityFile ~/.ssh/id_rsa_github
 ```
 
-给 github/gitlab 上添加 ssh key
-查看 ssh key 执行‘cat id_rsa_github.pub’内容，将文本内容拷贝到https://github.com/settings/ssh。(拷贝到对应的平台个人设置中)
+为 **github**/***gitlab*** 上添加 **ssh key**<br/>
+执行 `cat id_rsa_github.pub` / `cat id_rsa.pub`，查看 对应平台的 **ssh key** 内容，将文本内容拷贝到对应的平台个人设置中。
 
-**测试**
+6. **测试** 设置是否成功
+
+以 **github** 为例
 
 > \$ ssh -T git@github.com
 
@@ -360,15 +357,15 @@ Host github.com
 Hi xxx! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
-说明成功的连上 github 了。
+说明成功的连接上 github 了，设置成功。
 
+***
 
+### Git 不常用指令
 
-### git的不常用指令
+#### git 修改历史提交 commit 的描述信息
 
-#### git修改历史提交commit的描述信息
-
-##### 修改最新的一次commit描述信息
+##### 修改最新的一次 commit 描述信息
 
 1. 查看当前分支的日志情况（单纯只是确认）
 
