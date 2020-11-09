@@ -288,6 +288,104 @@ $ upstream  git@github.com:yyy/sample01.git (push)
 
 ***
 
+### Git 不常用指令
+
+#### git 修改历史提交 commit 的描述信息
+
+##### 修改最新的一次 commit 描述信息
+
+1. 查看当前分支的日志情况（单纯只是确认）
+
+`--oneline` 一条提交信息用一行展示
+> git log --oneline
+
+`-n` 查看到此之前的几次提交记录, `n` 可以为 1，2，3，... ，但是实操下来最多展示在此之前 **3** 次提交
+> git log -n
+
+> git log -1
+
+2. 执行变更`message`（描述信息）的指令
+
+> git commit --amend
+
+进入 ***vim编辑器*** 界面， 可修改部分是最上面的一行，`#` 部分为描述和介绍（可以不需要理解，了解最好）<br/>
+编辑完后保存，注意使用 vim 命令。
+
+3. 更新远程仓库提交，是远程仓库也修改对应 **commit** 的 **message**
+
+> git push
+
+如果直接提交，会提示如下信息
+```
+! [rejected]        master -> master (non-fast-forward)
+error: failed to push some refs to 'https://github.com/XXX/YYYY.git'
+hint: Updates were rejected because the tip of your current branch is behind
+hint: its remote counterpart. Integrate the remote changes (e.g.
+hint: 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+该信息会提示提交被拒绝，因为 **git** 认为本地的分支和线上的不匹配，认为本地分支已过时，需要使用 `git pull` 更新代码。
+
+> git pull origin master
+
+**注意**：pull 则是将远程主机的master分支最新内容拉下来后与当前本地分支直接合并 `fetch + merge`
+
+> git pull origin master
+
+如果远程分支是与当前本地分支名称一致，则冒号后面的部分可以省略。如下：
+
+> git pull origin master:feature-wxDemo
+> git pull <远程主机名> <远程分支名>:<本地分支名>
+
+此时会提示一个 vim编辑器 窗口
+```
+Merge branch 'master' of https://github.com/XXX/YYYY.git
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+```
+这个意思是需要将此次合并更新重新提交一个 ***新的*** **commit**，并且编辑好 **message** 进行解释，`#`号部分在提交时是忽略的。<br/>
+**git**已经默认了一个 **commit** 信息（第一行，`#`号上方的），如果想要编辑 **message** 信息，可以使用**vim**指令进入编辑，删除第一行信息，重新编写，然后使用 **vim** 指令保存退出。
+
+最后重新提交到远程仓库就可以更改全部的**commit** **message** 信息。
+
+> git push
+
+**特殊操作**：可以无视上面的更新操作，直接强制提交`git push --force`，虽然可以提交成功，但是并不值得推荐在实际应用中使用。
+
+---
+
+##### 修改更早的 commit 的 message 信息
+
+1. 查看自己的提交记录
+
+> git log --oneline
+
+或者在指令后加上一小段 *commit_ID*
+
+> git log commit_ID
+
+
+2. 定位修改的 **commit** 位置
+
+> git rebase -i commit_ID
+
+**注意**：这里的`commit_ID`输入后，会进入到一个**vim**编辑页面，但是只会展示`commit_ID`之后的全部提交的 **commit** 的 **message** 信息。所以使用这个方法定位，需要使用期望修改的 **commit** 的 **前一次** 的 **commit**。
+
+或者使用，如下代码，**n** 可以是 1，2，3，......，表示在此之前的 **n** 次提交记录
+
+> git rebase -i HEAD~n
+
+3. 直接在弹出的 **vim** 交互页面上修改，和之前的操作类似。
+
+先将 `pick` 换成 `reword`，保存退出。<br/>
+然后进入到对应的 **commit** 的 **message** 的编辑页面，在当前操作状态栏下进行修改。<br/>
+`git pull origin master`，更新代码，然后`git push`，完成对远程仓库的修改。依然**不建议**直接强制提交`git push --force`。
+
+***
+
 ### Git 扩展操作
 
 #### github/gitlab 同时管理多个 ssh key
@@ -328,7 +426,6 @@ $ ssh-add ~/.ssh/id_rsa_github
 5. 修改配置文件
 
 在 *~/.ssh* 目录下 `config` 文件中添加以下内容
-
 ```
 # gitlab
 Host gitlab.com
@@ -351,143 +448,40 @@ Host github.com
 
 > \$ ssh -T git@github.com
 
-如果输出
-
+如果命令栏输出
 ```
 Hi xxx! You've successfully authenticated, but GitHub does not provide shell access.
 ```
 
 说明成功的连接上 github 了，设置成功。
 
-***
+---
 
-### Git 不常用指令
+#### 如何将 github 项目上传至 gitlab
 
-#### git 修改历史提交 commit 的描述信息
+##### 一、修改远程分支关联
 
-##### 修改最新的一次 commit 描述信息
-
-1. 查看当前分支的日志情况（单纯只是确认）
-
-`--oneline` 一条提交信息用一行展示
-> git log --oneline
-
-`-n` 查看到此之前的几次提交记录, `n` 可以为 1，2，3，... ，但是实操下来最多展示在此之前 **3** 次提交
-> git log -n
-
-> git log -1
-
-2. 执行变更`message`（描述信息）的指令
-
-> git commit --amend
-
-进入 *vim编辑器* 界面， 可修改部分是最上面的一行，`#` 部分为描述和介绍（可以不需要理解，了解最好）<br/>
-编辑完后保存，注意使用 vim 命令。
-
-3. 更新远程仓库提交，是远程仓库也修改对应commit的message
-
-> git push
-
-// 如果直接提交，会提示如下信息<br/>
-```
-! [rejected]        master -> master (non-fast-forward)
-error: failed to push some refs to 'https://github.com/XXX/YYYY.git'
-hint: Updates were rejected because the tip of your current branch is behind
-hint: its remote counterpart. Integrate the remote changes (e.g.
-hint: 'git pull ...') before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-```
-该信息会提示提交被拒绝，因为git认为本地的分支和线上的不匹配，认为本地分支已过时，需要使用 `git pull` 更新代码。
-
-> git pull origin master
-
-**注意**：pull 则是将远程主机的master分支最新内容拉下来后与当前本地分支直接合并 `fetch + merge`
-
-> git pull origin master
-
-如果远程分支是与当前分支合并，则冒号后面的部分可以省略。如下：
-
-> git pull origin master:feature-wxDemo
-> git pull <远程主机名> <远程分支名>:<本地分支名>
-
-// 此时会提示一个 vim编辑器 窗口
-```
-Merge branch 'master' of https://github.com/XXX/YYYY.git
-# Please enter a commit message to explain why this merge is necessary,
-# especially if it merges an updated upstream into a topic branch.
-#
-# Lines starting with '#' will be ignored, and an empty message aborts
-# the commit.
-```
-这个意思是需要将此次合并更新重新提交一个新的commit，并且做好message进行解释，`#`号部分在提交时是忽略的。<br/>
-**git**已经默认了一个commit信息（第一行，`#`号上方的），如果想要自己编辑message信息，可以使用**vim**指令进入编辑，删除第一行信息，重新自定义，然后使用 **vim** 指令保存退出。
-
-最后重新提交到远程仓库就可以更改全部的**commit** **message** 信息。
-
-> git push
-
-**特殊操作**：可以无视上面的更新操作，直接强制提交`git push --force`，虽然可以提交成功，但是并不值得推荐在实际应用中使用。
-
-##### 修改更早的commit的message信息
-
-1. 查看自己的提交记录
-
-> git log --oneline<br/>
-或者，直接更上一小段commit_ID<br/>
-> git log commit_ID<br/>
-
-
-2. 定位修改的commit位置
-
-> git rebase -i commit_ID<br/>
-**注意**：这里的`commit_ID`输入后，会进入到一个**vim**编辑页面，但是只会展示`commit_ID`之后的全部提交的 commit 的 message 信息。所以使用这个方法定位，需要使用期望修改的 commit 的 **前一次** 的 commit。
-
-或者使用，如下代码，**n** 可以是 1，2，3，......，表示在此之前的 **n** 次提交记录<br/>
-> git rebase -i HEAD~n
-
-3. 直接在弹出的 **vim** 交互页面上修改，和之前的操作类似。
-
-先将 pick 换成 reword，其余的不懂，保存退出。<br/>
-然后进入到对应的commit 的message的编辑页面，在当前进行修改。<br/>
-`git pull origin master`，更新代码，然后`git push`，完成对远程仓库的修改。依然**不建议**直接强制提交`git push --force`。
-
-
-### 如何将 github 项目上传至 gitlab
-
-#### 一、修改远程分支关联
-
-##### 删除远程分支关联
-
-将原先指向 github 的远程分支关联关系删除
-
+1. 删除原先的远程分支关联，将原先指向 **github** 的远程分支关联关系删除
 > git remote rm origin
 
-添加新的远程分支关联
-
-新的 remote 地址指向 gitlab 相应地址
-
+2. 添加新的远程分支关联，新的 `remote` 地址指向 ***gitlab*** 相应地址
 > git remote add origin <项目 gitlab 上的 SSH 地址>
 
-修改后可以使用以下命令查看修改是否生效
-
-##### 查看远程分支关联
-
+修改后可以查看远程分支关联修改是否生效
 > git remote -v
 
-#### 二、修改提交用户名
+##### 二、修改提交用户名
 
-如果 github 与 gitlab 所用用户名和邮箱不一样，可以这么做
-
-修改 gitlab 所用用户名
+* 如果 **github** 与 ***gitlab*** 所用*用户名*和*邮箱***不一样**，需要修改
 
 > git config user.name <gitlab 用户名>
 > git config user.email <gitlab 用户邮箱>
 
-修改项目过往提交记录的用户名
-如果希望 git 的 log 中的用户名也发生替换，可以这么做
+* **修改项目过往提交记录的用户名**
 
-在项目根目录下创建 email.sh 写入下面这段代码(文件的名称随意，不一定要用 email)
+**注意**：如果希望 **git** 的 `log` 中的*用户名*也发生替换，需要进行对应的配置
 
+在项目根目录下创建 `email.sh` 输入下面这段代码(文件的名称随意，不一定要用 email)
 ```
 #!/bin/sh
 
@@ -509,8 +503,8 @@ fi
 ' --tag-name-filter cat -- --branches --tags
 ```
 
-把 OLD_EMAIL 、CORRECT_NAME 、 CORRECT_EMAIL 改成自己的新旧邮箱用户名即可；<br/>
-创建后记得执行以下命令，让脚本可运行。并提交所有未提交内容，或者 stash(隐藏) 掉。
+**注意**：将 ***OLD_EMAIL*** 、***CORRECT_NAME*** 、 ***CORRECT_EMAIL*** 改成自己的新旧邮箱用户名即可；<br/>
+创建后需要执行以下命令，保存编辑结束后的内容，并且赋予让脚本文件 *读写执行* 权限。
 
 > chmod 755 email.sh
 
@@ -521,23 +515,22 @@ fi
 或者
 
 > cd /data/shell
-
 > sh email.sh
 
 如果遇到如下错误 ：
+```
+Cannot create a new backup. A previous backup already exists in refs/original/ Force overwriting the backup with -f
+```
 
-> Cannot create a new backup. A previous backup already exists in refs/original/ Force overwriting the backup with -f
-
-则执行如下命令；
-
+执行如下命令
 > git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch Rakefile' HEAD
 
-#### 三、push 内容至 gitlab
+##### 三、将对应仓库内容 push 至 gitlab
 
-1. 推荐使用新分支（gitlab 项目不存在同名分支）提交至 gitlab,比如
+* 推荐使用新分支（***gitlab*** 项目当前不存在其他分支）提交至 ***gitlab***
 
 > git push --set-upstream origin <新分支名称>
 
-2. 或者，如果想要强制提交，且远程存在相应的分支，可以选择
+* 如果想要强制提交，且远程存在相应的分支，可以选择
 
 > git push origin --force --all
