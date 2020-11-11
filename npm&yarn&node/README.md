@@ -23,7 +23,7 @@
 
 &emsp;&emsp;由于新版的 **Node.js** 已经集成了 **npm** ，所以可以在[Node.js 官网](https://nodejs.org/en/)下载**最新的稳定版本**，并且 **npm** 也一并安装好了。可以通过输入 `npm -v` 来测试是否成功安装。命令如下，出现版本提示表示安装成功:
 
-> \$ npm -v
+> \$ npm -v<br/>
 > 2.3.0
 
 ***
@@ -46,10 +46,10 @@
 * 查看某个命令的用法
 > npm -h
 
-* 查看本地或者全局node-module目录的位置
+* 查看本地或者全局**node-module**目录的位置
 > npm root [-g]
 
-* 验证registry的连通性和身份验证
+* 验证*registry*的连通性和身份验证
 > npm ping
 
 
@@ -73,3 +73,47 @@
       * 会在***package.json***的**devDependencies**属性下添加*依赖包*
       * 之后运行`npm install`命令时，会自动安装*依赖包*到**node_modules**目录中
       * 开发过程需要使用的*依赖包*
+
+   4. > npm install <Module Name> -g
+      * 将安装包放在 */usr/local* 下或者 *node* 的安装目录。
+      * 可以直接在命令行里使用
+
+#### 二、npm uninstall 卸载依赖
+
+   1. > npm uninstall <Module Name>
+   * 删除*依赖包*
+   * 并不能自动更新***package.json***
+
+   2. > npm uninstall -g <Module Name>
+   * 删除全局*依赖包*
+   * 并不能自动更新***package.json***
+
+**注意**：只有加上对应参数才可以更新***package.json***：
+   * -S, `-–save`             ---> dependencies
+   * -D, `-–save-dev`         ---> devDependencies
+   * -O, `-–save-optional`    ---> optionalDependencies
+
+#### 三、npm update 更新依赖
+
+**注意**：更新模块只能往新版本更新，不能往旧的版本回滚。
+
+   1. 检查更新
+      > npm install -g npm-check
+      > npm-check
+**注意**：
+   > npm install -g npm-check-updates 
+   > npm-check-updates
+   将项目或者全局依赖更新到最新版本
+
+   2. 更新依赖
+      > npm install -g npm-upgrade
+      > npm-upgrade
+
+   3. 更新全局依赖：
+      > npm update <Module Name> -g
+
+   4. 更新生产环境依赖：
+      > npm update <Module Name> --save
+
+   5. 更新开发环境依赖：
+      > npm update <Module Name> --save-dev
