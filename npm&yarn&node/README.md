@@ -32,7 +32,7 @@
 
 **NPM** 是随同 **NodeJS** 一起安装的包管理工具，能解决 **NodeJS** 代码部署上的很多问题。
 
-### npm 指令
+### npm 基本指令
 
 * 查看所有命令的用例信息
 > npm -l
@@ -52,8 +52,7 @@
 * 验证*registry*的连通性和身份验证
 > npm ping
 
-
-### 📚准备阶段
+### npm 常用指令
 
 #### 一、npm install 安装依赖
 
@@ -89,9 +88,9 @@
    * 并不能自动更新***package.json***
 
 **注意**：只有加上对应参数才可以更新***package.json***：
-   * -S, `-–save`             ---> dependencies
-   * -D, `-–save-dev`         ---> devDependencies
-   * -O, `-–save-optional`    ---> optionalDependencies
+   * `-–save`             ---> dependencies
+   * `-–save-dev`         ---> devDependencies
+   * `-–save-optional`    ---> optionalDependencies
 
 #### 三、npm update 更新依赖
 
@@ -117,3 +116,23 @@
 
    5. 更新开发环境依赖：
       > npm update <Module Name> --save-dev
+
+#### 四、npm remove 移除依赖
+
+   1. > npm remove <Module Name>
+   * 删除*依赖包*
+   * 并不能自动更新***package.json***
+
+**注意**：只有加上对应参数才可以更新***package.json***：
+   * `-–save`             ---> dependencies
+   * `-–save-dev`         ---> devDependencies
+   * <Module Name>可以添加版本号 @1.0.0
+
+***
+
+## Yarn
+
+**Yarn** 是一个包管理器。它可以让开发者使用并分享 全世界开发者的（例如 *JavaScript*）代码。
+
+### yarn 基本指令
+
