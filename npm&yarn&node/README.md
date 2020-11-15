@@ -37,20 +37,32 @@
 * 查看所有命令的用例信息
 > npm -l
 
+<br/>
+
 * 查看某个命令的帮助信息
 > npm help
+
+<br/>
 
 * 在帮助文档中查找包含关键词的文档列表
 > npm help-search <text>
 
+<br/>
+
 * 查看某个命令的用法
 > npm -h
+
+<br/>
 
 * 查看本地或者全局**node-module**目录的位置
 > npm root [-g]
 
+<br/>
+
 * 验证*registry*的连通性和身份验证
 > npm ping
+
+<br/>
 
 ### npm 常用指令
 
@@ -61,11 +73,15 @@
       * 不会修改***package.json***
       * 之后运行`npm install`命令时，不会自动安装依赖包
 
+<br/>
+
    2. > npm install <Module Name> --save
       * 会把*依赖包*安装至**node_modules**目录中，
       * 会在***package.json***的**dependencies**属性中添加*依赖包*，
       * 之后运行`npm install`命令会自动安装*依赖包*到**node_module**s中
       * 运行时需要引用的*依赖包*
+
+<br/>
 
    3. > npm install <Module Name> --save-dev
       * 会把*依赖包*安装到**node_modules**目录中
@@ -73,15 +89,21 @@
       * 之后运行`npm install`命令时，会自动安装*依赖包*到**node_modules**目录中
       * 开发过程需要使用的*依赖包*
 
+<br/>
+
    4. > npm install <Module Name> -g
       * 将安装包放在 */usr/local* 下或者 *node* 的安装目录。
       * 可以直接在命令行里使用
+
+<br/>
 
 #### 二、npm uninstall 卸载依赖
 
    1. > npm uninstall <Module Name>
    * 删除*依赖包*
    * 并不能自动更新***package.json***
+
+<br/>
 
    2. > npm uninstall -g <Module Name>
    * 删除全局*依赖包*
@@ -91,6 +113,8 @@
    * `-–save`             ---> dependencies
    * `-–save-dev`         ---> devDependencies
    * `-–save-optional`    ---> optionalDependencies
+
+<br/>
 
 #### 三、npm update 更新依赖
 
@@ -104,18 +128,28 @@
    > npm-check-updates
    将项目或者全局依赖更新到最新版本
 
+<br/>
+
    2. 更新依赖
       > npm install -g npm-upgrade
       > npm-upgrade
 
+<br/>
+
    3. 更新全局依赖：
       > npm update <Module Name> -g
+
+<br/>
 
    4. 更新生产环境依赖：
       > npm update <Module Name> --save
 
+<br/>
+
    5. 更新开发环境依赖：
       > npm update <Module Name> --save-dev
+
+<br/>
 
 #### 四、npm remove 移除依赖
 
@@ -136,3 +170,68 @@
 
 ### yarn 基本指令
 
+   * 初始化一个新的项目
+   > yarn init
+
+<br/>
+
+   * 查看配置文件
+   > yarn config
+
+<br/>
+
+   * 默认显示所有依赖包和它们的依赖
+   > yarn list
+   * * 要限制依赖的深度，可以给 `list` 命令添加一个标志 `--depth` 所需的深度。
+   > yarn list [--depth] [--pattern]
+
+<br/>
+
+   * *yarn* 全局缓存
+   > yarn cache
+   * * 打印出当前的*yarn*全局缓存位置
+   > yarn cache dir
+   * * 清除*yarn*全局缓存
+   > yarn cache clean
+
+<br/>
+
+   * 显示一个依赖包为何安装
+   > yarn why <Module Name>
+
+<br/>
+
+### yarn 常用指令
+
+   1. > yarn install
+      * 默认安装依赖
+
+<br/>
+
+   2. > yarn add <Module Name>
+      * 添加*依赖包*到**node_modules**目录中
+      * 修改***package.json***
+
+<br/>
+
+   3. > yarn add <Module Name> --dev
+      * 添加*依赖包*到**node_modules**目录中
+      * 会在***package.json***的**devDependencies**属性下添加*依赖包*
+      * 开发过程需要使用的*依赖包*
+
+<br/>
+
+   4. > yarn global add <Module Name>
+      * 全局添加*依赖包*
+
+<br/>
+
+   5. > yarn upgrade <Module Name>
+      * 更新某个依赖包
+      * 会在***package.json***更新*依赖包*
+
+<br/>
+
+   6. > yarn remove <Module Name>
+      * 移除*依赖包*
+      * 更新 ***package.json*** 和 ***yarn.lock*** 文件。
