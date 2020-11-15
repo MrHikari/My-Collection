@@ -235,3 +235,20 @@
    6. > yarn remove <Module Name>
       * 移除*依赖包*
       * 更新 ***package.json*** 和 ***yarn.lock*** 文件。
+
+***
+
+## Deno
+
+A ***secure*** runtime for *JavaScript* and *TypeScript*.
+
+**Deno**是一个基于 ***V8*** 并且内置于 *Rust* 的 ***JavaScript*** 和 ***TypeScript*** 的简单的，新式的且安全的运行环境。
+
+* Secure by default. No file, network, or environment access, unless explicitly enabled.
+* Supports TypeScript out of the box.
+* Ships only a single executable file.
+* Has built-in utilities like a dependency inspector (deno info) and a code formatter (deno fmt).
+* Has a set of reviewed (audited) standard modules that are guaranteed to work with Deno: deno.land/std
+
+[Deno官网](https://deno.land/)
+
