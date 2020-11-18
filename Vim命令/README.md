@@ -79,6 +79,8 @@
 
 按 **Esc**键 可随时**退出 底线命令模式**。
 
+***
+
 ### Vim 示意图
 
 ![Vim 示意图](https://github.com/MrHikari/My-Collection/blob/master/%E5%9B%BE%E7%89%87%E6%9A%82%E5%AD%98/Vim%E6%8C%87%E4%BB%A4%E7%9A%84%E5%89%AF%E6%9C%AC.png)
