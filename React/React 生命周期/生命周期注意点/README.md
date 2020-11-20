@@ -157,3 +157,102 @@ class ScrollingList extends React.Component {
 1. 检查新的状态值是否与现有值**相同**
 2. 如果值相同，将返回 **null**
 3. 返回 **null** 将`不会更新状态`和`触发组件重新渲染`
+
+---
+
+<br/>
+
+### React 子父组件生命周期函数执行顺序
+
+父组件在内存中生成页面树的时候先去制作子组件,等到子组件挂在到父组件某个节点时在继续内存渲染父组件直到父组件didmount.
+
+react 方法的作用就是将虚拟DOM渲染成真实DOM
+
+所有的组件和元素都render完成 ===> 执行diff算法 ===> 修改有差异的dom。
+
+虽然执行了很多无用的render，但都是在js里执行的，和真正的dom操作之间还有一层diff算法，他帮助我们节省了大部分dom操作的性能。
+
+
+**父级组件**内生命周期：
+```js
+......
+    constructor(props){
+        super(props);
+        console.log("App constructor")
+    }
+    
+    componentWillMount(){
+        console.log("App componentWillMount")
+    }
+    
+    componentDidMount(){
+        console.log("App componentDidMount")
+    }
+    render(){
+        console.log("App render")
+        return (
+          <div>App父级组件
+            <A></A>
+            <B></B>
+          </div>);
+    }
+......
+```
+
+**A组件**内生命周期：
+```js
+......
+    constructor(props){
+        super(props);
+        console.log("A constructor")
+    }
+    
+    componentWillMount(){
+        console.log("A componentWillMount")
+    }
+    
+    componentDidMount(){
+        console.log("A componentDidMount")
+    }
+    render(){
+        console.log("A render")
+        return <div>A组件</div>
+    }
+......
+```
+
+**B组件**内生命周期：
+```js
+......
+    constructor(props){
+        super(props);
+        console.log("B constructor")
+    }
+    
+    componentWillMount(){
+        console.log("B componentWillMount")
+    }
+    
+    componentDidMount(){
+        console.log("B componentDidMount")
+    }
+    render(){
+        console.log("B render")
+        return <div>B组件</div>
+    }
+......
+```
+
+console打印结果：
+> App constructor
+> App componentWillMount
+> App render
+> A constructor
+> A componentWillMount
+> A render
+> B constructor
+> B componentWillMount
+> B render
+> A componentDidMount
+> B componentDidMount
+> App componentDidMount
