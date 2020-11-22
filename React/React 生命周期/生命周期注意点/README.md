@@ -164,13 +164,13 @@ class ScrollingList extends React.Component {
 
 ### React 子父组件生命周期函数执行顺序
 
-父组件在内存中生成页面树的时候先去制作子组件,等到子组件挂在到父组件某个节点时在继续内存渲染父组件直到父组件didmount.
+&emsp;&emsp;在生成页面的过程中，父组件会优先处理其虚拟DOM，处理***Mounting***状态下（render Phase）的生命周期。当执行到子组件挂载到父组件的某个节点时，处理对应子组件的***Mounting***状态下（render Phase）的生命周期，依次执行完全部挂载到父组件的子组件结束，然后执行***Mounting***状态下（commit Phase）的生命周期（render之后的生命周期）。最后执行父组件的***Mounting***状态下（commit Phase）的生命周期。
 
-react 方法的作用就是将虚拟DOM渲染成真实DOM
+React 方法的作用就是将虚拟DOM渲染成真实DOM
 
 所有的组件和元素都render完成 ===> 执行diff算法 ===> 修改有差异的dom。
 
-虽然执行了很多无用的render，但都是在js里执行的，和真正的dom操作之间还有一层diff算法，他帮助我们节省了大部分dom操作的性能。
+虽然执行了很多无用的render，但都是在js里执行的，和真正的dom操作之间还有一层diff算法，对比模板渲染节省了大部分dom操作的性能。
 
 
 **父级组件**内生命周期：
