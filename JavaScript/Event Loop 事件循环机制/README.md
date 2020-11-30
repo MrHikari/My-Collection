@@ -59,3 +59,22 @@ ___
 ***
 
 ### macrotask 宏任务 与 microtask 微任务
+
+**task（任务）** ***JavaScript***的**异步任务**分为两大类，分别是 **macrotask** （宏任务）和 **microtask**（微任务）。
+
+**macrotask** （宏任务） 主要包含：`script(整体代码)`、`setTimeout`、`setInterval`、`I/O`、`UI 交互事件`、`setImmediate(Node.js 环境)`。
+
+**microtask**（微任务） 主要包含：`Promise`、`MutaionObserver`、`process.nextTick(Node.js 环境)`。
+
+&emsp;&emsp;当程序执行时，每次 **执行栈** 的 *同步任务* 执行完毕，就会从 *任务队列* 中取出 *完成的异步任务*，队列中又分为 微任务队列 和 宏任务队列 等到把 **microtasks queues**（微任务队列） ***所有的*** **microtasks**（微任务） 都执行完毕， 从宏任务队列中取任务。等到把队列中的事件取出一个，放入 **执行栈** 执行完成，就算一次循环结束，之后`event loop`还会继续循环，再执行 **microtasks queues** 所有的任务，然后再从宏任务队列里面取一个，如此反复循环。
+
+**执行顺序**
+1. 同步任务执行完
+
+2. 去执行microtasks，把所有microtasks queues清空
+
+3. 取出一个macrotasks queues的完成事件，在执行栈执行
+
+4. 再去执行microtasks
+
+5. ......（循环往复）
