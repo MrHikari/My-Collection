@@ -166,11 +166,11 @@ class ScrollingList extends React.Component {
 
 &emsp;&emsp;在生成页面的过程中，父组件会优先处理其虚拟DOM，处理***Mounting***状态下（render Phase）的生命周期。当执行到子组件挂载到父组件的某个节点时，处理对应子组件的***Mounting***状态下（render Phase）的生命周期，依次执行完全部挂载到父组件的子组件结束，然后执行***Mounting***状态下（commit Phase）的生命周期（render之后的生命周期）。最后执行父组件的***Mounting***状态下（commit Phase）的生命周期。
 
-React 方法的作用就是将虚拟DOM渲染成真实DOM
+**React** 中`render`方法的作用就是将 ***虚拟DOM*** 渲染成 **真实DOM**
 
-所有的组件和元素都render完成 ===> 执行diff算法 ===> 修改有差异的dom。
+所有的组件和元素都是通过 render完成 ===> 执行diff算法 ===> 修改有差异的dom。
 
-虽然执行了很多无用的render，但都是在js里执行的，和真正的dom操作之间还有一层diff算法，对比模板渲染节省了大部分dom操作的性能。
+虽然执行了很多无用的`render`，但都是在***js***里执行的，和真正的dom操作之间还有一层diff算法，对比模板渲染节省了大部分dom操作的性能。
 
 
 **父级组件**内生命周期：
