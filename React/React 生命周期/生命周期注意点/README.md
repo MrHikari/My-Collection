@@ -108,7 +108,7 @@ class ScrollingList extends React.Component {
   }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
-    //我们是否要添加新的 items 到列表?
+    // 我们是否要添加新的 items 到列表?
     // 捕捉滚动位置，以便我们可以稍后调整滚动.
     if (prevProps.list.length < this.props.list.length) {
       const list = this.listRef.current;
@@ -118,7 +118,7 @@ class ScrollingList extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    //如果我们有snapshot值, 我们已经添加了 新的items.
+    // 如果我们有snapshot值, 我们已经添加了 新的items.
     // 调整滚动以至于这些新的items 不会将旧items推出视图。
     // (这边的snapshot是 getSnapshotBeforeUpdate方法的返回值)
     if (snapshot !== null) {
@@ -244,15 +244,20 @@ class ScrollingList extends React.Component {
 ```
 
 console打印结果：
-> App constructor
-> App componentWillMount
-> App render
-> A constructor
-> A componentWillMount
-> A render
-> B constructor
-> B componentWillMount
-> B render
-> A componentDidMount
-> B componentDidMount
+> // **App 开始挂载**<br/>
+> App constructor<br/>
+> App componentWillMount<br/>
+> App <br/>
+> // **A 组件开始挂载**<br/>
+> A constructor<br/>
+> A componentWillMount<br/>
+> A render<br/>
+> // **B 组件开始挂载**<br/>
+> B constructor<br/>
+> B componentWillMount<br/>
+> B render<br/>
+> // **子组件挂载结束，开始执行 挂载阶段生命后续周期**<br/>
+> A componentDidMount<br/>
+> B componentDidMount<br/>
+> // **最后执行 App 挂载阶段生命后续周期**<br/>
 > App componentDidMount
