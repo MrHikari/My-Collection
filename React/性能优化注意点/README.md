@@ -74,11 +74,12 @@
 
 &emsp;&emsp;还是参照上方的示例，使用**Component**会 render 3 次的方案，但是使用 PureComponent。
 
+示例：
 ```js
 class App extends React.PureComponent {}
 ```
 
-&emsp;&emsp;可以发现也只 render 了两次。这是因为我们的那次多余的 setState set 的是和原来相同的值，**浅比较相等**，所以没有 render。
+&emsp;&emsp;可以发现也只 render 了 2 次。这是因为我们的那次多余的 setState set 的是和原来相同的值，**浅比较相等**，所以没有 render。
 
 3. 重写 shouldComponentUpdate
 
@@ -86,8 +87,7 @@ class App extends React.PureComponent {}
 
 &emsp;&emsp;继续参考上方的示例，使用会 render 3 次的方案。
 
-&emsp;&emsp;重写一下 shouldComponentUpdate, 也来做一个浅比较。
-
+&emsp;&emsp;重写一下 `shouldComponentUpdate`, 也来做一个**浅比较**。
 ```js
   shouldComponentUpdate(nextProps, nextState) {
     for (let key in nextState) {
@@ -206,3 +206,11 @@ warning: React does not recognize the xxx prop on a DOM element......
 这是 **React**不能识别 dom元素 上的非标准 attribute 报出的警告，最终的渲染结果中React会移除这些非标准的 **attribute**。
 
 通常 `{...this.props}` 和 `cloneElement(element, this.props)` 这两种写法，会将父级别无用的 **attribute** 传递到子级的dom元素上。
+
+
+#### memoize-one
+
+```js
+import memoize from "memoize-one";
+```
+在项目中使用 `memoize-one` 三方包。与其他记忆库不同，`memoize-one` 仅记住**最新的参数**和**结果**。无需了解快**清除机制**，如忧虑 *maxAge*，*maxSize*，*exclusions*等它可以容易内存泄漏。`memoize-one` 只需记住**最后一个参数**，如果下一次使用相同的参数调用该函数，则它将返回上一个结果。
