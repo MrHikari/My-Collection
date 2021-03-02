@@ -577,9 +577,67 @@ console.log(Array.isArray(arr)); // true
 
 20. 冒泡和捕获
 
+```
+事件冒泡（dubbed bubbling）：与事件捕获恰恰相反，事件冒泡顺序是由内到外进行事件传播，直到根节点。
+
+事件捕获（event capturing）：通俗的理解就是，当鼠标点击或者触发dom事件时，浏览器会从根节点开始由外到内进行事件传播，即点击了子元素，如果父元素通过事件捕获方式注册了对应的事件的话，会先触发父元素绑定的事件。
+```
+
 22. 从0~99中随机10个数字，不能重复
 
+* 打乱截取法
+```js
+  var arr=[];
+  for(var i=0;i<100;i++){ // 一个从0到100的数组
+    arr.push(i);
+  }
+  arr.sort(function(){// 随机打乱这个数组
+    return Math.random()-0.5;
+  })
+  arr.length=10;// 改写长度
+  console.log(arr);// 控制台会输出10个不同的数
+```
+也可以返回一个对象，因为对象的key不可重复。
+
 23. 数组排序三种方法
+* 插入排序法
+```js
+var newarr = this;
+/** 1、 插入法排序
+* 插入发排序，即那数组的后边一项和前面一项对比，如果后面一项小于前面
+* 一项，则将两者位置互换，从数组第2个元素开始对比；如下示例
+*/
+for (let i = 1; i < newarr.length; i++) {
+    for (let j = i; j > 0; j--) {
+        if (newarr[j] < newarr[j-1]) {
+            let pre = newarr[j];
+            newarr[j] = newarr[j-1];
+            newarr[j-1] = pre;
+        };
+    };
+};
+```
+* 冒泡排序法
+```js
+var newarr = this;
+/** 2、 冒泡法排序
+* 插入发排序，即那数组的前一项和后一项对比，如果前面一项小于后面
+* 一项，则将两者位置互换，从数组第1个元素开始对比；如下示例
+*/
+for (let i = 0; i < newarr.length; i++) {
+    for (let j = 0; j < newarr.length; j++) {
+        if (newarr[j] > newarr[j+1]) {
+            let pre = newarr[j];
+            newarr[j] = newarr[j+1];
+            newarr[j+1] = pre;
+        };
+    };
+};
+```
+* sort
+```js
+Array.sort((a,b)=>{ return a-b });
+```
 
 24. 延时器相关的题目
 
