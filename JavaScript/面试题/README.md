@@ -146,7 +146,7 @@ class ReferenceDemo extends React.Component{
 }
 ```
 
- ---
+---
 
 1. call、 apply 和 bind 的区别?
 ```
@@ -223,142 +223,8 @@ JavaScript 语言的特别之处就在于：函数内部 可以直接读取 全�
 ```
 
 6. 如何实现继承?
-* 将内部属性指向元构造函数
-```js
-  function Parent(username){
-    this.username = username;
-    this.hello = function(){
-      alert(this.username);
-    }
-  }
-
-  function Child(username,password){
-    // 通过以下3行实现将Parent的属性和方法追加到Child中，从而实现继承
-    // 第一步：this.method是作为一个临时的属性，并且指向Parent所指向的对象，
-    // 第二步：执行this.method方法，即执行Parent所指向的对象函数
-    // 第三步：销毁this.method属性，即此时Child就已经拥有了Parent的所有属性和方法
-    this.method = Parent;
-    this.method(username); // 最关键的一行，相当于执行元构造函数运算
-    delete this.method;
-    this.password = password;
-    this.world = function(){
-      alert(this.password);
-    }
-  }
-  var parent = new Parent("zhangsan");
-  var child = new Child("lisi","123456");
-  parent.hello();
-  child.hello();
-  child.world();
 ```
-
-* call()方法方式
-
-call 方法是Function类中的方法
-call 方法的第一个参数的值赋值给类(即方法)中出现的this
-call 方法的第二个参数开始依次赋值给类(即方法)所接受的参数
-
-```js
-  function test(str){
-    alert(this.name + " " + str);
-  }
-  var object = new Object();
-  object.name = "zhangsan";
-  test.call(object,"langsin");// 此时，第一个参数值object传递给了test类(即方法)中出现的this，而第二个参数"langsin"则赋值给了test类(即方法)的str
-
-  function Parent(username){
-    this.username = username;
-    this.hello = function(){
-      alert(this.username);
-    }
-  }
-  function Child(username,password){
-    Parent.call(this, username);
-    this.password = password;
-    this.world = function(){
-      alert(this.password);
-    }
-  }
-  var parent = new Parent("zhangsan");
-  var child = new Child("lisi","123456");
-  parent.hello();
-  child.hello();
-  child.world();
-```
-
-* apply()方法方式
-
-apply 方法接受2个参数
-A、第一个参数与call方法的第一个参数一样，即赋值给类(即方法)中出现的this
-B、第二个参数为数组类型，这个数组中的每个元素依次赋值给类(即方法)所接受的参数
-```js
-  function Parent(username){
-    this.username = username;
-    this.hello = function(){
-      alert(this.username);
-    }
-  }
-  function Child(username, password){
-    Parent.apply(this, new Array(username));
-    this.password = password;
-    this.world = function(){
-      alert(this.password);
-    }
-  }
-  var parent = new Parent("zhangsan");
-  var child = new Child("lisi","123456");
-  parent.hello();
-  child.hello();
-  child.world();
-```
-
-* 原型链方式，即子类通过prototype将所有在父类中通过prototype追加的属性和方法都追加到Child，从而实现了继承
-```js
-  function Person(){
-  }
-  Person.prototype.hello = "hello";
-  Person.prototype.sayHello = function(){
-    alert(this.hello);
-  }
-  
-  function Child(){
-  }
-  Child.prototype = new Person();// 这行的作用是：将Parent中将所有通过prototype追加的属性和方法都追加到Child，从而实现了继承
-  Child.prototype.world = "world";
-  Child.prototype.sayWorld = function(){
-    alert(this.world);
-  }
-  
-  var c = new Child();
-  c.sayHello();
-  c.sayWorld();
-```
-
-* 混合方式
-
-混合了call方式、原型链方式 （实际不推荐，混乱，可读性和维护成本高）
-```js
-  function Parent(hello){
-    this.hello = hello;
-  }
-  Parent.prototype.sayHello = function(){
-    alert(this.hello);
-  }
-
-  function Child(hello,world){
-    Parent.call(this,hello);//将父类的属性继承过来
-    this.world = world;//新增一些属性
-  }
-
-  Child.prototype = new Parent();//将父类的方法继承过来
-
-  Child.prototype.sayWorld = function(){//新增一些方法
-    alert(this.world);
-  }
-
-  var c = new Child("zhangsan","lisi");
-  c.sayHello();
-  c.sayWorld(); 
+参考其他附件
 ```
 
 7. 页面上十个li添加监听，点谁谁变红
@@ -562,7 +428,7 @@ console.log(arr instanceof Array); // true
 // 这个属性是返回对象相对应的构造函数。
 console.log(arr.constructor === Array); // true
 // __proto__
-console.log(arr.__proto__  === ArArray.prototyperay); // true
+console.log(arr.__proto__  === Array.prototype); // true
 
 // 写一个函数方法
 var isType = function (obj) {
@@ -639,79 +505,96 @@ for (let i = 0; i < newarr.length; i++) {
 Array.sort((a,b)=>{ return a-b });
 ```
 
-24. 延时器相关的题目
+24. 一次完整的HTTP请求的7个步骤
 
-25. 一次完整的HTTP请求的7个步骤
+25. 变量声明提升、暂时性死区(TDZ)
 
-26. 变量声明提升、暂时性死区(TDZ)
+26. 关于Promise
 
-27. 关于Promise
+27. 箭头函数和普通函数的区别
 
-28. 箭头函数和普通函数的区别
+```
+箭头函数相当于匿名函数，并且简化了函数定义。箭头函数有两种格式，一种只包含一个表达式，连 { ... } 和 return 都省略掉了。还有一种可以包含多条语句，这时候就不能省略 { ... } 和 return。
 
-29. v-if. v-show 的区别
+箭头函数是匿名函数，不能作为构造函数，不能使用new。
 
-30. :key
+箭头函数没有原型属性。
 
-31. 元素浮动的时候display属性是啥?
+箭头函数不能当做Generator函数,不能使用yield关键字。
+```
 
-32. CSS3的钟表
+```
+箭头函数的 this 永远指向其上下文的  this ，任何方法都改变不了其指向，如 call() ,  bind() ,  apply() 
 
-33. 开发过程中遇到的内存泄露情况，如何解决的?
+普通函数的this指向调用它的那个对象
+```
 
-34. 统计字符串中出现次数最多的字
+28. 谈谈垃圾回收机制方式及内存管理
 
-35. 怎样添加、移除、移动、复制、创建和查找节点?
+29. 你做的页面在哪些浏览器内核中测试过?
 
-36. 谈谈垃圾回收机制方式及内存管理
+30. 什么是函数柯里化?编写函数，将函数柯里化
 
-37. 行内元素有哪些?块级元素呢?
+31. 高阶组件 HOC
+```
+高阶组件其实就是 一个函数，传入 一个组件 返回 一个新的组件。它接受一个组件作为参数，返回一个新的组件。这个新的组件会使用 传给它的组件 作为 子组件。
 
-38. 哪些CSS属性可以继承?
+高阶组件的作用，其实就是为了组件之间的代码复用。组件可能有着 某些相同的逻辑，把这些逻辑 抽离出来，放到 高阶组件 中进行复用。高阶组件内部的 包装组件 和 被包装组件 之间通过 props 传递数据。
+```
 
-39. 实现一个函数
+```js
+export default function withHeader(WrappedComponent) {
+  return class HOC extends Component {
+    render() {
+      return <div>
+        <div className="demo-header">
+          我是标题
+        </div>
+        <WrappedComponent {...this.props}/>
+      </div>
+    }
+  }
+}
+```
+```js
+// 在其他组件里，我们引用这个高阶组件，用来强化它
+@withHeader
+export default class Demo extends Component {
+  render() {
+    return (
+      <div>
+        我是一个普通组件
+      </div>
+    );
+  }
+}
 
-40. 你做的页面在哪些浏览器内核中测试过?
+// 使用ES6写法可以更加简洁
+export default(title) => (WrappedComponent) => class HOC extends Component {
+  render() {
+    return <div>
+      <div className="demo-header">
+        {title
+          ? title
+          : '我是标题'}
+      </div>
+      <WrappedComponent {...this.props}/>
+    </div>
+  }
+}
+```
 
-51. 什么是函数柯里化?编写函数，将函数柯里化
+32. js 装饰器
 
-52. 你知道多少种Doctype 文档类型?
+```
+装饰器：装饰器是一种特殊类型的声明，它能够被附加到类声明，方法，属性或参数上，可以修改类的行为。
+通俗的讲装饰器就是一个方法，可以注入到类、方法、属性参数上来扩展类、属性、方法、参数的功能。
+常见的装饰器有：类装饰器、属性装饰器、方法装饰器、参数装饰器
+装饰器的写法：普通装饰器（无法传参） 、 装饰器工厂（可传参）
+装饰器是过去几年中js最大的成就之一，已是Es7的标准特性之一
+```
 
-53. 如何形成BFC?
-
-54. 定位有哪几种?分别什么功能
-
-55. rgba0和opacity的透明效果有什么不同
-
-56. 简述CSS的盒模型和box-sizing:border-box 盒模型
-
-57. 什么是函数式编程?
-
-58. 前端页面有哪三层构成，分别是什么?作用是什么?
-
-59. 身上有的，就遮蔽原型了
-
-60. 找的神题、关于闭包的
-
-61. XSS和CSRF
-
-62. 请说出Vue几种常用的指令
-
-63. Vue中如何让CSS只在当前组件中起作用?
-
-64. Vue和React开发中如何使用全局状态常量?你都用这个状态常量做什么事情?
-
-65. 你会用什么工程化工具?它们和webpack有什么异同?
-
-66. 你会不会用Express 或者koa, 简单介绍一-下如何使用?
-
-67. 一次完整HTTP事务是怎样的过程?
-
-68. Vue和React中，什么是路由的懒加载
-
-69. Vue和React中，路由的History 有什么用?
-
-70. Vue-Router中的<router-link>标签和<a>标签有什么区别
-
-71. CSS3中如何实现动画?
-
+```
+装饰器（Decorator）是一个函数，用来修改类的行为。
+装饰器对类的行为的改变，是diamante编译时发生的，而不是在运行时，这意味着，装饰器能在编译阶段运行代码。
+```
