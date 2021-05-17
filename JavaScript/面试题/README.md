@@ -598,3 +598,8 @@ export default(title) => (WrappedComponent) => class HOC extends Component {
 装饰器（Decorator）是一个函数，用来修改类的行为。
 装饰器对类的行为的改变，是diamante编译时发生的，而不是在运行时，这意味着，装饰器能在编译阶段运行代码。
 ```
+
+33. 防抖 和 节流
+
+
+
