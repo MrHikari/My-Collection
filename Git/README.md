@@ -94,6 +94,10 @@ error: cannot overwrite multiple values with a single value
 
 **注意**：配置个人信息，不配置则使用全局信息
 
+**注意**：如果项目中含有**子模块**（Git submodule），如果需要一次性下载全部的代码。
+
+> git clone --recursive <远程仓库地址>
+
 ___
 
 ##### 提交与修改指令
@@ -286,9 +290,13 @@ $ upstream  git@github.com:yyy/sample01.git (push)
 
 > git push origin master
 
+**注意：**如果远程仓库没有当前分支
+
+> git push --set-upstream origin <当前分支名称>
+
 ***
 
-### Git 不常用指令
+### Git 指令扩展
 
 #### git 修改历史提交 commit 的描述信息
 
@@ -383,6 +391,8 @@ Merge branch 'master' of https://github.com/XXX/YYYY.git
 先将 `pick` 换成 `reword`，保存退出。<br/>
 然后进入到对应的 **commit** 的 **message** 的编辑页面，在当前操作状态栏下进行修改。<br/>
 `git pull origin master`，更新代码，然后`git push`，完成对远程仓库的修改。依然**不建议**直接强制提交`git push --force`。
+
+#### 
 
 ***
 
