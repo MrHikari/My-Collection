@@ -484,7 +484,7 @@ Hi xxx! You've successfully authenticated, but GitHub does not provide shell acc
 
 * 如果 **github** 与 ***gitlab*** 所用*用户名*和*邮箱***不一样**，需要修改
 
-> git config user.name <gitlab 用户名>
+> git config user.name <gitlab 用户名><br/>
 > git config user.email <gitlab 用户邮箱>
 
 * **修改项目过往提交记录的用户名**
@@ -524,7 +524,7 @@ fi
 
 或者
 
-> cd /data/shell
+> cd /data/shell<br/>
 > sh email.sh
 
 如果遇到如下错误 ：
@@ -551,8 +551,8 @@ Cannot create a new backup. A previous backup already exists in refs/original/ F
 
 #### 常用命令
 
-> git clone <repository> --recursive 递归的方式克隆整个项目
-> git submodule add <repository> <path> 添加子模块
-> git submodule init 初始化子模块
-> git submodule update 更新子模块
-> git submodule foreach git pull 拉取所有子模块
+> git clone <repository> --recursive 递归的方式克隆整个项目<br/>
+> git submodule add <repository> <path> 添加子模块<br/>
+> git submodule init 初始化子模块<br/>
+> git submodule update 更新子模块<br/>
+> git submodule foreach git pull 拉取所有子模块<br/>
