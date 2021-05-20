@@ -451,6 +451,7 @@ Host github.com
 
 为 **github**/***gitlab*** 上添加 **ssh key**<br/>
 执行 `cat id_rsa_github.pub` / `cat id_rsa.pub`，查看 对应平台的 **ssh key** 内容，将文本内容拷贝到对应的平台个人设置中。
+为了避免每次 push 都要输入账号密码。**[必要]**使用`ssh地址`而非`https地址`的方式 `git clone`，或者改变remote 远程 url 为 ssh。
 
 6. **测试** 设置是否成功
 
