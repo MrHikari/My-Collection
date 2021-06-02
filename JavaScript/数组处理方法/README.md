@@ -205,12 +205,30 @@ array.lastIndexOf(item,start)
 
 ---
 
+* **forEach()**
+
+---
+
+* **map()**
+
+---
+
+* **filter()**
+
+---
+
+* **every()**
+
+---
+
+* **some()**
+
+---
+
 * **reduce()**
 
 **reduce()** 方法接收一个**函数**作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值。
 **reduce()** 可以作为一个高阶函数，用于函数的 *compose*。
-
-**注意**: **reduce()** 对于空数组是不会执行回调函数的。
 
 ```js
 array.reduce(function(prev, current, index, arr), init);
@@ -222,3 +240,20 @@ array.reduce(function(prev, current, index, arr), init);
 **init**	可选。传递给函数的初始值（作为第一次调用 callback 的第一个参数）。
 
 **注意**：如果没有提供 `initialValue`，**reduce** 会从 索引 `1` 的地方开始执行 **callback** 方法，跳过第一个索引。如果提供 `initialValue`，从 索引 `0` 开始。回调函数内可以处理所需要的计算逻辑。
+
+***注意***：**reduce()** 对于空数组是不会执行回调函数的。如果数据为空（`[]`），会报错，`"TypeError: Reduce of empty array with no initial value"`，设置了初始值就不会报错。
+
+---
+
+* **reduceRight()**
+
+**reduceRight()** 方法的功能和 **reduce()** 功能是一样的，***不同***的是 **reduceRight()** 从数组的末尾向前将数组中的数组项做累加。
+
+```js
+array.reduceRight(function(prev, current, index, arr), init);
+```
+**prev**	必需。初始值，或者上一次计算结束后的返回值（调用回调返回的值）。
+**current**	必需。数组中当前被处理的元素。
+**index**	可选。当前元素在数组中的索引。
+**arr**	可选。当前元素所属的数组对象。
+**init**	可选。传递给函数的初始值（作为第一次调用 callback 的第一个参数）。
