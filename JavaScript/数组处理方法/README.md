@@ -87,7 +87,7 @@ arrayObject.shift()
 
 **unshift()** 方法可向数组的开头添加一个或更多元素，并返回新的长度。
 ```js
-arrayObject.unshift(element1,element2,....,elementN)
+arrayObject.unshift(element1, element2, ...., elementN);
 ```
 **element**	必须有一个要添加到数组的元素。否则原数组没有变化，空耗性能。
 
@@ -100,10 +100,12 @@ arrayObject.unshift(element1,element2,....,elementN)
 
 * **sort()**
 
-**sort()** 方法用于对数组的元素进行排序。
+**sort()**方法用于对数组的元素进行排序。
+
 ```js
-arrayObject.sort(sortby)
+arrayObject.sort(sortby);
 ```
+
 **sortby** 可选。规定排序顺序。必须是函数(确定了排列顺序)。
 
 **sort()**直接修改原数组，不生成新的数组。
@@ -129,7 +131,7 @@ arrayObject.reverse()
 **concat()** 方法用于**连接**两个或多个数组。<br/>
 该方法不会改变现有的数组，而仅仅会返回**被连接数组**的一个副本（新的数组）。
 ```js
-arrayObject.concat(arrayX,arrayY,......,arrayN)
+arrayObject.concat(arrayX, arrayY, ......, arrayN);
 ```
 **array** 必需。该参数可以是具体的值，也可以是数组对象。可以是任意多个。
 
@@ -158,7 +160,7 @@ arrayObject.slice(start,end)
 
 注意：该方法会改变原始数组。
 ```js
-arrayObject.splice(index,howmany,item1,.....,itemX)
+arrayObject.splice(index, howmany, item1, ....., itemX);
 ```
 **index**	必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。<br/>
 **howmany**	必需。要删除的`项目数量`。如果设置为 `0`，则不会删除项目。<br/>
