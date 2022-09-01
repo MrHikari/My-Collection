@@ -68,6 +68,8 @@ ___
 
 **microtask**（微任务） 主要包含：`Promise`、`MutaionObserver`、`process.nextTick(Node.js 环境)`。
 
+![JS任务导图](https://upload-images.jianshu.io/upload_images/27828718-c16b4dc2175283ef.png)
+
 &emsp;&emsp;当程序执行时，每次 **执行栈** 的 *同步任务* 执行完毕，就会从 *任务队列* 中取出 *完成的异步任务*，队列中又分为 微任务队列 和 宏任务队列 等到把 **microtasks queues**（微任务队列） ***所有的*** **microtasks**（微任务） 都执行完毕， 从宏任务队列中取任务。等到把队列中的事件取出一个，放入 **执行栈** 执行完成，就算一次循环结束，之后`event loop`还会继续循环，再执行 **microtasks queues** 所有的任务，然后再从宏任务队列里面取一个，如此反复循环。
 
 **执行顺序**
@@ -80,6 +82,8 @@ ___
 4. 再去执行**microtasks**
 
 5. ......（循环往复）
+
+![JS事件循环示意](https://pic2.zhimg.com/80/v2-e6dd78c74cb671dd9408c2273308a265_1440w.jpg)
 
 `setTimeout`/`Promise` 等API便是任务源，而进入任务队列的是由他们指定的具体执行任务。来自**不同任务源**的任务会进入到不同的任务队列。其中 `setTimeout` 与 `setInterval` 是同源的。
 
